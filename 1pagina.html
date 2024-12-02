@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<head>
+  <title>Visualizza Dati</title>
+</head>
+<body>
+
+  <h1>Dati dalla Tabella</h1>
+  
+  <table id="tabellaVisualizza" border="1">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Cognome</th>
+        <th>Età</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+
+  <script>
+    function caricaTabella() {
+      const datiTabella = JSON.parse(localStorage.getItem('tabellaDati'));
+
+      if (datiTabella) {
+        const table = document.getElementById('tabellaVisualizza').getElementsByTagName('tbody')[0];
+
+        datiTabella.forEach(dato => {
+          const newRow = table.insertRow();
+          newRow.insertCell(0).innerText = dato.nome;
+          newRow.insertCell(1).innerText = dato.cognome;
+          newRow.insertCell(2).innerText = dato.eta;
+        });
+      } else {
+        alert('Nessun dato trovato.');
+      }
+    }
+    window.onload = caricaTabella;
+  </script>
+
+</body>
+</html>
