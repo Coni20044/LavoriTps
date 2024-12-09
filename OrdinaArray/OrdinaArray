@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+    <title>Ordina Array</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        label {
+            font-family: Arial, sans-serif;
+        }
+        h1, h2 {
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ordina Array di Numeri</h1>
+    <label for="inputArray">Inserire i numeri separati da una virgola:</label><br><br>
+    <input type="text" id="inputArray" placeholder="Esempio: 1,2,3,4"><br><br>
+    <button id="sortButton">Ordina Array</button>
+
+    <div id="div1">
+        <h2>↓ Array Crescente (dal più piccolo al più grande) ↓</h2>
+        <p id="sortedAsc"></p>
+    </div>
+
+    <div id="div2">
+        <h2>↓ Array Decrescente (dal più grande al più piccolo) ↓</h2>
+        <p id="sortedDesc"></p>
+    </div>
+
+    <script>
+        document.getElementById('sortButton').addEventListener('click', function() {
+            const input = document.getElementById('inputArray').value;
+
+            const numberArray = input.split(',').map(Number);
+
+            // Ordinamento crescente
+            const sortedAsc = [...numberArray].sort(function(a, b) { return a - b; });
+
+            // Ordinamento decrescente
+            const sortedDesc = [...numberArray].sort(function(a, b) { return b - a; });
+
+            // Aggiornamento dei paragrafi con i risultati
+            document.getElementById('sortedAsc').textContent = sortedAsc.join(', ');
+            document.getElementById('sortedDesc').textContent = sortedDesc.join(', ');
+        });
+    </script>
+</body>
+</html>
