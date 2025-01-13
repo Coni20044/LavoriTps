@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<head>
+    <title>Visualizza Dati Sbarco</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Visualizza Dati di Sbarco Migranti</h1>
+
+<!-- Form per caricare il file -->
+<input type="file" id="fileInput" accept=".txt">
+<br><br>
+
+<!-- Tabella per mostrare i dati -->
+<table id="dataTable">
+    <thead>
+        <tr>
+            <th>Anno</th>
+            <th>Numero di Persone Sbarcate</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- I dati saranno aggiunti qui dinamicamente -->
+    </tbody>
+</table>
+
+<script>
+    // Funzione per gestire il caricamento e la lettura del file
+    document.getElementById('fileInput').addEventListener('change', function(event) {
+        // Prendi il file caricato
+        const file = event.target.files[0];
+
+        // Se non c'è un file selezionato, esci dalla funzione
+        if (!file) return;
+
+        // Usa FileReader per leggere il contenuto del file
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            // Ottieni il contenuto del file come stringa
+            const fileContent = e.target.result;
+
+            // Dividi il contenuto in righe
+            const rows = fileContent.split('\n');
+
+            // Ottieni il corpo della tabella
+            const tableBody = document.getElementById('dataTable').getElementsByTagName('tbody')[0];
+
+            // Pulisci la tabella esistente
+            tableBody.innerHTML = '';
+
+            // Elabora ogni riga (tranne la prima che è l'intestazione)
+            rows.forEach(function(row, index) {
+                // Ignora righe vuote o l'intestazione
+                if (row.trim() === '' || index === 0) return;
+
+                // Dividi la riga in base al carattere di separazione (tabulazione o spazio)
+                const columns = row.split('\t');
+
+                // Verifica che la riga abbia 2 colonne
+                if (columns.length === 2) {
+                    const anno = columns[0].trim();
+                    const persone = columns[1].trim();
+
+                    // Crea una nuova riga nella tabella
+                    const newRow = tableBody.insertRow();
+
+                    // Aggiungi le celle per l'anno e il numero di persone sbarcate
+                    const cell1 = newRow.insertCell(0);
+                    const cell2 = newRow.insertCell(1);
+                    cell1.textContent = anno;
+                    cell2.textContent = persone;
+                }
+            });
+        };
+
+        // Leggi il file come testo
+        reader.readAsText(file);
+    });
+</script>
+
+</body>
+</html>
+
+
+
+
