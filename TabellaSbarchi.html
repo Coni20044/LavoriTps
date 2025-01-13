@@ -1,92 +1,62 @@
 <!DOCTYPE html>
 <head>
-    <title>Visualizza Dati Sbarco</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        table, th, td {
-            border: 1px solid black;
-        }
-        th, td {
-            padding: 8px;
-            text-align: center;
-        }
-    </style>
+    <title>File Reader e Tabella</title>
 </head>
 <body>
 
-<h1>Visualizza Dati di Sbarco Migranti</h1>
+<h1>Carica e visualizza il file di testo in forma tabellare</h1>
 
-<input type="file" id="fileInput" accept=".txt">
-<br><br>
-
-<table id="dataTable">
+<input type="file" id="fileInput" />
+<table id="table" border="1">
     <thead>
         <tr>
-            <th>Anno</th>
-            <th>Numero di Persone Sbarcate</th>
+            <th>Colonna 1</th>
+            <th>Colonna 2</th>
+            
         </tr>
     </thead>
-    <tbody>
-    </tbody>
+    <tbody></tbody>
 </table>
 
 <script>
-
-    document.getElementById('fileInput').addEventListener('change', function(event) {
-
-        const file = event.target.files[0];
-
-
-        if (!file) return;
-
+document.getElementById('fileInput').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
         const reader = new FileReader();
-
         reader.onload = function(e) {
+            const content = e.target.result;
+            const lines = content.split('\n'); 
+            
 
-            const fileContent = e.target.result;
-
-
-            const rows = fileContent.split('\n');
-
-            const tableBody = document.getElementById('dataTable').getElementsByTagName('tbody')[0];
-
-
+            const tableBody = document.querySelector('#table tbody');
             tableBody.innerHTML = '';
+            
 
-            rows.forEach(function(row, index) {
-        
-                if (row.trim() === '' || index === 0) return;
-
-           
-                const columns = row.split('\t');
-
-                if (columns.length === 2) {
-                    const anno = columns[0].trim();
-                    const persone = columns[1].trim();
-
-      
-                    const newRow = tableBody.insertRow();
-
-                    
-                    const cell1 = newRow.insertCell(0);
-                    const cell2 = newRow.insertCell(1);
-                    cell1.textContent = anno;
-                    cell2.textContent = persone;
-                }
+            lines.forEach(line => {
+              
+                const columns = line.split(' '); // Assumendo che i dati siano separati da uno spazio
+                const row = document.createElement('tr');
+                
+                
+                columns.forEach(col => {
+                    const cell = document.createElement('td');
+                    cell.textContent = col.trim(); // Rimuove spazi extra
+                    row.appendChild(cell);
+                });
+                
+               
+                tableBody.appendChild(row);
             });
         };
-
-
+        
+     
         reader.readAsText(file);
-    });
+    }
+});
 </script>
 
 </body>
 </html>
-
 
 
 
