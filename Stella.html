@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Disegno Stella</h1>
+<h2>Canvas</h2>
+<canvas id="myCanvas" width="600" height="450" style="border:1px solid grey"></canvas>
+<script>
+const c = document.getElementById("myCanvas"); 
+const ctx = c.getContext("2d");
+ctx.fillStyle = "green";
+ctx.fillRect(0, 0, c.width, c.height);
+  
+ctx.beginPath(); 
+
+ctx.moveTo(100, 170);
+ctx.lineTo(440, 170);
+ctx.lineTo(120, 350);
+ctx.lineTo(270, 70);
+ctx.lineTo(440, 350);
+ctx.lineTo(100, 170);
+ctx.strokeStyle = "goldenrod";
+ctx.lineWidth = 2;
+ctx.stroke();
+</script> 
+
+</body>
+</html>
