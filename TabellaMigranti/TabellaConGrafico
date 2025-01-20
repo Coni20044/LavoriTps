@@ -6,21 +6,18 @@
     
 <html>
 
-<canvas id="myCanvas" width="600" height="450" style="border:1px solid grey"></canvas>
+<canvas id="myCanvas" width="700" height="450" style="border:3px solid"></canvas>
 <script>
 const c = document.getElementById("myCanvas"); 
 const ctx = c.getContext("2d");
-ctx.fillStyle = "red";
+ctx.fillStyle = "white";
 ctx.fillRect(0, 0, c.width, c.height);
   
 ctx.beginPath(); 
 
 ctx.moveTo(100, 170);
 ctx.lineTo(440, 170);
-ctx.lineTo(120, 350);
-ctx.lineTo(270, 70);
-ctx.lineTo(440, 350);
-ctx.lineTo(100, 170);
+
 ctx.strokeStyle = "white";
 ctx.lineWidth = 2;
 ctx.stroke();
