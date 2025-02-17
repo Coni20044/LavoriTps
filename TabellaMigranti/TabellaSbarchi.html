@@ -1,62 +1,111 @@
-<!DOCTYPE html>
-<head>
-    <title>File Reader e Tabella</title>
-</head>
-<body>
-
-<h1>Carica e visualizza il file di testo in forma tabellare</h1>
-
-<input type="file" id="fileInput" />
-<table id="table" border="1">
-    <thead>
-        <tr>
-            <th>Colonna 1</th>
-            <th>Colonna 2</th>
-            
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
-
-<script>
-document.getElementById('fileInput').addEventListener('change', function(event) {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const content = e.target.result;
-            const lines = content.split('\n'); 
-            
-
-            const tableBody = document.querySelector('#table tbody');
-            tableBody.innerHTML = '';
-            
-
-            lines.forEach(line => {
-              
-                const columns = line.split(' '); // Assumendo che i dati siano separati da uno spazio
-                const row = document.createElement('tr');
-                
-                
-                columns.forEach(col => {
-                    const cell = document.createElement('td');
-                    cell.textContent = col.trim(); // Rimuove spazi extra
-                    row.appendChild(cell);
-                });
-                
-               
-                tableBody.appendChild(row);
-            });
-        };
-        
-     
-        reader.readAsText(file);
+<html>
+  <!DOCTYPE html>
+  <style>
+    body {
+        font-family: "Arial", sans-serif;
+        background-color: rgba(238, 230, 230, 0.4);
+        margin: 0;
+        padding: 0;
+        justify-content: center;
+        align-items: center;  
     }
-});
-</script>
+      
+    
+    h1 {
+      font-size: 80px;
+      color: #000000;
+      text-align: center;
+      margin-bottom: 40px;
+      margin: 0 auto;
+    }
+    input[type="file"] {
+      padding: 10px;
+      font-size: 1em;
+      margin-bottom: 50px;
+      background-color: #cdcdcd;
+      border: 1px solid #000000;
+      margin-left: 280;
+      margin-top: 100;
+    }
+    .output {
+      width: 13.5%;
+      background-color: #cdcdcd;
+      padding: 50px;
+      margin-left: 330;
+      margin-top: 100;
+    }
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 2px;
+      color: #333;
+      margin: 0 auto; 
+    }
+    table,
+    th,
+    td {
+      border: 1px solid #ddd;
+    }
+    th,
+    td {
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+      color: #333;
+      font-weight: bold;
+    }
 
-</body>
+    td {
+      background-color: #fafafa;
+    }
+
+    td:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+  </style>
+  <script>
+    
+    function leggiFile(input) {
+      let file = input.files[0]; 
+      let lettoreFile = new FileReader(); 
+      lettoreFile.readAsText(file);
+
+      lettoreFile.onload = function () {
+        let informazioni = lettoreFile.result; 
+        creaTab(informazioni); 
+      };
+    }
+
+    function creaTab(tab) {
+      let tabella = document.createElement("table");
+      let newRighe;
+      let arrayT = tab.split("\n");
+      
+      let colonne;
+
+      for (let riga = 0; riga < arrayT.length; riga++) {
+        newRighe = document.createElement("tr");
+        Ncolonne = arrayT[riga].split(",");
+        for (let colonna = 0; colonna < Ncolonne.length; colonna++) {
+          let contenuto = document.createElement("td");
+          contenuto.textContent = Ncolonne[colonna];
+          newRighe.appendChild(contenuto);
+        }
+        tabella.appendChild(newRighe);
+      }
+
+      let outputDiv = document.getElementById("output");
+      outputDiv.innerHTML = "";
+      outputDiv.appendChild(tabella);
+    }
+  </script>
+
+  <body>
+    <h1>Tabella Migranti</h1>
+    <input type="file" onchange="leggiFile(this)" />
+
+    <div id="output" class="output"></div>
+  </body>
 </html>
-
-
-
