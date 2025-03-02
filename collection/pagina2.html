@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Griglia Dati Utente</title>
+  <style>
+    table {
+      width: 50%;
+      margin: 20px auto;
+      border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid black;
+    }
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+  </style>
+  <script>
+    function mostraDati() {
+      // Recupera i dati dal localStorage
+      const utenteJSON = localStorage.getItem('utente');
+      
+      if (utenteJSON) {
+        // Parsea la stringa JSON
+        const utente = JSON.parse(utenteJSON);
+
+        // Crea la griglia con i dati dell'utente
+        const table = document.getElementById('userTable');
+        
+        const row = table.insertRow();
+        row.insertCell(0).innerText = 'Nome';
+        row.insertCell(1).innerText = utente.nome;
+
+        const row2 = table.insertRow();
+        row2.insertCell(0).innerText = 'Cognome';
+        row2.insertCell(1).innerText = utente.cognome;
+
+        const row3 = table.insertRow();
+        row3.insertCell(0).innerText = 'Età';
+        row3.insertCell(1).innerText = utente.eta;
+
+        const row4 = table.insertRow();
+        row4.insertCell(0).innerText = 'Indirizzo';
+        row4.insertCell(1).innerText = utente.indirizzo;
+      }
+    }
+  </script>
+</head>
+<body onload="mostraDati();">
+  <h1>Dettagli Utente</h1>
+  <table id="userTable">
+    <!-- La griglia sarà popolata dinamicamente tramite JavaScript -->
+  </table>
+  <br>
+  <button onclick="localStorage.clear(); window.location.href='prima_pagina.html';">Cancella Dati e Torna Indietro</button>
+</body>
+</html>
