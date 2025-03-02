@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Griglia Dati Utente</title>
   <style>
     table {
@@ -20,7 +17,7 @@
   </style>
   <script>
     function mostraDati() {
-      // Recupera i dati dal localStorage
+      
       const utenteJSON = localStorage.getItem('utente');
       
       if (utenteJSON) {
@@ -50,9 +47,8 @@
   </script>
 </head>
 <body onload="mostraDati();">
-  <h1>Dettagli Utente</h1>
+  <h1>I tuoi dati personali:</h1>
   <table id="userTable">
-    <!-- La griglia sarà popolata dinamicamente tramite JavaScript -->
   </table>
   <br>
   <button onclick="localStorage.clear(); window.location.href='prima_pagina.html';">Cancella Dati e Torna Indietro</button>
