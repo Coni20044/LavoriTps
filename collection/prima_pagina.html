@@ -1,18 +1,15 @@
 <!DOCTYPE html>
-<html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inserisci Dati Utente</title>
   <script>
     function salvaDati() {
-      // Recupera i dati dal form
+      // recupero dati form
       const nome = document.getElementById('nome').value;
       const cognome = document.getElementById('cognome').value;
       const eta = document.getElementById('eta').value;
       const indirizzo = document.getElementById('indirizzo').value;
 
-      // Crea l'oggetto utente
+      // Creaazione oggetto utente
       const utente = {
         nome: nome,
         cognome: cognome,
