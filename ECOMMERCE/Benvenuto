@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benvenuto</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e9ecef;
+            height: 100vh;
+        }
+        .container {
+            max-width: 600px;
+            margin-top: 100px;
+        }
+        .card {
+            padding: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h3>Benvenuto nel tuo Shop di Prodotti Tecnologici!</h3>
+            <p>Il file JSON è stato caricato correttamente.</p>
+            <a href="products.html" class="btn btn-primary w-100">Visualizza Prodotti</a>
+        </div>
+    </div>
+</body>
+</html>
