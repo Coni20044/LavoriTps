@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accesso - NEO-Moto</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background-color: #121212;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #222222;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #c81c22;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-size: 16px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 2px solid #c81c22;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        input:focus {
+            border-color: #9b1620;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #c81c22;
+            color: #fff;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #9b1620;
+        }
+
+        .error {
+            color: #ff0000;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Accesso</h1>
+        <form id="loginForm">
+            <div class="error" id="errorMessage"></div>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required placeholder="Inserisci la tua email">
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required placeholder="Inserisci la tua password">
+
+            <button type="submit">Accedi</button>
+        </form>
+
+        
+    </div>
+
+    <script>
+        // Gestione del login
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Evita l'invio del modulo
+
+            // Ottieni i valori dei campi
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+
+            // Controllo semplice di validità
+            if (email === '' || password === '') {
+                errorMessage.textContent = 'Tutti i campi sono obbligatori.';
+                return;
+            }
+
+            // Aggiungere ulteriori validazioni se necessario (es. email valida, password corretta, ecc.)
+
+            // Se tutto è valido, puoi inviare i dati al server
+            console.log('Accesso riuscito:', { email, password });
+
+            // Pulisci il modulo
+            document.getElementById('loginForm').reset();
+
+            // Invia un messaggio di successo o una nuova pagina
+            alert('Accesso riuscito!');
+        });
+    </script>
+
+</body>
+</html>
