@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eCommerce - Prodotti</title>
+    <title>Synthetizzati - Prodotti</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        /* Tutti gli stili già presenti qui sotto */
+        /* Nuova palette di colori */
         body {
             font-family: Arial, sans-serif;
             background-color: #000;
@@ -21,14 +21,17 @@
 
         header {
             font-family: 'Orbitron', sans-serif;
-            background-color: #c81c22;
+            background-color: #8e24aa; /* Viola */
             color: #fff;
-            padding: 20px;
+            padding: 20px 40px;
             font-size: 30px;
             font-weight: bold;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         header h1 {
@@ -37,7 +40,7 @@
         }
 
         button {
-            background-color: #c81c22;
+            background-color: #8e24aa; /* Viola */
             color: white;
             padding: 12px 20px;
             border: none;
@@ -49,17 +52,57 @@
         }
 
         button:hover {
-            background-color: #9b1620;
+            background-color: #6a1b9a; /* Viola scuro */
             transform: scale(1.05);
         }
 
+        /* Layout generale */
+        .main-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            height: calc(100vh - 120px); /* Per centrare verticalmente */
+        }
+
+        /* Pannello centrato per la selezione file e svuotamento */
+        .centered-panel {
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centra gli elementi orizzontalmente */
+            justify-content: center;
+            gap: 20px;
+            margin-top: -20px; /* Aggiunta di margine negativo per alzare il pannello */
+        }
+
+        .centered-panel input, .centered-panel button {
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #8e24aa;
+            width: 60%;
+            max-width: 300px; /* Limita la larghezza massima */
+        }
+
+        .centered-panel button {
+            background-color: #8e24aa;
+            color: white;
+            cursor: pointer;
+        }
+
+        .centered-panel button:hover {
+            background-color: #6a1b9a; /* Viola scuro */
+        }
+
+        /* Sezione dei prodotti */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 20px;
-            padding: 20px;
+            padding: 40px 20px;
             max-width: 1200px;
-            margin: auto;
+            margin: 20px auto;
             flex-grow: 1;
         }
 
@@ -69,6 +112,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s, box-shadow 0.3s;
+            text-align: left;
         }
 
         .product:hover {
@@ -85,38 +129,45 @@
 
         .product h3 {
             font-size: 20px;
-            color: #c81c22;
+            color: #8e24aa; /* Viola */
             margin-bottom: 10px;
         }
 
         .product p {
             color: #bbb;
             font-size: 14px;
+            line-height: 1.5;
         }
 
         .product .price {
             font-weight: bold;
-            color: #c81c22;
+            color: #8e24aa; /* Viola */
             font-size: 18px;
             margin-top: 10px;
         }
 
         #footer-info {
-            background-color: #000;
+            background-color: #222;
             color: #fff;
             padding: 40px 20px;
             text-align: center;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
         }
 
+        /* Centrare "Chi Siamo" */
         #about-us {
-            background-color: #c81c22;
+            background-color: #8e24aa; /* Viola */
             color: #fff;
             padding: 30px;
             border-radius: 10px;
-            width: 80%;
-            margin: 0 auto;
+            width: 80%; /* Diminuito per centrarlo meglio */
+            position: relative;
+            margin-top: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            text-align: center;
+            text-align: left;
+            margin: 20px auto;
         }
 
         #about-us h2 {
@@ -128,6 +179,7 @@
         #about-us p {
             font-size: 16px;
             margin-top: 10px;
+            line-height: 1.5;
         }
 
         .registration-link {
@@ -135,25 +187,22 @@
             bottom: 20px;
             right: 20px;
             font-size: 16px;
-            color: #c81c22;
+            color: #8e24aa; /* Viola */
             text-decoration: none;
             font-weight: bold;
             transition: color 0.3s ease;
         }
 
         .registration-link:hover {
-            color: #9b1620;
+            color: #6a1b9a; /* Viola scuro */
         }
 
-        .clear-btn {
-            margin: 20px auto;
-        }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>NEO-Moto</h1>
+    <h1>Synthetizzati</h1>
     <div>
         <button onclick="window.location.href='https://example.com/carrello.html'">Carrello</button>
         <button onclick="window.location.href='https://example.com/wishlist.html'">Wishlist</button>
@@ -162,19 +211,23 @@
 </header>
 
 <main>
+    <div class="main-container">
+        <!-- Pannello centrato per selezione file e svuotamento -->
+        <div class="centered-panel">
+            <input type="file" id="jsonFileInput" accept=".json" />
+            <button class="clear-btn" onclick="clearSavedProducts()">Svuota Prodotti</button>
+        </div>
+    </div>
     <div id="product-list" class="product-grid"></div>
-    <input type="file" id="jsonFileInput" accept=".json" />
-    <br>
-    <button class="clear-btn" onclick="clearSavedProducts()">Svuota Prodotti</button>
 </main>
 
 <section id="footer-info">
     <div id="about-us">
         <h2>Chi Siamo</h2>
-        <p>Benvenuti nel nostro negozio online! Siamo un team di appassionati di motociclette ad alte prestazioni, impegnati a offrire solo il meglio ai nostri clienti. Offriamo una vasta gamma di motociclette selezionate con cura per soddisfare ogni tipo di esigenza. La nostra missione è rendere lo shopping online facile e conveniente.</p>
+        <p>Benvenuti nel nostro negozio online! Siamo un team di appassionati di musica elettronica e produzione musicale, impegnati a offrire solo il meglio ai nostri clienti. Offriamo una vasta gamma di sintetizzatori selezionati con cura per soddisfare ogni tipo di esigenza. La nostra missione è rendere lo shopping online facile e conveniente per i musicisti di ogni livello.</p>
     </div>
     <footer>
-        <p>&copy; 2025 Negozio Online - Tutti i diritti riservati</p>
+        <p>&copy; 2025 Synthetizzati - Tutti i diritti riservati</p>
         <p>Informazioni legali | Termini e condizioni</p>
     </footer>
 </section>
@@ -215,30 +268,26 @@
             }
         });
 
-        // Mostra i prodotti nella griglia
+        // Mostra i prodotti nella pagina
         function displayProducts(products) {
-            productList.innerHTML = "";
+            productList.innerHTML = '';
             products.forEach(product => {
-                const productElement = document.createElement("div");
-                productElement.classList.add("product");
+                const productElement = document.createElement('div');
+                productElement.classList.add('product');
                 productElement.innerHTML = `
                     <img src="${product.image}" alt="${product.name}">
                     <h3>${product.name}</h3>
                     <p>${product.description}</p>
-                    <p class="price">${product.price}</p>
+                    <div class="price">${product.price}</div>
                 `;
-                productElement.addEventListener("click", () => {
-                    localStorage.setItem("selectedProduct", JSON.stringify(product));
-                    window.location.href = "prodotto.html"; // Assicurati che esista
-                });
                 productList.appendChild(productElement);
             });
         }
 
-        // Pulsante per svuotare i prodotti salvati
-        window.clearSavedProducts = function () {
+        // Funzione per svuotare la lista dei prodotti
+        function clearSavedProducts() {
             localStorage.removeItem("productList");
-            location.reload();
+            productList.innerHTML = '';
         }
     });
 </script>
