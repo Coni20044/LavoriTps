@@ -25,25 +25,28 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             width: 100%;
             max-width: 400px;
+            text-align: center;
         }
 
         h1 {
-            text-align: center;
-            color: #c81c22;
-            margin-bottom: 20px;
+            color: #8e24aa; /* Viola */
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: bold;
         }
 
         label {
             display: block;
-            margin: 10px 0 5px;
-            font-size: 16px;
+            margin: 15px 0 5px;
+            font-size: 18px;
+            color: #fff;
         }
 
         input {
             width: 100%;
-            padding: 12px;
+            padding: 15px;
             margin-bottom: 20px;
-            border: 2px solid #c81c22;
+            border: 2px solid #8e24aa; /* Viola */
             border-radius: 5px;
             background-color: #333;
             color: #fff;
@@ -51,14 +54,14 @@
         }
 
         input:focus {
-            border-color: #9b1620;
+            border-color: #6a1b9a; /* Viola scuro */
             outline: none;
         }
 
         button {
             width: 100%;
-            padding: 12px;
-            background-color: #c81c22;
+            padding: 15px;
+            background-color: #8e24aa; /* Viola */
             color: #fff;
             font-size: 18px;
             border: none;
@@ -68,7 +71,7 @@
         }
 
         button:hover {
-            background-color: #9b1620;
+            background-color: #6a1b9a; /* Viola scuro */
         }
 
         .error {
@@ -77,12 +80,26 @@
             margin-bottom: 10px;
         }
 
+        /* Link di registrazione */
+        .registration-link {
+            display: block;
+            color: #8e24aa;
+            font-size: 16px;
+            margin-top: 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .registration-link:hover {
+            color: #6a1b9a;
+        }
+
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>Accesso</h1>
+        <h1>Accedi al tuo account</h1>
         <form id="loginForm">
             <div class="error" id="errorMessage"></div>
 
@@ -94,8 +111,8 @@
 
             <button type="submit">Accedi</button>
         </form>
-
         
+        <a href="registrazione.html" class="registration-link">Non hai un account? Registrati</a>
     </div>
 
     <script>
