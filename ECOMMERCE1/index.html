@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eCommerce - Prodotti</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Tutti gli stili già presenti qui sotto */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            font-family: 'Orbitron', sans-serif;
+            background-color: #c81c22;
+            color: #fff;
+            padding: 20px;
+            font-size: 30px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        button {
+            background-color: #c81c22;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 10px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background-color: #9b1620;
+            transform: scale(1.05);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+            flex-grow: 1;
+        }
+
+        .product {
+            background-color: #222;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .product img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .product h3 {
+            font-size: 20px;
+            color: #c81c22;
+            margin-bottom: 10px;
+        }
+
+        .product p {
+            color: #bbb;
+            font-size: 14px;
+        }
+
+        .product .price {
+            font-weight: bold;
+            color: #c81c22;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        #footer-info {
+            background-color: #000;
+            color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        #about-us {
+            background-color: #c81c22;
+            color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            width: 80%;
+            margin: 0 auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        #about-us h2 {
+            font-size: 28px;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        #about-us p {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .registration-link {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 16px;
+            color: #c81c22;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .registration-link:hover {
+            color: #9b1620;
+        }
+
+        .clear-btn {
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>NEO-Moto</h1>
+    <div>
+        <button onclick="window.location.href='https://example.com/carrello.html'">Carrello</button>
+        <button onclick="window.location.href='https://example.com/wishlist.html'">Wishlist</button>
+        <button onclick="window.location.href='https://example.com/contatti.html'">Contattaci</button>
+    </div>
+</header>
+
+<main>
+    <div id="product-list" class="product-grid"></div>
+    <input type="file" id="jsonFileInput" accept=".json" />
+    <br>
+    <button class="clear-btn" onclick="clearSavedProducts()">Svuota Prodotti</button>
+</main>
+
+<section id="footer-info">
+    <div id="about-us">
+        <h2>Chi Siamo</h2>
+        <p>Benvenuti nel nostro negozio online! Siamo un team di appassionati di motociclette ad alte prestazioni, impegnati a offrire solo il meglio ai nostri clienti. Offriamo una vasta gamma di motociclette selezionate con cura per soddisfare ogni tipo di esigenza. La nostra missione è rendere lo shopping online facile e conveniente.</p>
+    </div>
+    <footer>
+        <p>&copy; 2025 Negozio Online - Tutti i diritti riservati</p>
+        <p>Informazioni legali | Termini e condizioni</p>
+    </footer>
+</section>
+
+<a href="login.html" class="registration-link">Registrazione</a>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const fileInput = document.getElementById("jsonFileInput");
+        const productList = document.getElementById("product-list");
+
+        // Se ci sono prodotti salvati, visualizzali
+        const savedProducts = localStorage.getItem("productList");
+        if (savedProducts) {
+            try {
+                const products = JSON.parse(savedProducts);
+                displayProducts(products);
+            } catch (error) {
+                console.error("Errore nel parsing del JSON salvato:", error);
+            }
+        }
+
+        // Quando l'utente carica un nuovo file JSON
+        fileInput.addEventListener("change", function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    try {
+                        const products = JSON.parse(e.target.result);
+                        localStorage.setItem("productList", JSON.stringify(products)); // Salva nel localStorage
+                        displayProducts(products);
+                    } catch (error) {
+                        console.error("Errore nel parsing del JSON:", error);
+                    }
+                };
+                reader.readAsText(file);
+            }
+        });
+
+        // Mostra i prodotti nella griglia
+        function displayProducts(products) {
+            productList.innerHTML = "";
+            products.forEach(product => {
+                const productElement = document.createElement("div");
+                productElement.classList.add("product");
+                productElement.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>${product.description}</p>
+                    <p class="price">${product.price}</p>
+                `;
+                productElement.addEventListener("click", () => {
+                    localStorage.setItem("selectedProduct", JSON.stringify(product));
+                    window.location.href = "prodotto.html"; // Assicurati che esista
+                });
+                productList.appendChild(productElement);
+            });
+        }
+
+        // Pulsante per svuotare i prodotti salvati
+        window.clearSavedProducts = function () {
+            localStorage.removeItem("productList");
+            location.reload();
+        }
+    });
+</script>
+
+</body>
+</html>
