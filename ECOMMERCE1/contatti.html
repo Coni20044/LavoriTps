@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contattaci - SynthStore</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background-color: #121212;
+            color: #fff;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #00cfcf; /* Verde acqua */
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            font-size: 28px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        nav {
+            display: flex;
+            gap: 15px;
+        }
+
+        nav button {
+            background-color: white;
+            color: #00cfcf;
+            font-weight: bold;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        nav button:hover {
+            background-color: #e0f7f7;
+        }
+
+        main {
+            background-color: #1a1a1a;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            justify-items: center;
+            align-items: start;
+        }
+
+        .section {
+            background-color: #111;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .section h2 {
+            color: #00cfcf;
+            font-size: 26px;
+            margin-bottom: 15px;
+        }
+
+        .section p {
+            color: #ccc;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .contact-info {
+            margin-top: 20px;
+        }
+
+        .contact-info a {
+            color: #00cfcf;
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background-color: #1a1a1a;
+            color: #777;
+            font-size: 14px;
+            padding: 20px;
+            text-align: center;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>SynthStore</h1>
+    <nav>
+        <button onclick="window.location.href='index.html'">🏠 Home</button>
+        <button onclick="window.location.href='carrello.html'">🛒 Carrello</button>
+    </nav>
+</header>
+
+<main>
+    <div class="section">
+        <h2>La nostra visione</h2>
+        <p>
+            SynthStore nasce dalla passione per la musica elettronica e l'innovazione. La nostra missione è portare ai musicisti gli strumenti più potenti e creativi per le loro produzioni musicali.
+            <br><br>
+            Collaboriamo con i marchi più prestigiosi per offrire sintetizzatori, effetti e attrezzature di qualità, ideali per ogni tipo di produzione musicale.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>Contattaci</h2>
+        <p>Hai domande, bisogno di assistenza o vuoi semplicemente scoprire di più sui nostri prodotti? Il nostro team è pronto ad aiutarti!</p>
+        <div class="contact-info">
+            <p><strong>📍 Indirizzo:</strong> Via della Musica 34, 00100 Roma (RM)</p>
+            <p><strong>📞 Telefono:</strong> +39 06 1234 5678</p>
+            <p><strong>📧 Email supporto:</strong> <a href="mailto:supporto@synthstore.it">supporto@synthstore.it</a></p>
+            <p><strong>📧 Email vendite:</strong> <a href="mailto:vendite@synthstore.it">vendite@synthstore.it</a></p>
+            <p><strong>📧 Email partnership:</strong> <a href="mailto:partnership@synthstore.it">partnership@synthstore.it</a></p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Seguici sui social</h2>
+        <p>
+            Rimani aggiornato sulle novità, eventi e offerte esclusive.<br>
+            <strong>Instagram:</strong> <a href="#">@synthstore_official</a> <br>
+            <strong>Facebook:</strong> <a href="#">fb.com/synthstore</a> <br>
+            <strong>YouTube:</strong> <a href="#">SynthStore Channel</a>
+        </p>
+    </div>
+</main>
+
+<footer>
+    &copy; 2025 SynthStore. Tutti i diritti riservati | P.IVA 01234567890
+</footer>
+
+</body>
+</html>
