@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento - Il Tuo Carrello</title>
+    <style>
+        body {
+            font-family: 'Orbitron', sans-serif; /* Font modificato per uniformità */
+            background-color: #111; /* Colore di sfondo scuro */
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-top: 30px;
+            color: #C2f8CB; /* Verde chiaro per il titolo */
+        }
+
+        .form-container {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #222; /* Colore di sfondo della finestra */
+            border-radius: 8px;
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            border: 2px solid #C2f8CB; /* Verde chiaro per il bordo */
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #333;
+            background-color: #333;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        .input-field:focus {
+            border-color: #C2f8CB; /* Verde chiaro quando il campo è selezionato */
+            outline: none;
+        }
+
+        .button {
+            background-color: #8367C7; /* Viola chiaro per il pulsante */
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .button:hover {
+            background-color: #6f4db8; /* Viola più scuro al passaggio del mouse */
+        }
+
+        .payment-methods {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .payment-method {
+            background-color: #333;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 30%;
+            transition: background-color 0.3s;
+            color: #fff;
+        }
+
+        .payment-method:hover {
+            background-color: #8367C7; /* Viola chiaro al passaggio del mouse */
+        }
+
+        .cart-item {
+            padding: 15px;
+            border: 1px solid #ccc;
+            margin: 10px;
+            background-color: #222;
+            border-radius: 8px;
+        }
+
+        .cart-item img {
+            width: 100px;
+            height: auto;
+        }
+
+        .cart-item h3 {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .cart-item p {
+            font-size: 14px;
+            color: #bbb;
+        }
+
+        .total {
+            font-size: 20px;
+            font-weight: bold;
+            color: #C2f8CB; /* Verde chiaro per il totale */
+            margin-top: 20px;
+        }
+
+        .home-button {
+            background-color: #ffffff;
+            color: #8367C7; /* Viola chiaro per il pulsante Home */
+            font-weight: bold;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .home-button:hover {
+            background-color: #ffeaea; /* Colore più chiaro al passaggio del mouse */
+        }
+    </style>
+</head>
+<body>
+
+<h1>Pagamento - Il Tuo Carrello</h1>
+
+<!-- Pulsante Home -->
+<button class="home-button" onclick="window.location.href='index.html'">🏠 Home</button>
+
+<!-- Mostra il carrello e il totale -->
+<div id="cart-items"></div>
+
+<div id="total"></div>
+
+<div class="form-container">
+    <h2>Dettagli di Pagamento</h2>
+    <form id="payment-form">
+        <input type="text" class="input-field" id="name" placeholder="Nome Completo" required>
+        <input type="email" class="input-field" id="email" placeholder="Email" required>
+        <input type="text" class="input-field" id="address" placeholder="Indirizzo di Spedizione" required>
+        <input type="text" class="input-field" id="card-number" placeholder="Numero Carta" required>
+        <input type="text" class="input-field" id="expiry-date" placeholder="Data di Scadenza (MM/AA)" required>
+        <input type="text" class="input-field" id="cvv" placeholder="CVV" required>
+
+        <!-- Selezione Metodo di Pagamento -->
+        <div class="payment-methods">
+            <div class="payment-method" id="credit-card">Carta di Credito</div>
+            <div class="payment-method" id="paypal">PayPal</div>
+            <div class="payment-method" id="bank-transfer">Bonifico Bancario</div>
+        </div>
+
+        <button type="submit" class="button">Paga Ora</button>
+    </form>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const cartItemsContainer = document.getElementById("cart-items");
+
+        if (cart.length === 0) {
+            cartItemsContainer.innerHTML = "<p>Il tuo carrello è vuoto.</p>";
+        } else {
+            let total = 0;
+            cart.forEach(product => {
+                const productElement = document.createElement("div");
+                productElement.classList.add("cart-item");
+                productElement.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>Prezzo: ${product.price}</p>
+                `;
+                cartItemsContainer.appendChild(productElement);
+
+                // Parsing sicuro del prezzo (rimuove € e . nei decimali)
+                const numericPrice = parseFloat(
+                    product.price.replace("€", "").replace(".", "").replace(",", ".")
+                );
+                total += numericPrice;
+            });
+
+            // Mostra il totale con due decimali
+            document.getElementById("total").innerHTML = `Totale: €${total.toFixed(2)}`;
+        }
+    });
+
+    document.getElementById("payment-form").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        // Recupera i dati del modulo
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const address = document.getElementById("address").value;
+        const cardNumber = document.getElementById("card-number").value;
+        const expiryDate = document.getElementById("expiry-date").value;
+        const cvv = document.getElementById("cvv").value;
+
+        // Logica per inviare i dati al server o al gateway di pagamento
+        alert("Pagamento effettuato con successo! Grazie per il tuo ordine.");
+
+        // Dopo il pagamento, reindirizza alla pagina di conferma del pagamento (scontrino)
+        window.location.href = "scontrino.html";  // Reindirizza alla pagina di conferma pagamento
+    });
+</script>
+
+</body>
+</html>
+
