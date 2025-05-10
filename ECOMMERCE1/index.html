@@ -1,37 +1,36 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Synthetizzati - Prodotti</title>
+    <meta charset="UTF-8"> <!-- Imposta la codifica dei caratteri -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Rende la pagina responsive -->
+    <title>SYNTH-ETIZZATI - Prodotti</title> <!-- Nuovo titolo -->
+    
+    <!-- Font Orbitron per look futuristico/tech -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+
     <style>
-        /* Nuova palette di colori */
+        /* Stili generali */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #000;
-            color: #fff;
+            font-family: 'Orbitron', sans-serif; /* Font tech */
+            background-color: #2c2c2c; /* Fondo grigio scuro */
+            color: #f0f0f0; /* Testo chiaro */
             margin: 0;
             padding: 0;
-            text-align: center;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
 
+        /* Header con branding e navigazione */
         header {
-            font-family: 'Orbitron', sans-serif;
-            background-color: #8e24aa; /* Viola */
-            color: #fff;
-            padding: 20px 40px;
-            font-size: 30px;
-            font-weight: bold;
+            background-color: #333333; /* Grigio scuro */
+            color: #C2f8CB; /* Verde chiaro */
+            padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            font-size: 26px;
+            font-weight: 700;
         }
 
         header h1 {
@@ -39,85 +38,48 @@
             font-size: 32px;
         }
 
+        /* Pulsanti in alto a destra */
         button {
-            background-color: #8e24aa; /* Viola */
-            color: white;
-            padding: 12px 20px;
+            background-color: #8367C7; /* Viola chiaro */
+            color: #2c2c2c; /* Grigio scuro */
+            padding: 10px 18px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 14px;
             margin-left: 10px;
-            transition: background-color 0.3s, transform 0.2s;
+            transition: all 0.3s ease;
         }
 
         button:hover {
-            background-color: #6a1b9a; /* Viola scuro */
+            background-color: #6f4db8; /* Viola più scuro */
             transform: scale(1.05);
         }
 
-        /* Layout generale */
-        .main-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-grow: 1;
-            height: calc(100vh - 120px); /* Per centrare verticalmente */
-        }
-
-        /* Pannello centrato per la selezione file e svuotamento */
-        .centered-panel {
-            width: 80%;
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Centra gli elementi orizzontalmente */
-            justify-content: center;
+        /* Griglia dei prodotti */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
             gap: 20px;
-            margin-top: -20px; /* Aggiunta di margine negativo per alzare il pannello */
+            padding: 30px;
+            max-width: 1200px;
+            margin: auto;
+            flex-grow: 1;
         }
 
-        .centered-panel input, .centered-panel button {
-            padding: 12px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: 1px solid #8e24aa;
-            width: 60%;
-            max-width: 300px; /* Limita la larghezza massima */
-        }
-
-        .centered-panel button {
-            background-color: #8e24aa;
-            color: white;
+        /* Singolo prodotto */
+        .product {
+            background-color: #424242; /* Grigio scuro */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(131, 103, 199, 0.1); /* Ombra viola chiaro */
+            transition: all 0.3s ease;
             cursor: pointer;
         }
 
-        .centered-panel button:hover {
-            background-color: #6a1b9a; /* Viola scuro */
-        }
-
-        /* Sezione dei prodotti */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 40px 20px;
-            max-width: 1200px;
-            margin: 20px auto;
-            flex-grow: 1;
-        }
-
-        .product {
-            background-color: #222;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s, box-shadow 0.3s;
-            text-align: left;
-        }
-
         .product:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(131, 103, 199, 0.3); /* Ombra più marcata al passaggio del mouse */
         }
 
         .product img {
@@ -128,118 +90,133 @@
         }
 
         .product h3 {
-            font-size: 20px;
-            color: #8e24aa; /* Viola */
-            margin-bottom: 10px;
+            font-size: 18px;
+            color: #8367C7; /* Viola chiaro */
+            margin-bottom: 8px;
         }
 
         .product p {
-            color: #bbb;
             font-size: 14px;
-            line-height: 1.5;
+            color: #d1d5db;
         }
 
-        .product .price {
+        .price {
             font-weight: bold;
-            color: #8e24aa; /* Viola */
-            font-size: 18px;
+            color: #C2f8CB; /* Verde chiaro */
+            font-size: 16px;
             margin-top: 10px;
         }
 
+        /* Footer e sezione Chi siamo */
         #footer-info {
-            background-color: #222;
-            color: #fff;
+            background-color: #2c2c2c;
+            color: #aaa;
             padding: 40px 20px;
             text-align: center;
-            position: absolute;
-            bottom: 0;
-            width: 100%;
         }
 
-        /* Centrare "Chi Siamo" */
         #about-us {
-            background-color: #8e24aa; /* Viola */
-            color: #fff;
+            background-color: #424242;
+            color: #eee;
             padding: 30px;
             border-radius: 10px;
-            width: 80%; /* Diminuito per centrarlo meglio */
-            position: relative;
-            margin-top: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            text-align: left;
-            margin: 20px auto;
+            width: 80%;
+            margin: 0 auto 30px auto;
+            box-shadow: 0 4px 8px rgba(131, 103, 199, 0.1); /* Ombra viola chiaro */
         }
 
         #about-us h2 {
-            font-size: 28px;
-            color: #fff;
-            margin-bottom: 15px;
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #8367C7; /* Viola chiaro */
         }
 
         #about-us p {
-            font-size: 16px;
-            margin-top: 10px;
-            line-height: 1.5;
+            font-size: 15px;
         }
 
+        /* Link login fisso */
         .registration-link {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            font-size: 16px;
-            color: #8e24aa; /* Viola */
+            font-size: 14px;
+            color: #C2f8CB; /* Verde chiaro */
             text-decoration: none;
             font-weight: bold;
-            transition: color 0.3s ease;
         }
 
         .registration-link:hover {
-            color: #6a1b9a; /* Viola scuro */
+            color: #6f4db8; /* Viola più scuro */
         }
 
+        .clear-btn {
+            margin: 20px auto;
+        }
     </style>
 </head>
 <body>
 
+<!-- Intestazione del sito -->
 <header>
-    <h1>Synthetizzati</h1>
+    <h1>SYNTH-ETIZZATI</h1> <!-- Nuovo nome del negozio -->
     <div>
-        <button onclick="window.location.href='https://example.com/carrello.html'">Carrello</button>
-        <button onclick="window.location.href='https://example.com/wishlist.html'">Wishlist</button>
-        <button onclick="window.location.href='https://example.com/contatti.html'">Contattaci</button>
+        <button onclick="window.location.href='carrello.html'">Carrello</button> <!-- Link NON modificato -->
+        <button onclick="window.location.href='contatti.html'">Contattaci</button> <!-- Link NON modificato -->
+        <button onclick="logout()">Esci</button>
     </div>
 </header>
 
+<!-- Sezione principale: lista dei prodotti -->
 <main>
-    <div class="main-container">
-        <!-- Pannello centrato per selezione file e svuotamento -->
-        <div class="centered-panel">
-            <input type="file" id="jsonFileInput" accept=".json" />
-            <button class="clear-btn" onclick="clearSavedProducts()">Svuota Prodotti</button>
-        </div>
-    </div>
-    <div id="product-list" class="product-grid"></div>
+    <div id="product-list" class="product-grid"></div> <!-- Contenitore dinamico per i prodotti -->
+    <input type="file" id="jsonFileInput" accept=".json" /> <!-- Caricamento file JSON -->
+    <br>
+    <button class="clear-btn" onclick="clearSavedProducts()">Svuota Prodotti</button>
 </main>
 
+<!-- Sezione Chi siamo e Footer -->
 <section id="footer-info">
     <div id="about-us">
         <h2>Chi Siamo</h2>
-        <p>Benvenuti nel nostro negozio online! Siamo un team di appassionati di musica elettronica e produzione musicale, impegnati a offrire solo il meglio ai nostri clienti. Offriamo una vasta gamma di sintetizzatori selezionati con cura per soddisfare ogni tipo di esigenza. La nostra missione è rendere lo shopping online facile e conveniente per i musicisti di ogni livello.</p>
+        <p>Benvenuto su SynthVerse, lo store italiano dedicato esclusivamente a sintetizzatori professionali e modulari. Diamo voce all'innovazione musicale con prodotti selezionati per ogni sound designer.</p>
     </div>
     <footer>
-        <p>&copy; 2025 Synthetizzati - Tutti i diritti riservati</p>
+        <p>&copy; 2025 SynthVerse - Tutti i diritti riservati</p>
         <p>Informazioni legali | Termini e condizioni</p>
     </footer>
 </section>
 
-<a href="login.html" class="registration-link">Registrazione</a>
+<!-- Link al login o profilo utente -->
+<a href="login.html" class="registration-link" id="loginLink">Login</a>
 
+<!-- SCRIPT: gestione utenti e prodotti -->
 <script>
+    // Mostra username se loggato
+    document.addEventListener("DOMContentLoaded", function () {
+        const user = JSON.parse(localStorage.getItem('loggedInUser'));
+        const loginLink = document.getElementById('loginLink');
+
+        if (user) {
+            loginLink.textContent = `Ciao, ${user.username}`;
+            loginLink.href = "#";
+            loginLink.addEventListener('click', logout);
+        } else {
+            loginLink.textContent = 'Login';
+        }
+    });
+
+    // Logout dell'utente
+    function logout() {
+        localStorage.removeItem('loggedInUser');
+        location.reload();
+    }
+
+    // Caricamento prodotti dal localStorage o da file JSON
     document.addEventListener("DOMContentLoaded", function () {
         const fileInput = document.getElementById("jsonFileInput");
         const productList = document.getElementById("product-list");
 
-        // Se ci sono prodotti salvati, visualizzali
         const savedProducts = localStorage.getItem("productList");
         if (savedProducts) {
             try {
@@ -250,7 +227,6 @@
             }
         }
 
-        // Quando l'utente carica un nuovo file JSON
         fileInput.addEventListener("change", function (event) {
             const file = event.target.files[0];
             if (file) {
@@ -258,7 +234,7 @@
                 reader.onload = function (e) {
                     try {
                         const products = JSON.parse(e.target.result);
-                        localStorage.setItem("productList", JSON.stringify(products)); // Salva nel localStorage
+                        localStorage.setItem("productList", JSON.stringify(products));
                         displayProducts(products);
                     } catch (error) {
                         console.error("Errore nel parsing del JSON:", error);
@@ -268,27 +244,43 @@
             }
         });
 
-        // Mostra i prodotti nella pagina
+        // Visualizza i prodotti nella griglia
         function displayProducts(products) {
-            productList.innerHTML = '';
+            productList.innerHTML = "";
             products.forEach(product => {
-                const productElement = document.createElement('div');
-                productElement.classList.add('product');
+                const productElement = document.createElement("div");
+                productElement.classList.add("product");
                 productElement.innerHTML = `
                     <img src="${product.image}" alt="${product.name}">
                     <h3>${product.name}</h3>
-                    <p>${product.description}</p>
-                    <div class="price">${product.price}</div>
+                    <p class="price">${product.price}</p>
+                    <button class="add-to-cart-btn">Aggiungi al Carrello</button>
                 `;
+                productElement.querySelector('.add-to-cart-btn').addEventListener('click', () => {
+                    addToCart(product);
+                });
+
+                productElement.addEventListener("click", () => {
+                    localStorage.setItem("selectedProduct", JSON.stringify(product));
+                    window.location.href = "prodotto.html";
+                });
+
                 productList.appendChild(productElement);
             });
         }
 
-        // Funzione per svuotare la lista dei prodotti
-        function clearSavedProducts() {
-            localStorage.removeItem("productList");
-            productList.innerHTML = '';
+        // Aggiunge un prodotto al carrello
+        function addToCart(product) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.push(product);
+            localStorage.setItem("cart", JSON.stringify(cart));
         }
+
+        // Rimuove la lista dei prodotti
+        window.clearSavedProducts = function () {
+            localStorage.removeItem("productList");
+            location.reload();
+        };
     });
 </script>
 
