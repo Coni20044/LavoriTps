@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dettagli Sintetizzatore</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Barra superiore del sito */
+    .top-bar {
+      background-color: #00cfcf; /* Colore verde acqua per il sito dei sintetizzatori */
+      color: white;
+      width: 100%;
+      padding: 15px 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Orbitron', sans-serif;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Titolo a sinistra nella barra superiore */
+    .left-title {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    /* Pulsanti di navigazione */
+    .nav-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    /* Stile dei pulsanti */
+    .nav-buttons button {
+      background-color: white;
+      color: #00cfcf; /* Verde acqua */
+      font-weight: bold;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    /* Hover sui pulsanti di navigazione */
+    .nav-buttons button:hover {
+      background-color: #e0f7f7;
+    }
+
+    /* Corpo della pagina */
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background-color: #121212;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      padding-top: 120px; /* Spazio per la barra superiore */
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Contenitore del prodotto */
+    .product-container {
+      background-color: #222; /* Sfondo scuro per il contenitore */
+      padding: 30px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 600px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Immagine del sintetizzatore */
+    .product-image {
+      width: 100%;
+      height: auto;
+      max-width: 300px;
+      margin-bottom: 20px;
+    }
+
+    /* Nome del sintetizzatore */
+    .product-name {
+      font-size: 28px;
+      font-weight: bold;
+      color: #00cfcf; /* Verde acqua */
+      margin: 15px 0;
+    }
+
+    /* Descrizione del sintetizzatore */
+    .product-description {
+      font-size: 16px;
+      color: #bbb;
+      margin-bottom: 20px;
+    }
+
+    /* Prezzo del sintetizzatore */
+    .product-price {
+      font-size: 22px;
+      font-weight: bold;
+      color: #00cfcf; /* Verde acqua */
+      margin-bottom: 20px;
+    }
+
+    /* Selettore della quantità */
+    .quantity-selector {
+      width: 60px;
+      padding: 10px;
+      background-color: #333;
+      border: 1px solid #00cfcf; /* Verde acqua */
+      color: #fff;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    /* Stile per il pulsante Aggiungi al Carrello */
+    .button {
+      background-color: #00cfcf; /* Verde acqua */
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      width: 100%;
+      transition: background-color 0.3s;
+    }
+
+    /* Hover sul pulsante */
+    .button:hover {
+      background-color: #00e0e0;
+    }
+
+    /* Messaggio di conferma dopo aver aggiunto al carrello */
+    .confirmation {
+      font-size: 18px;
+      color: #00e0e0;
+      margin-top: 20px;
+    }
+
+    /* Messaggio di errore se non viene selezionato alcun prodotto */
+    .error-message {
+      font-size: 18px;
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra superiore -->
+  <header class="top-bar">
+    <div class="left-title">SynthStore</div> <!-- Modificato il nome da NEO-Moto a SynthStore -->
+    <div class="nav-buttons">
+      <button onclick="window.location.href='index.html'">🏠 Home</button> <!-- Link per la Home -->
+      <button onclick="window.location.href='carrello.html'">Carrello</button> <!-- Link per il carrello -->
+    </div>
+  </header>
+  
+  <!-- Contenitore del prodotto -->
+  <div class="product-container" id="product-container">
+    <!-- I contenuti verranno popolati via JS -->
+  </div>
+  
+  <script>
+    // Quando il DOM è pronto, eseguiamo questo codice
+    document.addEventListener("DOMContentLoaded", () => {
+      const container = document.getElementById("product-container"); // Otteniamo il contenitore del prodotto
+      const product = JSON.parse(localStorage.getItem("selectedProduct")); // Prendiamo i dati del prodotto dal localStorage
+  
+      if (product) {
+        container.innerHTML = `
+          <img class="product-image" src="${product.image}" alt="${product.name}"> <!-- Mostriamo l'immagine del sintetizzatore -->
+          <h1 class="product-name">${product.name}</h1> <!-- Mostriamo il nome del sintetizzatore -->
+          <p class="product-description">${product.description}</p> <!-- Mostriamo la descrizione -->
+          <p class="product-price">${product.price}</p> <!-- Mostriamo il prezzo -->
+  
+          <label for="quantity">Quantità:</label> <!-- Etichetta per la quantità -->
+          <input type="number" id="quantity" class="quantity-selector" min="1" value="1"> <!-- Selettore della quantità -->
+  
+          <button class="button" onclick="addToCart()">Aggiungi al Carrello</button> <!-- Pulsante per aggiungere al carrello -->
+  
+          <div id="confirmation" class="confirmation"></div> <!-- Messaggio di conferma -->
+        `;
+      } else {
+        container.innerHTML = `<p class="error-message">Nessun prodotto selezionato. Torna alla pagina dei prodotti.</p>`; 
+        // Se non ci sono dati per il prodotto, mostriamo un errore
+      }
+    });
+  
+    // Funzione per aggiungere il prodotto al carrello
+    function addToCart() {
+      const product = JSON.parse(localStorage.getItem("selectedProduct")); // Prendiamo i dati del prodotto
+      const quantity = parseInt(document.getElementById("quantity").value, 10); // Otteniamo la quantità selezionata
+  
+      if (!product || quantity <= 0) return; // Se non c'è prodotto o quantità <= 0, non fare nulla
+  
+      let cart = JSON.parse(localStorage.getItem("cart")) || []; // Otteniamo il carrello dal localStorage
+      const existing = cart.find(p => p.name === product.name); // Verifichiamo se il prodotto è già nel carrello
+  
+      if (existing) {
+        existing.quantity = (existing.quantity || 1) + quantity; // Se già presente, aggiorniamo la quantità
+      } else {
+        product.quantity = quantity; // Altrimenti, aggiungiamo il prodotto con la quantità selezionata
+        cart.push(product);
+      }
+  
+      localStorage.setItem("cart", JSON.stringify(cart)); // Salviamo il carrello nel localStorage
+      const confirmation = document.getElementById("confirmation"); // Otteniamo l'elemento per la conferma
+      confirmation.textContent = `${product.name} x${quantity} aggiunto al carrello! 🛒`; // Mostriamo il messaggio di conferma
+    }
+  </script>
+
+</body>    
+</html>
