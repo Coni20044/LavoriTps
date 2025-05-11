@@ -224,3 +224,70 @@
             try {
                 const products = JSON.parse(savedProducts);
                 displayProducts(products); <!-- Mostra i prodotti salvati -->
+                     } catch (error) {
+                console.error("Errore nel parsing del JSON salvato:", error);
+            }
+        }
+
+        fileInput.addEventListener("change", function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    try {
+                        const products = JSON.parse(e.target.result);
+                        localStorage.setItem("productList", JSON.stringify(products));
+                        displayProducts(products);
+                    } catch (error) {
+                        console.error("Errore nel parsing del JSON:", error);
+                    }
+                };
+                reader.readAsText(file);
+            }
+        });
+
+        function displayProducts(products) {
+            productList.innerHTML = "";
+            products.forEach(product => {
+                const productElement = document.createElement("div");
+                productElement.classList.add("product");
+                productElement.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p class="price">${product.price}</p>
+                    <button class="add-to-cart-btn">Aggiungi al Carrello</button>
+                `;
+                productElement.querySelector('.add-to-cart-btn').addEventListener('click', (e) => {
+                    e.stopPropagation(); // Evita trigger del click sul contenitore
+                    addToCart(product);
+                });
+
+                productElement.addEventListener("click", () => {
+                    localStorage.setItem("selectedProduct", JSON.stringify(product));
+                    window.location.href = "prodotto.html";
+                });
+
+                productList.appendChild(productElement);
+            });
+        }
+
+        function addToCart(product) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.push(product);
+            localStorage.setItem("cart", JSON.stringify(cart));
+        }
+
+        window.clearSavedProducts = function () {
+            localStorage.removeItem("productList");
+            location.reload();
+        };
+    });
+
+    function logout() {
+        localStorage.removeItem('loggedInUser');
+        window.location.href = "login.html";
+    }
+</script>
+
+</body>
+</html>
