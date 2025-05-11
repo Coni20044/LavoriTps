@@ -1,150 +1,171 @@
-<!DOCTYPE html>
-<html lang="it">
+<!DOCTYPE html> <!-- Dichiara il tipo di documento HTML5 -->
+<html lang="it"> <!-- Inizio del documento HTML con lingua italiana -->
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accesso - NEO-Synth</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Orbitron', sans-serif;
-            background-color: #111; /* Colore di sfondo scuro, come nel carrello */
-            color: #fff;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+  <meta charset="UTF-8" /> <!-- Imposta la codifica dei caratteri a UTF-8 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <!-- Rende la pagina responsive -->
+  <title>Accesso - SYNTH-ETIZZATI</title> <!-- Titolo della pagina nella scheda del browser -->
 
-        .container {
-            background-color: #222; /* Colore di sfondo della finestra, come nel carrello */
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            width: 100%;
-            max-width: 420px;
-            text-align: center;
-            border: 2px solid #00cfcf; /* Bordo verde acqua */
-        }
+  <!-- Importa il font Orbitron da Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
 
-        h1 {
-            color: #00cfcf; /* Colore verde acqua per il titolo */
-            margin-bottom: 30px;
-            font-size: 28px;
-            font-weight: bold;
-        }
+  <style>
+    /* Applica il box-sizing a tutti gli elementi per includere padding e bordo nel calcolo della dimensione */
+    * {
+      box-sizing: border-box;
+    }
 
-        label {
-            display: block;
-            margin: 15px 0 5px;
-            font-size: 18px;
-            color: #fff;
-        }
+    /* Imposta stile globale di html e body */
+    html, body {
+      height: 100%; /* Occupa l'intera altezza della finestra */
+      margin: 0; /* Rimuove margini di default */
+      padding: 0; /* Rimuove padding di default */
+      font-family: 'Orbitron', sans-serif; /* Imposta il font Orbitron */
+      background-color: #111; /* Sfondo scuro */
+      color: #fff; /* Colore del testo bianco */
+      display: flex; /* Usa Flexbox */
+      justify-content: center; /* Centra orizzontalmente */
+      align-items: center; /* Centra verticalmente */
+    }
 
-        input {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 20px;
-            border: 2px solid #00cfcf; /* Bordo verde acqua per gli input */
-            border-radius: 5px;
-            background-color: #333; /* Colore di sfondo input */
-            color: #fff;
-            font-size: 16px;
-        }
+    /* Contenitore del modulo di login */
+    .container {
+      background-color: #222; /* Sfondo grigio scuro */
+      padding: 40px; /* Spaziatura interna */
+      border-radius: 10px; /* Angoli arrotondati */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Ombra */
+      width: 100%; /* Occupa tutta la larghezza disponibile */
+      max-width: 420px; /* Larghezza massima */
+      text-align: center; /* Centra il testo */
+      border: 2px solid #0bb86f; /* Bordo verde fluorescente */
+    }
 
-        input:focus {
-            border-color: #00e0e0; /* Colore verde acqua più chiaro quando si clicca */
-            outline: none;
-        }
+    /* Titolo */
+    h1 {
+      color: #0bb86f; /* Colore verde */
+      margin-bottom: 30px; /* Spazio sotto */
+      font-size: 28px; /* Dimensione del font */
+      font-weight: bold; /* Grassetto */
+    }
 
-        button {
-            width: 100%;
-            padding: 15px;
-            background-color: #00cfcf; /* Colore verde acqua per il pulsante */
-            color: #fff;
-            font-size: 18px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
+    /* Etichette dei campi */
+    label {
+      display: block; /* Elemento a blocco */
+      margin: 15px 0 5px; /* Spazio sopra e sotto */
+      font-size: 18px; /* Dimensione testo */
+    }
 
-        button:hover {
-            background-color: #00e0e0; /* Cambia il verde acqua quando il pulsante è attivo */
-        }
+    /* Campi input */
+    input {
+      width: 100%; /* Occupa tutta la larghezza del contenitore */
+      padding: 15px; /* Spaziatura interna */
+      margin-bottom: 20px; /* Spazio sotto */
+      border: 2px solid #0bb86f; /* Bordo verde */
+      border-radius: 5px; /* Angoli arrotondati */
+      background-color: #333; /* Sfondo grigio scuro */
+      color: #fff; /* Testo bianco */
+      font-size: 16px; /* Dimensione font */
+    }
 
-        .error {
-            color: #ff0000; /* Colore rosso per i messaggi di errore */
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
+    /* Stile input quando in focus */
+    input:focus {
+      border-color: #0bb86f; /* Mantiene il bordo verde */
+      outline: none; /* Rimuove bordo blu predefinito */
+    }
 
-        /* Link per la registrazione */
-        .registration-link {
-            display: block;
-            color: #00cfcf; /* Colore verde acqua per il link */
-            font-size: 16px;
-            margin-top: 15px;
-            text-decoration: none;
-            font-weight: bold;
-        }
+    /* Bottone di invio */
+    button {
+      width: 100%; /* Larghezza piena */
+      padding: 15px; /* Spaziatura interna */
+      background-color: #0bb86f; /* Sfondo verde */
+      color: #fff; /* Testo bianco */
+      font-size: 18px; /* Font grande */
+      border: none; /* Nessun bordo */
+      border-radius: 5px; /* Angoli arrotondati */
+      cursor: pointer; /* Mostra mano al passaggio del mouse */
+      transition: background-color 0.3s; /* Animazione transizione */
+    }
 
-        .registration-link:hover {
-            color: #00e0e0; /* Cambia il colore del link al passaggio del mouse */
-        }
+    /* Bottone al passaggio del mouse */
+    button:hover {
+      background-color: #0aa25f; /* Cambia leggermente il colore */
+    }
 
-    </style>
+    /* Messaggio di errore */
+    .error {
+      color: #ff0000; /* Rosso */
+      font-size: 14px; /* Font piccolo */
+      margin-bottom: 10px; /* Spazio sotto */
+    }
+
+    /* Link alla registrazione */
+    .registration-link {
+      display: block; /* Elemento a blocco */
+      color: #0bb86f; /* Verde */
+      font-size: 16px; /* Dimensione font */
+      margin-top: 15px; /* Spazio sopra */
+      text-decoration: none; /* Nessuna sottolineatura */
+      font-weight: bold; /* Grassetto */
+    }
+
+    /* Link al passaggio del mouse */
+    .registration-link:hover {
+      color: #0aa25f; /* Cambia colore */
+    }
+  </style>
 </head>
+
 <body>
+  <!-- Contenitore del form -->
+  <div class="container">
+    <h1>Esegui l'accesso a SYNTH-ETIZZATI</h1>
 
-    <div class="container">
-        <h1>Accedi al tuo account NEO-Synth</h1>
-        <form id="loginForm">
-            <div class="error" id="errorMessage"></div>
-            
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required placeholder="Inserisci la tua email per accedere">
+    <!-- Form di login -->
+    <form id="loginForm">
+      <!-- Messaggio di errore (inizialmente vuoto) -->
+      <div class="error" id="errorMessage"></div>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required placeholder="Inserisci la tua password per accedere">
+      <!-- Campo email -->
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required placeholder="Inserisci la tua email">
 
-            <button type="submit">Accedi</button>
+      <!-- Campo password -->
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required placeholder="Inserisci la tua password">
 
-        </form>
-        
-        <a href="registrazione.html" class="registration-link">Non hai un account? Registrati per ottenere il tuo sintetizzatore!</a>
-    </div>
+      <!-- Bottone per accedere -->
+      <button type="submit">Accedi</button>
+    </form>
 
-    <script>
-        // Gestione del login
-        document.getElementById('loginForm').addEventListener('submit', function (event) {
-            event.preventDefault(); // Evita l'invio del modulo
+    <!-- Link alla registrazione -->
+    <a href="registrazione.html" class="registration-link">Non hai un account? Registrati per ottenere il tuo sintetizzatore!</a>
+  </div>
 
-            // Ottieni i valori dei campi
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const errorMessage = document.getElementById('errorMessage');
+  <!-- Script JavaScript per la validazione del form -->
+  <script>
+    // Aggiunge un gestore all'invio del form
+    document.getElementById('loginForm').addEventListener('submit', function (event) {
+      event.preventDefault(); // Previene l'invio classico del form
 
-            // Controllo semplice di validità
-            if (email === '' || password === '') {
-                errorMessage.textContent = 'Tutti i campi sono obbligatori.'; // Mostra un messaggio di errore se i campi sono vuoti
-                return;
-            }
+      // Ottiene i valori dei campi
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const errorMessage = document.getElementById('errorMessage');
 
-            // Aggiungere ulteriori validazioni se necessario (es. email valida, password corretta, ecc.)
+      // Controlla se i campi sono vuoti
+      if (email === '' || password === '') {
+        errorMessage.textContent = 'Tutti i campi sono obbligatori.'; // Mostra errore
+        return; // Interrompe l'esecuzione
+      }
 
-            // Se tutto è valido, puoi inviare i dati al server
-            console.log('Accesso riuscito:', { email, password }); // Log per simulare l'accesso
+      // Simula un login riuscito
+      console.log('Accesso riuscito:', { email, password }); // Log nel console
+      alert('Accesso riuscito! Verrai reindirizzato alla home.'); // Messaggio all'utente
 
-            // Pulisci il modulo
-            document.getElementById('loginForm').reset();
-
-            // Invia un messaggio di successo o una nuova pagina
-            alert('Accesso riuscito! Ora puoi esplorare i tuoi sintetizzatori preferiti!');
-        });
-    </script>
-
+      // Reindirizza alla home page
+      window.location.href = 'index.html';
+    });
+  </script>
 </body>
+
 </html>
