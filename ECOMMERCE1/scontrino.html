@@ -1,287 +1,247 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8"> <!-- Imposta la codifica dei caratteri -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Rende la pagina responsive -->
-    <title>SYNTH-ETIZZATI - Prodotti</title> <!-- Nuovo titolo -->
-    
-    <!-- Font Orbitron per look futuristico/tech -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Definisce la codifica dei caratteri come UTF-8 -->
+  <meta charset="UTF-8">
 
-    <style>
-        /* Stili generali */
-        body {
-            font-family: 'Orbitron', sans-serif; /* Font tech */
-            background-color: #2c2c2c; /* Fondo grigio scuro */
-            color: #f0f0f0; /* Testo chiaro */
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+  <!-- Imposta la larghezza del viewport per dispositivi mobili -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        /* Header con branding e navigazione */
-        header {
-            background-color: #333333; /* Grigio scuro */
-            color: #C2f8CB; /* Verde chiaro */
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 26px;
-            font-weight: 700;
-        }
+  <!-- Titolo della pagina che verrà mostrato nella barra del browser -->
+  <title>Scontrino di Vendita - Synth-etizzatti</title>
 
-        header h1 {
-            margin: 0;
-            font-size: 32px;
-        }
+  <!-- Link al font 'Orbitron' da Google Fonts per un design futuristico -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
 
-        /* Pulsanti in alto a destra */
-        button {
-            background-color: #8367C7; /* Viola chiaro */
-            color: #2c2c2c; /* Grigio scuro */
-            padding: 10px 18px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-            margin-left: 10px;
-            transition: all 0.3s ease;
-        }
+  <style>
+    /* Resetta margini e padding di tutti gli elementi */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        button:hover {
-            background-color: #6f4db8; /* Viola più scuro */
-            transform: scale(1.05);
-        }
+    /* Stili per il corpo della pagina */
+    body {
+      font-family: 'Orbitron', sans-serif; /* Imposta il font */
+      background-color: #2c2c2c; /* Colore di sfondo scuro */
+      color: #f0f0f0; /* Colore del testo chiaro */
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh; /* Assicura che la pagina occupi almeno tutta l'altezza dello schermo */
+    }
 
-        /* Griglia dei prodotti */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 20px;
-            padding: 30px;
-            max-width: 1200px;
-            margin: auto;
-            flex-grow: 1;
-        }
+    /* Stile per l'intestazione */
+    header {
+      background-color: #333333; /* Colore scuro per l'intestazione */
+      color: #C2f8CB; /* Verde chiaro per il testo */
+      padding: 20px; /* Padding interno */
+      display: flex; /* Usa flexbox per l'allineamento */
+      justify-content: space-between; /* Distribuisce gli elementi */
+      align-items: center; /* Centra gli elementi verticalmente */
+      font-size: 26px; /* Imposta la dimensione del testo */
+      font-weight: 700; /* Rende il testo più spesso */
+    }
 
-        /* Singolo prodotto */
-        .product {
-            background-color: #424242; /* Grigio scuro */
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(131, 103, 199, 0.1); /* Ombra viola chiaro */
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
+    /* Stile per il titolo principale */
+    header h1 {
+      margin: 0; /* Rimuove il margine di default */
+      font-size: 32px; /* Imposta la dimensione del titolo */
+    }
 
-        .product:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 16px rgba(131, 103, 199, 0.3); /* Ombra più marcata al passaggio del mouse */
-        }
+    /* Stile per la barra di navigazione */
+    nav {
+      display: flex; /* Usa flexbox per allineare i bottoni */
+      gap: 15px; /* Distanza tra i bottoni */
+    }
 
-        .product img {
-            width: 100%;
-            height: auto;
-            border-radius: 5px;
-            margin-bottom: 15px;
-        }
+    /* Stile per i bottoni di navigazione */
+    nav button {
+      background-color: #8367C7; /* Colore viola per i bottoni */
+      color: #2c2c2c; /* Colore scuro per il testo */
+      padding: 10px 18px; /* Padding interno */
+      border: none; /* Rimuove il bordo */
+      border-radius: 5px; /* Arrotonda gli angoli */
+      cursor: pointer; /* Cambia il cursore quando si passa sopra */
+      font-size: 14px; /* Imposta la dimensione del testo */
+      margin-left: 10px; /* Distanza a sinistra */
+      transition: all 0.3s ease; /* Aggiunge una transizione per gli effetti di hover */
+    }
 
-        .product h3 {
-            font-size: 18px;
-            color: #8367C7; /* Viola chiaro */
-            margin-bottom: 8px;
-        }
+    /* Effetto hover per i bottoni di navigazione */
+    nav button:hover {
+      background-color: #6f4db8; /* Colore più scuro al passaggio del mouse */
+      transform: scale(1.05); /* Aumenta leggermente la dimensione */
+    }
 
-        .product p {
-            font-size: 14px;
-            color: #d1d5db;
-        }
+    /* Stile per la sezione principale */
+    main {
+      background-color: #1a1a1a; /* Colore scuro di sfondo per il main */
+      padding: 40px; /* Padding interno */
+      display: flex;
+      justify-content: center; /* Centra gli elementi orizzontalmente */
+      align-items: center; /* Centra gli elementi verticalmente */
+      flex-direction: column; /* Organizza gli elementi in colonna */
+    }
 
-        .price {
-            font-weight: bold;
-            color: #C2f8CB; /* Verde chiaro */
-            font-size: 16px;
-            margin-top: 10px;
-        }
+    /* Contenitore per lo scontrino */
+    .receipt-container {
+      background-color: #424242; /* Colore di sfondo scuro per il contenitore */
+      padding: 30px; /* Padding interno */
+      border-radius: 10px; /* Angoli arrotondati */
+      width: 100%;
+      max-width: 500px; /* Larghezza massima */
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Ombra per un effetto 3D */
+      font-size: 16px; /* Imposta la dimensione del testo */
+    }
 
-        /* Footer e sezione Chi siamo */
-        #footer-info {
-            background-color: #2c2c2c;
-            color: #aaa;
-            padding: 40px 20px;
-            text-align: center;
-        }
+    /* Stile per l'intestazione dello scontrino */
+    .receipt-header {
+      text-align: center; /* Centra il testo */
+      color: #8367C7; /* Colore verde chiaro */
+      margin-bottom: 20px; /* Distanza inferiore */
+    }
 
-        #about-us {
-            background-color: #424242;
-            color: #eee;
-            padding: 30px;
-            border-radius: 10px;
-            width: 80%;
-            margin: 0 auto 30px auto;
-            box-shadow: 0 4px 8px rgba(131, 103, 199, 0.1); /* Ombra viola chiaro */
-        }
+    /* Stile per la lista degli articoli nello scontrino */
+    .receipt-items {
+      margin-bottom: 20px;
+      border-top: 1px solid #333; /* Linea sopra gli articoli */
+      border-bottom: 1px solid #333; /* Linea sotto gli articoli */
+      padding: 10px 0; /* Padding sopra e sotto */
+    }
 
-        #about-us h2 {
-            font-size: 24px;
-            margin-bottom: 10px;
-            color: #8367C7; /* Viola chiaro */
-        }
+    /* Stile per ogni articolo nello scontrino */
+    .receipt-item {
+      display: flex; /* Usa flexbox per allineare gli articoli */
+      justify-content: space-between; /* Spazia gli elementi tra loro */
+      margin: 5px 0; /* Margine tra gli articoli */
+    }
 
-        #about-us p {
-            font-size: 15px;
-        }
+    /* Stile per il totale dello scontrino */
+    .receipt-total {
+      display: flex;
+      justify-content: space-between; /* Spazia gli elementi tra loro */
+      font-weight: bold; /* Rende il testo in grassetto */
+      margin-top: 15px; /* Distanza sopra */
+    }
 
-        /* Link login fisso */
-        .registration-link {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            font-size: 14px;
-            color: #C2f8CB; /* Verde chiaro */
-            text-decoration: none;
-            font-weight: bold;
-        }
+    /* Stile per il bottone che porta alla home */
+    .back-button {
+      background-color: #8367C7; /* Colore viola per il bottone */
+      color: #2c2c2c; /* Colore scuro per il testo */
+      padding: 10px 18px; /* Padding interno */
+      border: none; /* Rimuove il bordo */
+      border-radius: 5px; /* Angoli arrotondati */
+      font-size: 16px; /* Imposta la dimensione del testo */
+      cursor: pointer; /* Cambia il cursore quando ci si passa sopra */
+      margin-top: 20px; /* Distanza superiore */
+      transition: background-color 0.3s; /* Transizione per il colore di sfondo */
+    }
 
-        .registration-link:hover {
-            color: #6f4db8; /* Viola più scuro */
-        }
+    /* Effetto hover per il bottone di ritorno */
+    .back-button:hover {
+      background-color: #6f4db8; /* Colore più scuro al passaggio del mouse */
+      transform: scale(1.05); /* Aumenta leggermente la dimensione */
+    }
 
-        .clear-btn {
-            margin: 20px auto;
-        }
-    </style>
+    /* Stile per il footer */
+    footer {
+      background-color: #2c2c2c; /* Colore scuro per il footer */
+      color: #aaa; /* Colore chiaro per il testo */
+      font-size: 14px; /* Dimensione del testo */
+      padding: 20px; /* Padding interno */
+      text-align: center; /* Centra il testo */
+      margin-top: auto; /* Spinge il footer in fondo alla pagina */
+    }
+  </style>
 </head>
 <body>
 
-<!-- Intestazione del sito -->
+<!-- Intestazione con il logo e la barra di navigazione -->
 <header>
-    <h1>SYNTH-ETIZZATI</h1> <!-- Nuovo nome del negozio -->
-    <div>
-        <button onclick="window.location.href='carrello.html'">Carrello</button> <!-- Link NON modificato -->
-        <button onclick="window.location.href='contatti.html'">Contattaci</button> <!-- Link NON modificato -->
-        <button onclick="logout()">Esci</button>
-    </div>
+  <h1>Synth-etizzatti</h1>
+  <nav>
+    <button onclick="window.location.href='index.html'">Home</button>
+    <button onclick="window.location.href='carrello.html'">Carrello</button>
+    <button onclick="window.location.href='contatti.html'">Contatti</button>
+  </nav>
 </header>
 
-<!-- Sezione principale: lista dei prodotti -->
+<!-- Sezione principale dove viene visualizzato lo scontrino -->
 <main>
-    <div id="product-list" class="product-grid"></div> <!-- Contenitore dinamico per i prodotti -->
-    <input type="file" id="jsonFileInput" accept=".json" /> <!-- Caricamento file JSON -->
-    <br>
-    <button class="clear-btn" onclick="clearSavedProducts()">Svuota Prodotti</button>
+  <div class="receipt-container">
+    <!-- Intestazione dello scontrino -->
+    <div class="receipt-header">
+      <h2>Scontrino di Vendita</h2>
+      <p>Grazie per aver acquistato da Synth-etizzatti!</p>
+    </div>
+
+    <!-- Lista degli articoli acquistati -->
+    <div id="receiptItems" class="receipt-items"></div>
+
+    <!-- Totale dello scontrino -->
+    <div class="receipt-total">
+      <span>Totale</span>
+      <span id="totalPrice">€ 0,00</span>
+    </div>
+
+    <!-- IVA (22%) -->
+    <div class="receipt-total">
+      <span>IVA (22%)</span>
+      <span id="ivaAmount">€ 0,00</span>
+    </div>
+
+    <!-- Totale da pagare -->
+    <div class="receipt-total">
+      <span><strong>Totale da pagare</strong></span>
+      <span id="grandTotal"><strong>€ 0,00</strong></span>
+    </div>
+
+    <!-- Bottone per tornare alla Home -->
+    <button class="back-button" onclick="window.location.href='index.html'">Torna alla Home</button>
+  </div>
 </main>
 
-<!-- Sezione Chi siamo e Footer -->
-<section id="footer-info">
-    <div id="about-us">
-        <h2>Chi Siamo</h2>
-        <p>Benvenuto su SynthVerse, lo store italiano dedicato esclusivamente a sintetizzatori professionali e modulari. Diamo voce all'innovazione musicale con prodotti selezionati per ogni sound designer.</p>
-    </div>
-    <footer>
-        <p>&copy; 2025 SynthVerse - Tutti i diritti riservati</p>
-        <p>Informazioni legali | Termini e condizioni</p>
-    </footer>
-</section>
+<!-- Footer con informazioni legali -->
+<footer>
+  &copy; 2025 Synth-etizzatti. Tutti i diritti riservati | P.IVA 01234567890
+</footer>
 
-<!-- Link al login o profilo utente -->
-<a href="login.html" class="registration-link" id="loginLink">Login</a>
-
-<!-- SCRIPT: gestione utenti e prodotti -->
 <script>
-    // Mostra username se loggato
-    document.addEventListener("DOMContentLoaded", function () {
-        const user = JSON.parse(localStorage.getItem('loggedInUser'));
-        const loginLink = document.getElementById('loginLink');
+  // Si attiva quando la pagina è completamente caricata
+  document.addEventListener("DOMContentLoaded", () => {
+    // Recupera il carrello dal localStorage o un array vuoto se non c'è nulla
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const receiptItems = document.getElementById("receiptItems");
+    const totalPriceEl = document.getElementById("totalPrice");
+    const ivaAmountEl = document.getElementById("ivaAmount");
+    const grandTotalEl = document.getElementById("grandTotal");
 
-        if (user) {
-            loginLink.textContent = `Ciao, ${user.username}`;
-            loginLink.href = "#";
-            loginLink.addEventListener('click', logout);
-        } else {
-            loginLink.textContent = 'Login';
-        }
+    let total = 0;
+
+    // Cicla attraverso gli articoli nel carrello per visualizzarli
+    cart.forEach(product => {
+      const price = parseFloat(product.price.replace("€", "").replace(",", ".").trim()); // Elimina simboli e converte in numero
+      if (!isNaN(price)) total += price; // Somma i prezzi
+
+      const itemEl = document.createElement("div");
+      itemEl.className = "receipt-item"; // Aggiungi classe per ogni articolo
+      itemEl.innerHTML = `<span>${product.name}</span><span>${product.price}</span>`; // Mostra nome e prezzo
+      receiptItems.appendChild(itemEl);
     });
 
-    // Logout dell'utente
-    function logout() {
-        localStorage.removeItem('loggedInUser');
-        location.reload();
-    }
+    // Calcola l'IVA (22%)
+    const iva = total * 0.22;
+    const grandTotal = total + iva;
 
-    // Caricamento prodotti dal localStorage o da file JSON
-    document.addEventListener("DOMContentLoaded", function () {
-        const fileInput = document.getElementById("jsonFileInput");
-        const productList = document.getElementById("product-list");
+    // Visualizza il totale, IVA e totale da pagare
+    totalPriceEl.textContent = `€ ${total.toFixed(2).replace(".", ",")}`;
+    ivaAmountEl.textContent = `€ ${iva.toFixed(2).replace(".", ",")}`;
+    grandTotalEl.innerHTML = `<strong>€ ${grandTotal.toFixed(2).replace(".", ",")}</strong>`;
 
-        const savedProducts = localStorage.getItem("productList");
-        if (savedProducts) {
-            try {
-                const products = JSON.parse(savedProducts);
-                displayProducts(products);
-            } catch (error) {
-                console.error("Errore nel parsing del JSON salvato:", error);
-            }
-        }
-
-        fileInput.addEventListener("change", function (event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    try {
-                        const products = JSON.parse(e.target.result);
-                        localStorage.setItem("productList", JSON.stringify(products));
-                        displayProducts(products);
-                    } catch (error) {
-                        console.error("Errore nel parsing del JSON:", error);
-                    }
-                };
-                reader.readAsText(file);
-            }
-        });
-
-        // Visualizza i prodotti nella griglia
-        function displayProducts(products) {
-            productList.innerHTML = "";
-            products.forEach(product => {
-                const productElement = document.createElement("div");
-                productElement.classList.add("product");
-                productElement.innerHTML = `
-                    <img src="${product.image}" alt="${product.name}">
-                    <h3>${product.name}</h3>
-                    <p class="price">${product.price}</p>
-                    <button class="add-to-cart-btn">Aggiungi al Carrello</button>
-                `;
-                productElement.querySelector('.add-to-cart-btn').addEventListener('click', () => {
-                    addToCart(product);
-                });
-
-                productElement.addEventListener("click", () => {
-                    localStorage.setItem("selectedProduct", JSON.stringify(product));
-                    window.location.href = "prodotto.html";
-                });
-
-                productList.appendChild(productElement);
-            });
-        }
-
-        // Aggiunge un prodotto al carrello
-        function addToCart(product) {
-            let cart = JSON.parse(localStorage.getItem("cart")) || [];
-            cart.push(product);
-            localStorage.setItem("cart", JSON.stringify(cart));
-        }
-
-        // Rimuove la lista dei prodotti
-        window.clearSavedProducts = function () {
-            localStorage.removeItem("productList");
-            location.reload();
-        };
-    });
+    // Svuota il carrello dopo aver mostrato lo scontrino
+    localStorage.removeItem("cart");
+  });
 </script>
 
 </body>
