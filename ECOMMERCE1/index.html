@@ -1,192 +1,171 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8"> <!-- Imposta la codifica dei caratteri su UTF-8, che supporta tutti i caratteri speciali. -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Adatta il layout per dispositivi mobili. -->
-    <title>SYNTH-ETIZZATI - Prodotti</title> <!-- Titolo della pagina che viene visualizzato sulla scheda del browser. -->
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYNTH-ETIZZATI - Prodotti</title>
+    
     <!-- Font Orbitron per look futuristico/tech -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet"> <!-- Importa il font Orbitron da Google Fonts. -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
 
     <style>
-        /* Impostazioni generali per il body della pagina */
         body {
-            font-family: 'Orbitron', sans-serif; /* Font futuristico per l'intero sito. */
-            background-color: #2c2c2c; /* Colore di sfondo grigio scuro per il corpo della pagina. */
-            color: #f0f0f0; /* Colore del testo chiaro. */
-            margin: 0; /* Rimuove i margini di default. */
-            padding: 0; /* Rimuove il padding di default. */
-            display: flex; /* Usa il Flexbox per il layout. */
-            flex-direction: column; /* Imposta la disposizione in colonna. */
-            min-height: 100vh; /* Impedisce che il contenuto si estenda al di sotto dello schermo. */
+            font-family: 'Orbitron', sans-serif;
+            background-color: #2c2c2c;
+            color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        /* Impostazioni per l'header */
         header {
-            background-color: #333333; /* Colore di sfondo scuro per l'header. */
-            color: #C2f8CB; /* Colore del testo verde chiaro. */
-            padding: 20px; /* Spazio interno dell'header. */
-            display: flex; /* Usa il Flexbox per il layout all'interno dell'header. */
-            justify-content: space-between; /* Spaziatura tra gli elementi a sinistra e a destra. */
-            align-items: center; /* Allinea gli elementi verticalmente al centro. */
-            font-size: 26px; /* Imposta la dimensione del font. */
-            font-weight: 700; /* Imposta il peso del font a bold. */
+            background-color: #333333;
+            color: #C2f8CB;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 26px;
+            font-weight: 700;
         }
 
-        /* Impostazioni per il titolo principale nell'header */
         header h1 {
-            margin: 0; /* Rimuove il margine di default del titolo. */
-            font-size: 32px; /* Imposta la dimensione del font per il titolo. */
+            margin: 0;
+            font-size: 32px;
         }
 
-        /* Stili per i bottoni */
         button {
-            background-color: #8367C7; /* Colore di sfondo per il bottone. */
-            color: #2c2c2c; /* Colore del testo del bottone. */
-            padding: 10px 18px; /* Aggiunge spazio interno al bottone. */
-            border: none; /* Rimuove il bordo di default. */
-            border-radius: 5px; /* Aggiunge angoli arrotondati al bottone. */
-            cursor: pointer; /* Cambia il cursore a mano quando il bottone è sopra. */
-            font-size: 14px; /* Imposta la dimensione del font del bottone. */
-            margin-left: 10px; /* Aggiunge uno spazio a sinistra del bottone. */
-            transition: all 0.3s ease; /* Imposta una transizione per tutte le proprietà del bottone. */
+            background-color: #8367C7;
+            color: #2c2c2c;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 10px;
+            transition: all 0.3s ease;
         }
 
-        /* Effetto hover sui bottoni */
         button:hover {
-            background-color: #6f4db8; /* Cambia il colore di sfondo quando il bottone è sopra. */
-            transform: scale(1.05); /* Aumenta leggermente la dimensione del bottone quando il mouse è sopra. */
+            background-color: #6f4db8;
+            transform: scale(1.05);
         }
 
-        /* Layout della griglia dei prodotti */
         .product-grid {
-            display: grid; /* Usa il CSS Grid per la disposizione dei prodotti. */
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); /* Imposta le colonne per i prodotti, con larghezza minima di 240px. */
-            gap: 20px; /* Distanza tra gli elementi della griglia. */
-            padding: 30px; /* Spazio interno della griglia. */
-            max-width: 1200px; /* Imposta una larghezza massima per la griglia. */
-            margin: auto; /* Centra la griglia orizzontalmente. */
-            flex-grow: 1; /* Permette alla griglia di espandersi per riempire lo spazio disponibile. */
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+            padding: 30px;
+            max-width: 1200px;
+            margin: auto;
+            flex-grow: 1;
         }
 
-        /* Stile per ogni prodotto */
         .product {
-            background-color: #424242; /* Colore di sfondo scuro per ogni prodotto. */
-            padding: 20px; /* Aggiunge spazio interno al contenitore del prodotto. */
-            border-radius: 10px; /* Angoli arrotondati per il contenitore del prodotto. */
-            box-shadow: 0 4px 10px rgba(131, 103, 199, 0.1); /* Aggiunge un'ombra leggera al contenitore del prodotto. */
-            transition: all 0.3s ease; /* Aggiunge una transizione per gli effetti di hover. */
-            cursor: pointer; /* Cambia il cursore quando si passa sopra un prodotto. */
+            background-color: #424242;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(131, 103, 199, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
 
-        /* Effetto hover sui prodotti */
         .product:hover {
-            transform: translateY(-5px); /* Sposta il prodotto verso l'alto quando il mouse è sopra. */
-            box-shadow: 0 6px 16px rgba(131, 103, 199, 0.3); /* Aumenta l'ombra del prodotto. */
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(131, 103, 199, 0.3);
         }
 
-        /* Immagine del prodotto */
         .product img {
-            width: 100%; /* Imposta la larghezza dell'immagine a 100% del contenitore. */
-            height: auto; /* Mantiene il rapporto di aspetto dell'immagine. */
-            border-radius: 5px; /* Aggiunge angoli arrotondati all'immagine. */
-            margin-bottom: 15px; /* Distanza sotto l'immagine. */
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 15px;
         }
 
-        /* Titolo del prodotto */
         .product h3 {
-            font-size: 18px; /* Imposta la dimensione del font per il nome del prodotto. */
-            color: #8367C7; /* Colore del testo del nome del prodotto. */
-            margin-bottom: 8px; /* Distanza sotto il titolo del prodotto. */
+            font-size: 18px;
+            color: #8367C7;
+            margin-bottom: 8px;
         }
 
-        /* Descrizione del prodotto */
         .product p {
-            font-size: 14px; /* Imposta la dimensione del font per la descrizione. */
-            color: #d1d5db; /* Colore grigio chiaro per la descrizione. */
+            font-size: 14px;
+            color: #d1d5db;
         }
 
-        /* Prezzo del prodotto */
         .price {
-            font-weight: bold; /* Imposta il testo del prezzo in grassetto. */
-            color: #C2f8CB; /* Colore verde chiaro per il prezzo. */
-            font-size: 16px; /* Imposta la dimensione del font per il prezzo. */
-            margin-top: 10px; /* Aggiunge spazio sopra al prezzo. */
+            font-weight: bold;
+            color: #C2f8CB;
+            font-size: 16px;
+            margin-top: 10px;
         }
 
-        /* Stile per il footer */
         #footer-info {
-            background-color: #2c2c2c; /* Colore di sfondo scuro per il footer. */
-            color: #aaa; /* Colore del testo nel footer. */
-            padding: 40px 20px; /* Spazio interno del footer. */
-            text-align: center; /* Centra il testo nel footer. */
+            background-color: #2c2c2c;
+            color: #aaa;
+            padding: 40px 20px;
+            text-align: center;
         }
 
-        /* Sezione "Chi siamo" nel footer */
         #about-us {
-            background-color: #424242; /* Colore di sfondo grigio scuro. */
-            color: #eee; /* Colore del testo chiaro. */
-            padding: 30px; /* Spazio interno alla sezione "Chi siamo". */
-            border-radius: 10px; /* Angoli arrotondati. */
-            width: 80%; /* Imposta la larghezza al 80% del contenitore. */
-            margin: 0 auto 30px auto; /* Centra la sezione e aggiunge uno spazio sotto. */
-            box-shadow: 0 4px 8px rgba(131, 103, 199, 0.1); /* Aggiunge un'ombra leggera alla sezione. */
+            background-color: #424242;
+            color: #eee;
+            padding: 30px;
+            border-radius: 10px;
+            width: 80%;
+            margin: 0 auto 30px auto;
+            box-shadow: 0 4px 8px rgba(131, 103, 199, 0.1);
         }
 
-        /* Titolo della sezione "Chi siamo" */
         #about-us h2 {
-            font-size: 24px; /* Imposta la dimensione del font per il titolo. */
-            margin-bottom: 10px; /* Distanza sotto il titolo. */
-            color: #8367C7; /* Colore del titolo della sezione. */
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #8367C7;
         }
 
-        /* Paragrafo nella sezione "Chi siamo" */
         #about-us p {
-            font-size: 15px; /* Imposta la dimensione del font per il testo. */
+            font-size: 15px;
         }
 
-        /* Link di login/registrazione fisso in basso a destra */
         .registration-link {
-            position: fixed; /* Posiziona il link in modo fisso sullo schermo. */
-            bottom: 20px; /* Posizione 20px dal basso. */
-            right: 20px; /* Posizione 20px da destra. */
-            font-size: 14px; /* Imposta la dimensione del font. */
-            color: #C2f8CB; /* Colore del link. */
-            text-decoration: none; /* Rimuove la sottolineatura del link. */
-            font-weight: bold; /* Imposta il link in grassetto. */
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 14px;
+            color: #C2f8CB;
+            text-decoration: none;
+            font-weight: bold;
         }
 
-        /* Effetto hover sul link di login/registrazione */
         .registration-link:hover {
-            color: #6f4db8; /* Cambia il colore quando il mouse è sopra il link. */
+            color: #6f4db8;
         }
 
-        /* Pulsante per svuotare i prodotti salvati */
         .clear-btn {
-            margin: 20px auto; /* Spazio sopra e sotto il pulsante. */
+            margin: 20px auto;
         }
     </style>
 </head>
 <body>
 
-<!-- Inizio dell'header -->
 <header>
     <h1>SYNTH-ETIZZATI - HOME</h1>
     <div>
-        <button onclick="window.location.href='carrello.html'">Carrello</button> <!-- Bottone per andare al carrello. -->
-        <button onclick="window.location.href='contatti.html'">Contattaci</button> <!-- Bottone per la pagina contatti. -->
-        <button onclick="logout()">Logout</button> <!-- Bottone per il logout. -->
+        <button onclick="window.location.href='carrello.html'">Carrello</button>
+        <button onclick="window.location.href='contatti.html'">Contattaci</button>
+        <button onclick="logout()">Logout</button>
     </div>
 </header>
 
 <main>
-    <div id="product-list" class="product-grid"></div> <!-- Contenitore per la griglia dei prodotti. -->
-    <input type="file" id="jsonFileInput" accept=".json" /> <!-- Input per caricare un file JSON con i prodotti. -->
+    <div id="product-list" class="product-grid"></div>
+    <input type="file" id="jsonFileInput" accept=".json" />
     <br>
-    <button class="clear-btn" onclick="clearSavedProducts()">Svuota Prodotti</button> <!-- Bottone per svuotare i prodotti salvati. -->
+    <button class="clear-btn" onclick="clearSavedProducts()">Svuota Prodotti</button>
 </main>
 
-<!-- Sezione footer -->
 <section id="footer-info">
     <div id="about-us">
         <h2>Chi Siamo</h2>
@@ -194,37 +173,34 @@
     </div>
     <footer>
         <p>&copy; 2025 SynthVerse - Tutti i diritti riservati</p>
-        <p>Informazioni legali | Termini e condizioni</p> <!-- Informazioni legali nel footer. -->
+        <p>Informazioni legali | Termini e condizioni</p>
     </footer>
 </section>
 
-<!-- Link per il login -->
 <a href="login.html" class="registration-link" id="loginLink">Login</a>
 
 <script>
-    // Script per la gestione dei prodotti e login
     document.addEventListener("DOMContentLoaded", function () {
-        const user = JSON.parse(localStorage.getItem('loggedInUser')); <!-- Ottiene l'utente loggato dal localStorage -->
-        const loginLink = document.getElementById('loginLink'); <!-- Ottiene il link di login/registrazione -->
+        const user = JSON.parse(localStorage.getItem('loggedInUser'));
+        const loginLink = document.getElementById('loginLink');
 
-        // Se l'utente è loggato, cambia il testo e il comportamento del link di login
         if (user) {
-            loginLink.textContent = `Ciao, ${user.username}`; <!-- Mostra il nome utente -->
-            loginLink.href = "#"; <!-- Non reindirizza al login -->
-            loginLink.addEventListener('click', logout); <!-- Aggiungi l'evento di logout -->
+            loginLink.textContent = `Ciao, ${user.username}`;
+            loginLink.href = "#";
+            loginLink.addEventListener('click', logout);
         } else {
-            loginLink.textContent = 'Login'; <!-- Mostra "Login" se l'utente non è loggato -->
+            loginLink.textContent = 'Login';
         }
 
         const fileInput = document.getElementById("jsonFileInput");
         const productList = document.getElementById("product-list");
 
-        const savedProducts = localStorage.getItem("productList"); <!-- Recupera i prodotti salvati -->
+        const savedProducts = localStorage.getItem("productList");
         if (savedProducts) {
             try {
                 const products = JSON.parse(savedProducts);
-                displayProducts(products); <!-- Mostra i prodotti salvati -->
-                     } catch (error) {
+                displayProducts(products);
+            } catch (error) {
                 console.error("Errore nel parsing del JSON salvato:", error);
             }
         }
@@ -234,12 +210,14 @@
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function (e) {
+                    console.log("File caricato:", e.target.result); // Visualizza il contenuto del file caricato
                     try {
-                        const products = JSON.parse(e.target.result);
+                        const products = JSON.parse(e.target.result); // Parso il contenuto JSON
+                        console.log("Prodotti letti dal file:", products); // Visualizza i prodotti letti dal file
                         localStorage.setItem("productList", JSON.stringify(products));
                         displayProducts(products);
                     } catch (error) {
-                        console.error("Errore nel parsing del JSON:", error);
+                        console.error("Errore nel parsing del JSON:", error); // Aggiungi un messaggio di errore se il parsing fallisce
                     }
                 };
                 reader.readAsText(file);
