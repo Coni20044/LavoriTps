@@ -1,149 +1,202 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it"> <!-- Definisce la lingua della pagina come italiano -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accesso - NEO-Synth</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8"> <!-- Imposta la codifica dei caratteri su UTF-8 per supportare tutti i caratteri speciali -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Assicura che la pagina sia responsive sui dispositivi mobili -->
+    <title>SYNTH-ETIZZATI - Carrello</title> <!-- Titolo della pagina che appare nella scheda del browser -->
+
+    <!-- Importa il font Orbitron per un look futuristico/tecnologico -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet"> 
+
     <style>
+        /* Impostazioni per il corpo della pagina */
         body {
-            font-family: 'Orbitron', sans-serif;
-            background-color: #111; /* Colore di sfondo scuro, come nel carrello */
-            color: #fff;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            font-family: 'Orbitron', sans-serif; /* Imposta il font Orbitron per l'intero sito */
+            background-color: #2c2c2c; /* Colore di sfondo grigio scuro */
+            color: #f0f0f0; /* Colore del testo chiaro */
+            margin: 0; /* Rimuove i margini di default */
+            padding: 0; /* Rimuove il padding di default */
+            display: flex; /* Usa il Flexbox per il layout */
+            flex-direction: column; /* Dispone gli elementi in colonna */
+            min-height: 100vh; /* Impedisce che la pagina si estenda oltre la finestra del browser */
         }
 
-        .container {
-            background-color: #222; /* Colore di sfondo della finestra, come nel carrello */
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            width: 100%;
-            max-width: 420px;
-            text-align: center;
-            border: 2px solid #00cfcf; /* Bordo verde acqua */
+        /* Impostazioni per l'header */
+        header {
+            background-color: #333333; /* Colore di sfondo scuro per l'header */
+            color: #C2f8CB; /* Colore del testo verde chiaro */
+            padding: 20px; /* Aggiunge spazio interno nell'header */
+            display: flex; /* Usa il Flexbox per il layout */
+            justify-content: space-between; /* Spaziatura tra gli elementi a sinistra e a destra */
+            align-items: center; /* Allinea verticalmente gli elementi al centro */
+            font-size: 26px; /* Imposta la dimensione del font */
+            font-weight: 700; /* Imposta il peso del font su grassetto */
         }
 
-        h1 {
-            color: #00cfcf; /* Colore verde acqua per il titolo */
-            margin-bottom: 30px;
-            font-size: 28px;
-            font-weight: bold;
+        header h1 {
+            margin: 0; /* Rimuove il margine di default dal titolo */
+            font-size: 32px; /* Imposta una dimensione più grande per il titolo */
         }
 
-        label {
-            display: block;
-            margin: 15px 0 5px;
-            font-size: 18px;
-            color: #fff;
-        }
-
-        input {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 20px;
-            border: 2px solid #00cfcf; /* Bordo verde acqua per gli input */
-            border-radius: 5px;
-            background-color: #333; /* Colore di sfondo input */
-            color: #fff;
-            font-size: 16px;
-        }
-
-        input:focus {
-            border-color: #00e0e0; /* Colore verde acqua più chiaro quando si clicca */
-            outline: none;
-        }
-
+        /* Stili per i bottoni */
         button {
-            width: 100%;
-            padding: 15px;
-            background-color: #00cfcf; /* Colore verde acqua per il pulsante */
-            color: #fff;
-            font-size: 18px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
+            background-color: #8367C7; /* Colore di sfondo per i bottoni */
+            color: #2c2c2c; /* Colore del testo per i bottoni */
+            padding: 10px 18px; /* Aggiunge spazio interno al bottone */
+            border: none; /* Rimuove il bordo di default */
+            border-radius: 5px; /* Aggiunge angoli arrotondati al bottone */
+            cursor: pointer; /* Cambia il cursore a mano quando si passa sopra il bottone */
+            font-size: 14px; /* Imposta la dimensione del font */
+            margin: 10px; /* Distanza tra i bottoni */
+            transition: all 0.3s ease; /* Aggiunge una transizione per le proprietà del bottone */
         }
 
+        /* Effetto hover per i bottoni */
         button:hover {
-            background-color: #00e0e0; /* Cambia il verde acqua quando il pulsante è attivo */
+            background-color: #6f4db8; /* Cambia il colore di sfondo quando il bottone è sopra */
+            transform: scale(1.05); /* Aumenta leggermente la dimensione del bottone */
         }
 
-        .error {
-            color: #ff0000; /* Colore rosso per i messaggi di errore */
-            font-size: 14px;
-            margin-bottom: 10px;
+        /* Contenitore del carrello */
+        .cart-container {
+            flex-grow: 1; /* Permette al contenitore di crescere e occupare spazio disponibile */
+            max-width: 900px; /* Imposta la larghezza massima per il contenitore del carrello */
+            margin: 30px auto; /* Centra il contenitore orizzontalmente e aggiunge spazio sopra e sotto */
+            padding: 0 20px; /* Aggiunge spazio interno ai lati del contenitore */
         }
 
-        /* Link per la registrazione */
-        .registration-link {
-            display: block;
-            color: #00cfcf; /* Colore verde acqua per il link */
-            font-size: 16px;
-            margin-top: 15px;
-            text-decoration: none;
-            font-weight: bold;
+        /* Stile per ogni elemento del carrello */
+        .cart-item {
+            background-color: #424242; /* Colore di sfondo per ogni prodotto nel carrello */
+            border-left: 5px solid #C2f8CB; /* Aggiunge una barra verticale verde chiaro sulla sinistra */
+            border-radius: 10px; /* Angoli arrotondati per ogni elemento del carrello */
+            padding: 20px; /* Spazio interno dell'elemento */
+            margin-bottom: 20px; /* Spazio tra gli elementi del carrello */
+            box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Aggiunge un'ombra leggera */
+            display: flex; /* Usa il Flexbox per il layout */
+            align-items: center; /* Allinea gli elementi al centro verticalmente */
+            gap: 20px; /* Spazio tra gli elementi */
         }
 
-        .registration-link:hover {
-            color: #00e0e0; /* Cambia il colore del link al passaggio del mouse */
+        /* Immagine del prodotto nel carrello */
+        .cart-item img {
+            width: 100px; /* Imposta la larghezza dell'immagine */
+            height: auto; /* Mantiene il rapporto di aspetto */
+            border-radius: 5px; /* Aggiunge angoli arrotondati all'immagine */
         }
 
+        /* Titolo del prodotto nel carrello */
+        .cart-item h3 {
+            margin: 0 0 8px; /* Rimuove il margine superiore e aggiunge distanza sotto il titolo */
+            color: #8367C7; /* Colore del titolo del prodotto */
+            font-size: 20px; /* Imposta la dimensione del font per il titolo */
+        }
+
+        /* Descrizione del prodotto nel carrello */
+        .cart-item p {
+            margin: 0; /* Rimuove il margine di default */
+            color: #d1d5db; /* Colore del testo grigio chiaro */
+            font-size: 14px; /* Imposta la dimensione del font per la descrizione */
+        }
+
+        /* Totale dell'ordine */
+        #total {
+            text-align: center; /* Centra il testo */
+            font-size: 22px; /* Imposta la dimensione del font */
+            color: #C2f8CB; /* Colore verde chiaro per il totale */
+            margin: 30px 0; /* Aggiunge spazio sopra e sotto il totale */
+        }
+
+        /* Contenitore per i bottoni centrati */
+        .button-container {
+            text-align: center; /* Centra i bottoni */
+        }
+
+        /* Stili per i bottoni nel contenitore */
+        .button-container button {
+            margin: 10px; /* Distanza tra i bottoni */
+        }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Accedi al tuo account NEO-Synth</h1>
-        <form id="loginForm">
-            <div class="error" id="errorMessage"></div>
-            
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required placeholder="Inserisci la tua email per accedere">
+    <!-- Header con il titolo e il bottone per tornare alla home -->
+    <header>
+        <h1>SYNTH-ETIZZATI - Carrello</h1>
+        <button onclick="window.location.href='index.html'">Home</button> <!-- Bottone che reindirizza alla home -->
+    </header>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required placeholder="Inserisci la tua password per accedere">
+    <div class="cart-container">
+        <!-- Contenitore per gli articoli nel carrello -->
+        <div id="cart-items"></div> <!-- Qui verranno inseriti gli articoli del carrello -->
+        <div id="total"></div> <!-- Qui verrà visualizzato il totale dell'ordine -->
 
-            <button type="submit">Accedi</button>
-
-        </form>
-        
-        <a href="registrazione.html" class="registration-link">Non hai un account? Registrati per ottenere il tuo sintetizzatore!</a>
+        <!-- Bottoni centrati per svuotare il carrello e andare al pagamento -->
+        <div class="button-container">
+            <button onclick="clearCart()">🗑️ Svuota Carrello</button> <!-- Bottone per svuotare il carrello -->
+            <button onclick="proceedToPayment()">💳 Vai al Pagamento</button> <!-- Bottone per andare alla pagina di pagamento -->
+        </div>
     </div>
 
     <script>
-        // Gestione del login
-        document.getElementById('loginForm').addEventListener('submit', function (event) {
-            event.preventDefault(); // Evita l'invio del modulo
+        // Quando la pagina è completamente caricata, esegui il codice
+        document.addEventListener("DOMContentLoaded", function () {
+            const cart = JSON.parse(localStorage.getItem("cart")) || []; <!-- Recupera il carrello salvato nel localStorage -->
+            const cartItemsContainer = document.getElementById("cart-items"); <!-- Contenitore per gli articoli del carrello -->
+            const totalDiv = document.getElementById("total"); <!-- Contenitore per il totale dell'ordine -->
 
-            // Ottieni i valori dei campi
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const errorMessage = document.getElementById('errorMessage');
-
-            // Controllo semplice di validità
-            if (email === '' || password === '') {
-                errorMessage.textContent = 'Tutti i campi sono obbligatori.'; // Mostra un messaggio di errore se i campi sono vuoti
-                return;
+            // Se il carrello è vuoto, mostra un messaggio
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = "<p>🎹 Il tuo carrello è vuoto. Torna alla home per esplorare i sintetizzatori.</p>";
+                return; <!-- Esce dalla funzione se il carrello è vuoto -->
             }
 
-            // Aggiungere ulteriori validazioni se necessario (es. email valida, password corretta, ecc.)
+            let total = 0; <!-- Inizializza la variabile per il totale dell'ordine -->
 
-            // Se tutto è valido, puoi inviare i dati al server
-            console.log('Accesso riuscito:', { email, password }); // Log per simulare l'accesso
+            // Per ogni prodotto nel carrello, crea un elemento HTML per mostrarlo
+            cart.forEach(product => {
+                const item = document.createElement("div");
+                item.className = "cart-item"; <!-- Assegna una classe per lo stile -->
 
-            // Pulisci il modulo
-            document.getElementById('loginForm').reset();
+                // Aggiungi il contenuto HTML dell'elemento del carrello
+                item.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <div>
+                        <h3>${product.name}</h3>
+                        <p>Prezzo: ${product.price}</p>
+                    </div>
+                `;
 
-            // Invia un messaggio di successo o una nuova pagina
-            alert('Accesso riuscito! Ora puoi esplorare i tuoi sintetizzatori preferiti!');
+                cartItemsContainer.appendChild(item); <!-- Aggiungi l'elemento al contenitore -->
+
+                // Calcola il totale dell'ordine
+                const numericPrice = parseFloat(
+                    product.price.replace("€", "").replace(".", "").replace(",", ".") <!-- Rimuove il simbolo € e converte il prezzo in formato numerico -->
+                );
+                total += numericPrice; <!-- Aggiungi il prezzo al totale -->
+            });
+
+            totalDiv.innerHTML = `Totale Ordine: €${total.toFixed(2)}`; <!-- Visualizza il totale dell'ordine con due decimali -->
         });
+
+        // Funzione per svuotare il carrello
+        function clearCart() {
+            localStorage.removeItem("cart"); <!-- Rimuove il carrello dal localStorage -->
+            location.reload(); <!-- Ricarica la pagina -->
+        }
+
+        // Funzione per procedere al pagamento
+        function proceedToPayment() {
+            const cart = JSON.parse(localStorage.getItem("cart")) || []; <!-- Recupera il carrello dal localStorage -->
+
+            // Se il carrello contiene articoli, procedi al pagamento
+            if (cart.length > 0) {
+                localStorage.setItem("paymentCart", JSON.stringify(cart)); <!-- Salva il carrello per il pagamento -->
+                window.location.href = "pagamento.html"; <!-- Reindirizza alla pagina di pagamento -->
+            } else {
+                alert("🛒 Il carrello è vuoto. Aggiungi dei sintetizzatori per continuare."); <!-- Messaggio di errore se il carrello è vuoto -->
+            }
+        }
     </script>
 
 </body>
