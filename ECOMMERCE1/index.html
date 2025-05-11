@@ -1,181 +1,192 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8"> <!-- Imposta la codifica dei caratteri -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Rende la pagina responsive -->
-    <title>SYNTH-ETIZZATI - Prodotti</title> <!-- Nuovo titolo -->
-    
+    <meta charset="UTF-8"> <!-- Imposta la codifica dei caratteri su UTF-8, che supporta tutti i caratteri speciali. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Adatta il layout per dispositivi mobili. -->
+    <title>SYNTH-ETIZZATI - Prodotti</title> <!-- Titolo della pagina che viene visualizzato sulla scheda del browser. -->
+
     <!-- Font Orbitron per look futuristico/tech -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet"> <!-- Importa il font Orbitron da Google Fonts. -->
 
     <style>
-        /* Stili generali */
+        /* Impostazioni generali per il body della pagina */
         body {
-            font-family: 'Orbitron', sans-serif; /* Font tech */
-            background-color: #2c2c2c; /* Fondo grigio scuro */
-            color: #f0f0f0; /* Testo chiaro */
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            font-family: 'Orbitron', sans-serif; /* Font futuristico per l'intero sito. */
+            background-color: #2c2c2c; /* Colore di sfondo grigio scuro per il corpo della pagina. */
+            color: #f0f0f0; /* Colore del testo chiaro. */
+            margin: 0; /* Rimuove i margini di default. */
+            padding: 0; /* Rimuove il padding di default. */
+            display: flex; /* Usa il Flexbox per il layout. */
+            flex-direction: column; /* Imposta la disposizione in colonna. */
+            min-height: 100vh; /* Impedisce che il contenuto si estenda al di sotto dello schermo. */
         }
 
-        /* Header con branding e navigazione */
+        /* Impostazioni per l'header */
         header {
-            background-color: #333333; /* Grigio scuro */
-            color: #C2f8CB; /* Verde chiaro */
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 26px;
-            font-weight: 700;
+            background-color: #333333; /* Colore di sfondo scuro per l'header. */
+            color: #C2f8CB; /* Colore del testo verde chiaro. */
+            padding: 20px; /* Spazio interno dell'header. */
+            display: flex; /* Usa il Flexbox per il layout all'interno dell'header. */
+            justify-content: space-between; /* Spaziatura tra gli elementi a sinistra e a destra. */
+            align-items: center; /* Allinea gli elementi verticalmente al centro. */
+            font-size: 26px; /* Imposta la dimensione del font. */
+            font-weight: 700; /* Imposta il peso del font a bold. */
         }
 
+        /* Impostazioni per il titolo principale nell'header */
         header h1 {
-            margin: 0;
-            font-size: 32px;
+            margin: 0; /* Rimuove il margine di default del titolo. */
+            font-size: 32px; /* Imposta la dimensione del font per il titolo. */
         }
 
-        /* Pulsanti in alto a destra */
+        /* Stili per i bottoni */
         button {
-            background-color: #8367C7; /* Viola chiaro */
-            color: #2c2c2c; /* Grigio scuro */
-            padding: 10px 18px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-            margin-left: 10px;
-            transition: all 0.3s ease;
+            background-color: #8367C7; /* Colore di sfondo per il bottone. */
+            color: #2c2c2c; /* Colore del testo del bottone. */
+            padding: 10px 18px; /* Aggiunge spazio interno al bottone. */
+            border: none; /* Rimuove il bordo di default. */
+            border-radius: 5px; /* Aggiunge angoli arrotondati al bottone. */
+            cursor: pointer; /* Cambia il cursore a mano quando il bottone è sopra. */
+            font-size: 14px; /* Imposta la dimensione del font del bottone. */
+            margin-left: 10px; /* Aggiunge uno spazio a sinistra del bottone. */
+            transition: all 0.3s ease; /* Imposta una transizione per tutte le proprietà del bottone. */
         }
 
+        /* Effetto hover sui bottoni */
         button:hover {
-            background-color: #6f4db8; /* Viola più scuro */
-            transform: scale(1.05);
+            background-color: #6f4db8; /* Cambia il colore di sfondo quando il bottone è sopra. */
+            transform: scale(1.05); /* Aumenta leggermente la dimensione del bottone quando il mouse è sopra. */
         }
 
-        /* Griglia dei prodotti */
+        /* Layout della griglia dei prodotti */
         .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 20px;
-            padding: 30px;
-            max-width: 1200px;
-            margin: auto;
-            flex-grow: 1;
+            display: grid; /* Usa il CSS Grid per la disposizione dei prodotti. */
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); /* Imposta le colonne per i prodotti, con larghezza minima di 240px. */
+            gap: 20px; /* Distanza tra gli elementi della griglia. */
+            padding: 30px; /* Spazio interno della griglia. */
+            max-width: 1200px; /* Imposta una larghezza massima per la griglia. */
+            margin: auto; /* Centra la griglia orizzontalmente. */
+            flex-grow: 1; /* Permette alla griglia di espandersi per riempire lo spazio disponibile. */
         }
 
-        /* Singolo prodotto */
+        /* Stile per ogni prodotto */
         .product {
-            background-color: #424242; /* Grigio scuro */
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(131, 103, 199, 0.1); /* Ombra viola chiaro */
-            transition: all 0.3s ease;
-            cursor: pointer;
+            background-color: #424242; /* Colore di sfondo scuro per ogni prodotto. */
+            padding: 20px; /* Aggiunge spazio interno al contenitore del prodotto. */
+            border-radius: 10px; /* Angoli arrotondati per il contenitore del prodotto. */
+            box-shadow: 0 4px 10px rgba(131, 103, 199, 0.1); /* Aggiunge un'ombra leggera al contenitore del prodotto. */
+            transition: all 0.3s ease; /* Aggiunge una transizione per gli effetti di hover. */
+            cursor: pointer; /* Cambia il cursore quando si passa sopra un prodotto. */
         }
 
+        /* Effetto hover sui prodotti */
         .product:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 16px rgba(131, 103, 199, 0.3); /* Ombra più marcata al passaggio del mouse */
+            transform: translateY(-5px); /* Sposta il prodotto verso l'alto quando il mouse è sopra. */
+            box-shadow: 0 6px 16px rgba(131, 103, 199, 0.3); /* Aumenta l'ombra del prodotto. */
         }
 
+        /* Immagine del prodotto */
         .product img {
-            width: 100%;
-            height: auto;
-            border-radius: 5px;
-            margin-bottom: 15px;
+            width: 100%; /* Imposta la larghezza dell'immagine a 100% del contenitore. */
+            height: auto; /* Mantiene il rapporto di aspetto dell'immagine. */
+            border-radius: 5px; /* Aggiunge angoli arrotondati all'immagine. */
+            margin-bottom: 15px; /* Distanza sotto l'immagine. */
         }
 
+        /* Titolo del prodotto */
         .product h3 {
-            font-size: 18px;
-            color: #8367C7; /* Viola chiaro */
-            margin-bottom: 8px;
+            font-size: 18px; /* Imposta la dimensione del font per il nome del prodotto. */
+            color: #8367C7; /* Colore del testo del nome del prodotto. */
+            margin-bottom: 8px; /* Distanza sotto il titolo del prodotto. */
         }
 
+        /* Descrizione del prodotto */
         .product p {
-            font-size: 14px;
-            color: #d1d5db;
+            font-size: 14px; /* Imposta la dimensione del font per la descrizione. */
+            color: #d1d5db; /* Colore grigio chiaro per la descrizione. */
         }
 
+        /* Prezzo del prodotto */
         .price {
-            font-weight: bold;
-            color: #C2f8CB; /* Verde chiaro */
-            font-size: 16px;
-            margin-top: 10px;
+            font-weight: bold; /* Imposta il testo del prezzo in grassetto. */
+            color: #C2f8CB; /* Colore verde chiaro per il prezzo. */
+            font-size: 16px; /* Imposta la dimensione del font per il prezzo. */
+            margin-top: 10px; /* Aggiunge spazio sopra al prezzo. */
         }
 
-        /* Footer e sezione Chi siamo */
+        /* Stile per il footer */
         #footer-info {
-            background-color: #2c2c2c;
-            color: #aaa;
-            padding: 40px 20px;
-            text-align: center;
+            background-color: #2c2c2c; /* Colore di sfondo scuro per il footer. */
+            color: #aaa; /* Colore del testo nel footer. */
+            padding: 40px 20px; /* Spazio interno del footer. */
+            text-align: center; /* Centra il testo nel footer. */
         }
 
+        /* Sezione "Chi siamo" nel footer */
         #about-us {
-            background-color: #424242;
-            color: #eee;
-            padding: 30px;
-            border-radius: 10px;
-            width: 80%;
-            margin: 0 auto 30px auto;
-            box-shadow: 0 4px 8px rgba(131, 103, 199, 0.1); /* Ombra viola chiaro */
+            background-color: #424242; /* Colore di sfondo grigio scuro. */
+            color: #eee; /* Colore del testo chiaro. */
+            padding: 30px; /* Spazio interno alla sezione "Chi siamo". */
+            border-radius: 10px; /* Angoli arrotondati. */
+            width: 80%; /* Imposta la larghezza al 80% del contenitore. */
+            margin: 0 auto 30px auto; /* Centra la sezione e aggiunge uno spazio sotto. */
+            box-shadow: 0 4px 8px rgba(131, 103, 199, 0.1); /* Aggiunge un'ombra leggera alla sezione. */
         }
 
+        /* Titolo della sezione "Chi siamo" */
         #about-us h2 {
-            font-size: 24px;
-            margin-bottom: 10px;
-            color: #8367C7; /* Viola chiaro */
+            font-size: 24px; /* Imposta la dimensione del font per il titolo. */
+            margin-bottom: 10px; /* Distanza sotto il titolo. */
+            color: #8367C7; /* Colore del titolo della sezione. */
         }
 
+        /* Paragrafo nella sezione "Chi siamo" */
         #about-us p {
-            font-size: 15px;
+            font-size: 15px; /* Imposta la dimensione del font per il testo. */
         }
 
-        /* Link login fisso */
+        /* Link di login/registrazione fisso in basso a destra */
         .registration-link {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            font-size: 14px;
-            color: #C2f8CB; /* Verde chiaro */
-            text-decoration: none;
-            font-weight: bold;
+            position: fixed; /* Posiziona il link in modo fisso sullo schermo. */
+            bottom: 20px; /* Posizione 20px dal basso. */
+            right: 20px; /* Posizione 20px da destra. */
+            font-size: 14px; /* Imposta la dimensione del font. */
+            color: #C2f8CB; /* Colore del link. */
+            text-decoration: none; /* Rimuove la sottolineatura del link. */
+            font-weight: bold; /* Imposta il link in grassetto. */
         }
 
+        /* Effetto hover sul link di login/registrazione */
         .registration-link:hover {
-            color: #6f4db8; /* Viola più scuro */
+            color: #6f4db8; /* Cambia il colore quando il mouse è sopra il link. */
         }
 
+        /* Pulsante per svuotare i prodotti salvati */
         .clear-btn {
-            margin: 20px auto;
+            margin: 20px auto; /* Spazio sopra e sotto il pulsante. */
         }
     </style>
 </head>
 <body>
 
-<!-- Intestazione del sito -->
+<!-- Inizio dell'header -->
 <header>
-    <h1>SYNTH-ETIZZATI</h1> <!-- Nuovo nome del negozio -->
+    <h1>SYNTH-ETIZZATI - HOME</h1>
     <div>
-        <button onclick="window.location.href='carrello.html'">Carrello</button> <!-- Link NON modificato -->
-        <button onclick="window.location.href='contatti.html'">Contattaci</button> <!-- Link NON modificato -->
-        <button onclick="logout()">Esci</button>
+        <button onclick="window.location.href='carrello.html'">Carrello</button> <!-- Bottone per andare al carrello. -->
+        <button onclick="window.location.href='contatti.html'">Contattaci</button> <!-- Bottone per la pagina contatti. -->
+        <button onclick="logout()">Logout</button> <!-- Bottone per il logout. -->
     </div>
 </header>
 
-<!-- Sezione principale: lista dei prodotti -->
 <main>
-    <div id="product-list" class="product-grid"></div> <!-- Contenitore dinamico per i prodotti -->
-    <input type="file" id="jsonFileInput" accept=".json" /> <!-- Caricamento file JSON -->
+    <div id="product-list" class="product-grid"></div> <!-- Contenitore per la griglia dei prodotti. -->
+    <input type="file" id="jsonFileInput" accept=".json" /> <!-- Input per caricare un file JSON con i prodotti. -->
     <br>
-    <button class="clear-btn" onclick="clearSavedProducts()">Svuota Prodotti</button>
+    <button class="clear-btn" onclick="clearSavedProducts()">Svuota Prodotti</button> <!-- Bottone per svuotare i prodotti salvati. -->
 </main>
 
-<!-- Sezione Chi siamo e Footer -->
+<!-- Sezione footer -->
 <section id="footer-info">
     <div id="about-us">
         <h2>Chi Siamo</h2>
@@ -183,106 +194,33 @@
     </div>
     <footer>
         <p>&copy; 2025 SynthVerse - Tutti i diritti riservati</p>
-        <p>Informazioni legali | Termini e condizioni</p>
+        <p>Informazioni legali | Termini e condizioni</p> <!-- Informazioni legali nel footer. -->
     </footer>
 </section>
 
-<!-- Link al login o profilo utente -->
+<!-- Link per il login -->
 <a href="login.html" class="registration-link" id="loginLink">Login</a>
 
-<!-- SCRIPT: gestione utenti e prodotti -->
 <script>
-    // Mostra username se loggato
+    // Script per la gestione dei prodotti e login
     document.addEventListener("DOMContentLoaded", function () {
-        const user = JSON.parse(localStorage.getItem('loggedInUser'));
-        const loginLink = document.getElementById('loginLink');
+        const user = JSON.parse(localStorage.getItem('loggedInUser')); <!-- Ottiene l'utente loggato dal localStorage -->
+        const loginLink = document.getElementById('loginLink'); <!-- Ottiene il link di login/registrazione -->
 
+        // Se l'utente è loggato, cambia il testo e il comportamento del link di login
         if (user) {
-            loginLink.textContent = `Ciao, ${user.username}`;
-            loginLink.href = "#";
-            loginLink.addEventListener('click', logout);
+            loginLink.textContent = `Ciao, ${user.username}`; <!-- Mostra il nome utente -->
+            loginLink.href = "#"; <!-- Non reindirizza al login -->
+            loginLink.addEventListener('click', logout); <!-- Aggiungi l'evento di logout -->
         } else {
-            loginLink.textContent = 'Login';
+            loginLink.textContent = 'Login'; <!-- Mostra "Login" se l'utente non è loggato -->
         }
-    });
 
-    // Logout dell'utente
-    function logout() {
-        localStorage.removeItem('loggedInUser');
-        location.reload();
-    }
-
-    // Caricamento prodotti dal localStorage o da file JSON
-    document.addEventListener("DOMContentLoaded", function () {
         const fileInput = document.getElementById("jsonFileInput");
         const productList = document.getElementById("product-list");
 
-        const savedProducts = localStorage.getItem("productList");
+        const savedProducts = localStorage.getItem("productList"); <!-- Recupera i prodotti salvati -->
         if (savedProducts) {
             try {
                 const products = JSON.parse(savedProducts);
-                displayProducts(products);
-            } catch (error) {
-                console.error("Errore nel parsing del JSON salvato:", error);
-            }
-        }
-
-        fileInput.addEventListener("change", function (event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    try {
-                        const products = JSON.parse(e.target.result);
-                        localStorage.setItem("productList", JSON.stringify(products));
-                        displayProducts(products);
-                    } catch (error) {
-                        console.error("Errore nel parsing del JSON:", error);
-                    }
-                };
-                reader.readAsText(file);
-            }
-        });
-
-        // Visualizza i prodotti nella griglia
-        function displayProducts(products) {
-            productList.innerHTML = "";
-            products.forEach(product => {
-                const productElement = document.createElement("div");
-                productElement.classList.add("product");
-                productElement.innerHTML = `
-                    <img src="${product.image}" alt="${product.name}">
-                    <h3>${product.name}</h3>
-                    <p class="price">${product.price}</p>
-                    <button class="add-to-cart-btn">Aggiungi al Carrello</button>
-                `;
-                productElement.querySelector('.add-to-cart-btn').addEventListener('click', () => {
-                    addToCart(product);
-                });
-
-                productElement.addEventListener("click", () => {
-                    localStorage.setItem("selectedProduct", JSON.stringify(product));
-                    window.location.href = "prodotto.html";
-                });
-
-                productList.appendChild(productElement);
-            });
-        }
-
-        // Aggiunge un prodotto al carrello
-        function addToCart(product) {
-            let cart = JSON.parse(localStorage.getItem("cart")) || [];
-            cart.push(product);
-            localStorage.setItem("cart", JSON.stringify(cart));
-        }
-
-        // Rimuove la lista dei prodotti
-        window.clearSavedProducts = function () {
-            localStorage.removeItem("productList");
-            location.reload();
-        };
-    });
-</script>
-
-</body>
-</html>
+                displayProducts(products); <!-- Mostra i prodotti salvati -->
