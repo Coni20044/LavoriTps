@@ -1,25 +1,34 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+    <!-- Definisce il set di caratteri per la pagina (UTF-8) -->
     <meta charset="UTF-8">
+    
+    <!-- Imposta la larghezza del viewport per dispositivi mobili, adattandosi alla larghezza del dispositivo -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Titolo della pagina che apparirà nella barra del browser -->
     <title>Pagamento - Il Tuo Carrello</title>
+    
     <style>
+        /* Stile generale per il corpo della pagina */
         body {
             font-family: 'Orbitron', sans-serif; /* Font modificato per uniformità */
             background-color: #111; /* Colore di sfondo scuro */
             color: #fff;
             margin: 0;
             padding: 0;
-            text-align: center;
+            text-align: center; /* Testo centrato */
         }
 
+        /* Stile per il titolo della pagina */
         h1 {
             font-size: 24px;
             margin-top: 30px;
             color: #C2f8CB; /* Verde chiaro per il titolo */
         }
 
+        /* Contenitore del modulo di pagamento con margini e bordi */
         .form-container {
             margin-top: 20px;
             padding: 20px;
@@ -31,6 +40,7 @@
             border: 2px solid #C2f8CB; /* Verde chiaro per il bordo */
         }
 
+        /* Stile per i campi di input */
         .input-field {
             width: 100%;
             padding: 12px;
@@ -42,11 +52,13 @@
             font-size: 16px;
         }
 
+        /* Modifica del bordo dei campi di input al focus */
         .input-field:focus {
             border-color: #C2f8CB; /* Verde chiaro quando il campo è selezionato */
             outline: none;
         }
 
+        /* Stile per il pulsante di invio */
         .button {
             background-color: #8367C7; /* Viola chiaro per il pulsante */
             color: white;
@@ -57,16 +69,19 @@
             font-size: 16px;
         }
 
+        /* Cambia il colore del pulsante quando ci si passa sopra */
         .button:hover {
             background-color: #6f4db8; /* Viola più scuro al passaggio del mouse */
         }
 
+        /* Stile per la selezione dei metodi di pagamento */
         .payment-methods {
             display: flex;
             justify-content: space-between;
             margin-bottom: 20px;
         }
 
+        /* Stile per ogni metodo di pagamento */
         .payment-method {
             background-color: #333;
             padding: 12px;
@@ -77,10 +92,12 @@
             color: #fff;
         }
 
+        /* Cambia il colore di un metodo di pagamento al passaggio del mouse */
         .payment-method:hover {
             background-color: #8367C7; /* Viola chiaro al passaggio del mouse */
         }
 
+        /* Stile per gli articoli nel carrello */
         .cart-item {
             padding: 15px;
             border: 1px solid #ccc;
@@ -89,21 +106,25 @@
             border-radius: 8px;
         }
 
+        /* Stile per l'immagine del prodotto nel carrello */
         .cart-item img {
             width: 100px;
             height: auto;
         }
 
+        /* Stile per il nome del prodotto nel carrello */
         .cart-item h3 {
             font-size: 18px;
             margin: 10px 0;
         }
 
+        /* Stile per la descrizione del prodotto nel carrello */
         .cart-item p {
             font-size: 14px;
             color: #bbb;
         }
 
+        /* Stile per il totale del carrello */
         .total {
             font-size: 20px;
             font-weight: bold;
@@ -111,6 +132,7 @@
             margin-top: 20px;
         }
 
+        /* Stile per il pulsante Home */
         .home-button {
             background-color: #ffffff;
             color: #8367C7; /* Viola chiaro per il pulsante Home */
@@ -124,6 +146,7 @@
             transition: background-color 0.3s;
         }
 
+        /* Cambia il colore del pulsante Home al passaggio del mouse */
         .home-button:hover {
             background-color: #ffeaea; /* Colore più chiaro al passaggio del mouse */
         }
@@ -131,46 +154,73 @@
 </head>
 <body>
 
+<!-- Titolo della pagina -->
 <h1>Pagamento - Il Tuo Carrello</h1>
 
-<!-- Pulsante Home -->
+<!-- Pulsante per tornare alla home -->
 <button class="home-button" onclick="window.location.href='index.html'">🏠 Home</button>
 
-<!-- Mostra il carrello e il totale -->
+<!-- Contenitore per gli articoli nel carrello -->
 <div id="cart-items"></div>
 
+<!-- Visualizza il totale del carrello -->
 <div id="total"></div>
 
+<!-- Contenitore del modulo di pagamento -->
 <div class="form-container">
+    <!-- Titolo per la sezione del modulo -->
     <h2>Dettagli di Pagamento</h2>
+    
+    <!-- Modulo di pagamento -->
     <form id="payment-form">
+        <!-- Campo di input per il nome -->
         <input type="text" class="input-field" id="name" placeholder="Nome Completo" required>
+        
+        <!-- Campo di input per l'email -->
         <input type="email" class="input-field" id="email" placeholder="Email" required>
+        
+        <!-- Campo di input per l'indirizzo -->
         <input type="text" class="input-field" id="address" placeholder="Indirizzo di Spedizione" required>
+        
+        <!-- Campo di input per il numero della carta -->
         <input type="text" class="input-field" id="card-number" placeholder="Numero Carta" required>
+        
+        <!-- Campo di input per la data di scadenza -->
         <input type="text" class="input-field" id="expiry-date" placeholder="Data di Scadenza (MM/AA)" required>
+        
+        <!-- Campo di input per il CVV -->
         <input type="text" class="input-field" id="cvv" placeholder="CVV" required>
 
-        <!-- Selezione Metodo di Pagamento -->
+        <!-- Sezione per la selezione del metodo di pagamento -->
         <div class="payment-methods">
+            <!-- Metodo di pagamento Carta di Credito -->
             <div class="payment-method" id="credit-card">Carta di Credito</div>
+            
+            <!-- Metodo di pagamento PayPal -->
             <div class="payment-method" id="paypal">PayPal</div>
+            
+            <!-- Metodo di pagamento Bonifico Bancario -->
             <div class="payment-method" id="bank-transfer">Bonifico Bancario</div>
         </div>
 
+        <!-- Pulsante per inviare il modulo -->
         <button type="submit" class="button">Paga Ora</button>
     </form>
 </div>
 
 <script>
+    // Funzione che si attiva quando il DOM è completamente caricato
     document.addEventListener("DOMContentLoaded", function () {
+        // Recupera il carrello dal localStorage (se esiste) o un array vuoto se non c'è nulla
         const cart = JSON.parse(localStorage.getItem("cart")) || [];
         const cartItemsContainer = document.getElementById("cart-items");
 
+        // Se il carrello è vuoto, mostra un messaggio
         if (cart.length === 0) {
             cartItemsContainer.innerHTML = "<p>Il tuo carrello è vuoto.</p>";
         } else {
             let total = 0;
+            // Cicla su ogni prodotto nel carrello per mostrarne i dettagli
             cart.forEach(product => {
                 const productElement = document.createElement("div");
                 productElement.classList.add("cart-item");
@@ -188,15 +238,16 @@
                 total += numericPrice;
             });
 
-            // Mostra il totale con due decimali
+            // Mostra il totale del carrello con due decimali
             document.getElementById("total").innerHTML = `Totale: €${total.toFixed(2)}`;
         }
     });
 
+    // Gestisce l'invio del modulo di pagamento
     document.getElementById("payment-form").addEventListener("submit", function (event) {
-        event.preventDefault();
+        event.preventDefault(); // Previene il comportamento predefinito del modulo
 
-        // Recupera i dati del modulo
+        // Recupera i valori dei campi del modulo
         const name = document.getElementById("name").value;
         const email = document.getElementById("email").value;
         const address = document.getElementById("address").value;
@@ -207,11 +258,10 @@
         // Logica per inviare i dati al server o al gateway di pagamento
         alert("Pagamento effettuato con successo! Grazie per il tuo ordine.");
 
-        // Dopo il pagamento, reindirizza alla pagina di conferma del pagamento (scontrino)
+        // Reindirizza alla pagina di conferma pagamento (scontrino)
         window.location.href = "scontrino.html";  // Reindirizza alla pagina di conferma pagamento
     });
 </script>
 
 </body>
 </html>
-
