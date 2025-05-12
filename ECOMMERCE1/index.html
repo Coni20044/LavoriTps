@@ -1,269 +1,269 @@
-<!DOCTYPE html> <!-- Dichiara il tipo di documento, indicando che è un documento HTML5 -->
-<html lang="it"> <!-- Imposta la lingua della pagina a italiano -->
+<!DOCTYPE html>
+<html lang="it">
 <head>
-    <meta charset="UTF-8"> <!-- Definisce il set di caratteri come UTF-8 per supportare caratteri speciali -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Imposta la viewport per dispositivi mobili per una visualizzazione reattiva -->
-    <title>SYNTH-ETIZZATI - Prodotti</title> <!-- Titolo della pagina che appare nella barra del browser -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYNTH-ETIZZATI - Prodotti</title>
     
     <!-- Font Orbitron per look futuristico/tech -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet"> <!-- Link al font Orbitron per dare un look futuristico -->
-    
-    <style> <!-- Inizio del blocco di stile CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
         body {
-            font-family: 'Orbitron', sans-serif; <!-- Imposta il font Orbitron per il corpo della pagina -->
-            background-color: #2c2c2c; <!-- Colore di sfondo della pagina -->
-            color: #f0f0f0; <!-- Colore del testo -->
-            margin: 0; <!-- Rimuove i margini predefiniti -->
-            padding: 0; <!-- Rimuove il padding predefinito -->
-            display: flex; <!-- Usa il layout flexbox per il body -->
-            flex-direction: column; <!-- Imposta la direzione degli elementi flex in colonna -->
-            min-height: 100vh; <!-- Imposta l'altezza minima del body al 100% della viewport -->
+            font-family: 'Orbitron', sans-serif;
+            background-color: #2c2c2c;
+            color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         header {
-            background-color: #333333; <!-- Colore di sfondo per l'header -->
-            color: #C2f8CB; <!-- Colore del testo dell'header -->
-            padding: 20px; <!-- Padding interno dell'header -->
-            display: flex; <!-- Usa il layout flexbox per l'header -->
-            justify-content: space-between; <!-- Distribuisce lo spazio tra gli elementi -->
-            align-items: center; <!-- Allinea gli elementi al centro verticalmente -->
-            font-size: 26px; <!-- Imposta la dimensione del font dell'header -->
-            font-weight: 700; <!-- Imposta il peso del font -->
+            background-color: #333333;
+            color: #C2f8CB;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 26px;
+            font-weight: 700;
         }
 
         header h1 {
-            margin: 0; <!-- Rimuove il margine del titolo dell'header -->
-            font-size: 32px; <!-- Imposta la dimensione del font per l'header -->
+            margin: 0;
+            font-size: 32px;
         }
 
         button {
-            background-color: #8367C7; <!-- Colore di sfondo per i pulsanti -->
-            color: #2c2c2c; <!-- Colore del testo dei pulsanti -->
-            padding: 10px 18px; <!-- Padding del pulsante -->
-            border: none; <!-- Rimuove il bordo del pulsante -->
-            border-radius: 5px; <!-- Rende gli angoli del pulsante arrotondati -->
-            cursor: pointer; <!-- Cambia il cursore quando si passa sopra il pulsante -->
-            font-size: 14px; <!-- Imposta la dimensione del font del pulsante -->
-            margin-left: 10px; <!-- Distanza a sinistra tra i pulsanti -->
-            transition: all 0.3s ease; <!-- Aggiunge una transizione per effetti di hover -->
+            background-color: #8367C7;
+            color: #2c2c2c;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 10px;
+            transition: all 0.3s ease;
         }
 
         button:hover {
-            background-color: #6f4db8; <!-- Cambia il colore di sfondo al passaggio del mouse -->
-            transform: scale(1.05); <!-- Ingrandisce leggermente il pulsante al passaggio del mouse -->
+            background-color: #6f4db8;
+            transform: scale(1.05);
         }
 
         .product-grid {
-            display: grid; <!-- Usa il layout grid per i prodotti -->
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); <!-- Crea una griglia di colonne adattabile -->
-            gap: 20px; <!-- Distanza tra gli elementi della griglia -->
-            padding: 30px; <!-- Padding intorno alla griglia -->
-            max-width: 1200px; <!-- Imposta la larghezza massima della griglia -->
-            margin: auto; <!-- Centra la griglia orizzontalmente -->
-            flex-grow: 1; <!-- Permette alla griglia di crescere e occupare lo spazio rimanente -->
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+            padding: 30px;
+            max-width: 1200px;
+            margin: auto;
+            flex-grow: 1;
         }
 
         .product {
-            background-color: #424242; <!-- Colore di sfondo dei singoli prodotti -->
-            padding: 20px; <!-- Padding interno dei prodotti -->
-            border-radius: 10px; <!-- Angoli arrotondati per ogni prodotto -->
-            box-shadow: 0 4px 10px rgba(131, 103, 199, 0.1); <!-- Ombra leggera per ogni prodotto -->
-            transition: all 0.3s ease; <!-- Aggiunge una transizione per gli effetti di hover -->
-            cursor: pointer; <!-- Cambia il cursore quando si passa sopra al prodotto -->
+            background-color: #424242;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(131, 103, 199, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .product:hover {
-            transform: translateY(-5px); <!-- Sposta il prodotto verso l'alto al passaggio del mouse -->
-            box-shadow: 0 6px 16px rgba(131, 103, 199, 0.3); <!-- Aumenta l'ombra per un effetto di hover più marcato -->
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(131, 103, 199, 0.3);
         }
 
         .product img {
-            width: 100%; <!-- Imposta l'immagine per occupare tutta la larghezza disponibile -->
-            height: auto; <!-- Mantiene le proporzioni dell'immagine -->
-            border-radius: 5px; <!-- Arrotonda gli angoli dell'immagine -->
-            margin-bottom: 15px; <!-- Distanza tra l'immagine e il testo -->
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 15px;
         }
 
         .product h3 {
-            font-size: 18px; <!-- Imposta la dimensione del font del nome del prodotto -->
-            color: #8367C7; <!-- Colore del nome del prodotto -->
-            margin-bottom: 8px; <!-- Distanza tra il nome del prodotto e la descrizione -->
+            font-size: 18px;
+            color: #8367C7;
+            margin-bottom: 8px;
         }
 
         .product p {
-            font-size: 14px; <!-- Imposta la dimensione del font della descrizione del prodotto -->
-            color: #d1d5db; <!-- Colore della descrizione del prodotto -->
+            font-size: 14px;
+            color: #d1d5db;
         }
 
         .price {
-            font-weight: bold; <!-- Rende il prezzo in grassetto -->
-            color: #C2f8CB; <!-- Colore del prezzo -->
-            font-size: 16px; <!-- Imposta la dimensione del font per il prezzo -->
-            margin-top: 10px; <!-- Distanza tra la descrizione e il prezzo -->
+            font-weight: bold;
+            color: #C2f8CB;
+            font-size: 16px;
+            margin-top: 10px;
         }
 
         #footer-info {
-            background-color: #2c2c2c; <!-- Colore di sfondo del footer -->
-            color: #aaa; <!-- Colore del testo nel footer -->
-            padding: 40px 20px; <!-- Padding interno del footer -->
-            text-align: center; <!-- Allinea il testo al centro nel footer -->
+            background-color: #2c2c2c;
+            color: #aaa;
+            padding: 40px 20px;
+            text-align: center;
         }
 
         #about-us {
-            background-color: #424242; <!-- Colore di sfondo della sezione "About Us" -->
-            color: #eee; <!-- Colore del testo nella sezione "About Us" -->
-            padding: 30px; <!-- Padding interno della sezione "About Us" -->
-            border-radius: 10px; <!-- Angoli arrotondati della sezione -->
-            width: 80%; <!-- Imposta la larghezza della sezione al 80% -->
-            margin: 0 auto 30px auto; <!-- Centra la sezione e aggiunge margine inferiore -->
-            box-shadow: 0 4px 8px rgba(131, 103, 199, 0.1); <!-- Ombra leggera per la sezione -->
+            background-color: #424242;
+            color: #eee;
+            padding: 30px;
+            border-radius: 10px;
+            width: 80%;
+            margin: 0 auto 30px auto;
+            box-shadow: 0 4px 8px rgba(131, 103, 199, 0.1);
         }
 
         #about-us h2 {
-            font-size: 24px; <!-- Imposta la dimensione del font del titolo nella sezione "About Us" -->
-            margin-bottom: 10px; <!-- Distanza tra il titolo e il testo -->
-            color: #8367C7; <!-- Colore del titolo nella sezione "About Us" -->
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #8367C7;
         }
 
         #about-us p {
-            font-size: 15px; <!-- Imposta la dimensione del font del testo nella sezione "About Us" -->
+            font-size: 15px;
         }
 
         .registration-link {
-            position: fixed; <!-- Posiziona il link di registrazione in modo fisso -->
-            bottom: 20px; <!-- Distanza dal fondo della pagina -->
-            right: 20px; <!-- Distanza da destra della pagina -->
-            font-size: 14px; <!-- Imposta la dimensione del font del link -->
-            color: #C2f8CB; <!-- Colore del link -->
-            text-decoration: none; <!-- Rimuove la sottolineatura dal link -->
-            font-weight: bold; <!-- Rende il testo in grassetto -->
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 14px;
+            color: #C2f8CB;
+            text-decoration: none;
+            font-weight: bold;
         }
 
         .registration-link:hover {
-            color: #6f4db8; <!-- Cambia il colore del link al passaggio del mouse -->
+            color: #6f4db8;
         }
 
         .clear-btn {
-            margin: 20px auto; <!-- Distanza automatica per centrare il pulsante di "svuota prodotti" -->
+            margin: 20px auto;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>SYNTH-ETIZZATI - HOME</h1> <!-- Titolo principale nell'header -->
-    <div> <!-- Contenitore per i pulsanti dell'header -->
-        <button onclick="window.location.href='carrello.html'">Carrello</button> <!-- Pulsante per andare al carrello -->
-        <button onclick="window.location.href='contatti.html'">Contattaci</button> <!-- Pulsante per andare alla pagina dei contatti -->
-        <button onclick="logout()">Logout</button> <!-- Pulsante di logout -->
+    <h1>SYNTH-ETIZZATI - HOME</h1>
+    <div>
+        <button onclick="window.location.href='carrello.html'">Carrello</button>
+        <button onclick="window.location.href='contatti.html'">Contattaci</button>
+        <button onclick="logout()">Logout</button>
     </div>
 </header>
 
 <main>
-    <div id="product-list" class="product-grid"></div> <!-- Contenitore per la lista dei prodotti -->
-    <input type="file" id="jsonFileInput" accept=".json" /> <!-- Input per caricare un file JSON -->
+    <div id="product-list" class="product-grid"></div>
+    <input type="file" id="jsonFileInput" accept=".json" />
     <br>
-    <button class="clear-btn" onclick="clearSavedProducts()">Svuota Prodotti</button> <!-- Pulsante per svuotare i prodotti salvati -->
+    <button class="clear-btn" onclick="clearSavedProducts()">Svuota Prodotti</button>
 </main>
 
 <section id="footer-info">
     <div id="about-us">
-        <h2>SEI PRONTO A CREARE IL SUONO DEL FUTURO?</h2> <!-- Titolo della sezione "About Us" -->
-        <p>Beh, se non sai da dove iniziare, sei nel posto giusto! Inserisci il file json in allegato per visualizzare i nostri prodotti...</p> <!-- Descrizione della sezione "About Us" -->
+        <h2>Chi Siamo</h2>
+        <p>Benvenuto su SYNTH-ETIZZATI, lo store italiano dedicato esclusivamente a sintetizzatori professionali e modulari. Diamo voce all'innovazione musicale con prodotti selezionati per ogni sound designer.</p>
     </div>
     <footer>
-        <p>&copy; 2025 SYNTH-ETIZZATI - Tutti i diritti riservati</p> <!-- Copyright -->
-        <p>Informazioni legali | Termini e condizioni</p> <!-- Link alle informazioni legali -->
+        <p>&copy; 2025 SYNTH-ETIZZATI - Tutti i diritti riservati</p>
+        <p>Informazioni legali | Termini e condizioni</p>
     </footer>
 </section>
 
-<a href="login.html" class="registration-link" id="loginLink">Login</a> <!-- Link per il login, il testo cambia se l'utente è autenticato -->
+<a href="login.html" class="registration-link" id="loginLink">Login</a>
 
-<script> <!-- Inizio del blocco di codice JavaScript -->
-    document.addEventListener("DOMContentLoaded", function () { <!-- Attende che il DOM sia caricato -->
-        const user = JSON.parse(localStorage.getItem('loggedInUser')); <!-- Recupera l'utente autenticato dal localStorage -->
-        const loginLink = document.getElementById('loginLink'); <!-- Recupera l'elemento del link di login -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const user = JSON.parse(localStorage.getItem('loggedInUser'));
+        const loginLink = document.getElementById('loginLink');
 
-        if (user) { <!-- Se un utente è loggato -->
-            loginLink.textContent = `Ciao, ${user.username}`; <!-- Mostra il nome utente -->
-            loginLink.href = "#"; <!-- Disabilita il link -->
-            loginLink.addEventListener('click', logout); <!-- Aggiungi un listener per il click per eseguire il logout -->
-        } else { <!-- Se nessun utente è loggato -->
-            loginLink.textContent = 'Login'; <!-- Mostra il testo del link come "Login" -->
+        if (user) {
+            loginLink.textContent = `Ciao, ${user.username}`;
+            loginLink.href = "#";
+            loginLink.addEventListener('click', logout);
+        } else {
+            loginLink.textContent = 'Login';
         }
 
-        const fileInput = document.getElementById("jsonFileInput"); <!-- Recupera l'input per il file JSON -->
-        const productList = document.getElementById("product-list"); <!-- Recupera l'elemento che contiene la lista dei prodotti -->
+        const fileInput = document.getElementById("jsonFileInput");
+        const productList = document.getElementById("product-list");
 
-        const savedProducts = localStorage.getItem("productList"); <!-- Recupera la lista dei prodotti salvata dal localStorage -->
-        if (savedProducts) { <!-- Se ci sono prodotti salvati -->
+        const savedProducts = localStorage.getItem("productList");
+        if (savedProducts) {
             try {
-                const products = JSON.parse(savedProducts); <!-- Parso la lista di prodotti salvata -->
-                displayProducts(products); <!-- Visualizzo i prodotti -->
+                const products = JSON.parse(savedProducts);
+                displayProducts(products);
             } catch (error) {
-                console.error("Errore nel parsing del JSON salvato:", error); <!-- Gestisce errori nel parsing del JSON -->
+                console.error("Errore nel parsing del JSON salvato:", error);
             }
         }
 
-        fileInput.addEventListener("change", function (event) { <!-- Aggiunge un listener per il caricamento del file -->
-            const file = event.target.files[0]; <!-- Recupera il file caricato -->
-            if (file) { <!-- Se il file esiste -->
-                const reader = new FileReader(); <!-- Crea un nuovo FileReader -->
-                reader.onload = function (e) { <!-- Quando il file è caricato -->
-                    console.log("File caricato:", e.target.result); <!-- Visualizza il contenuto del file -->
+        fileInput.addEventListener("change", function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    console.log("File caricato:", e.target.result); // Visualizza il contenuto del file caricato
                     try {
-                        const products = JSON.parse(e.target.result); <!-- Parso il contenuto del file JSON -->
-                        console.log("Prodotti letti dal file:", products); <!-- Visualizza i prodotti letti dal file -->
-                        localStorage.setItem("productList", JSON.stringify(products)); <!-- Salva i prodotti nel localStorage -->
-                        displayProducts(products); <!-- Visualizza i prodotti -->
+                        const products = JSON.parse(e.target.result); // Parso il contenuto JSON
+                        console.log("Prodotti letti dal file:", products); // Visualizza i prodotti letti dal file
+                        localStorage.setItem("productList", JSON.stringify(products));
+                        displayProducts(products);
                     } catch (error) {
-                        console.error("Errore nel parsing del JSON:", error); <!-- Gestisce errori nel parsing del file -->
+                        console.error("Errore nel parsing del JSON:", error); // Aggiungi un messaggio di errore se il parsing fallisce
                     }
                 };
-                reader.readAsText(file); <!-- Legge il file come testo -->
+                reader.readAsText(file);
             }
         });
 
-        function displayProducts(products) { <!-- Funzione per visualizzare i prodotti -->
-            productList.innerHTML = ""; <!-- Svuota la lista dei prodotti prima di visualizzarli -->
-            products.forEach(product => { <!-- Itera su ciascun prodotto -->
-                const productElement = document.createElement("div"); <!-- Crea un nuovo elemento per il prodotto -->
-                productElement.classList.add("product"); <!-- Aggiungi la classe CSS per il prodotto -->
-                productElement.innerHTML = ` <!-- HTML per ciascun prodotto -->
-                    <img src="${product.image}" alt="${product.name}"> <!-- Mostra l'immagine del prodotto -->
-                    <h3>${product.name}</h3> <!-- Mostra il nome del prodotto -->
-                    <p class="price">${product.price}</p> <!-- Mostra il prezzo del prodotto -->
-                    <button class="add-to-cart-btn">Aggiungi al Carrello</button> <!-- Pulsante per aggiungere il prodotto al carrello -->
+        function displayProducts(products) {
+            productList.innerHTML = "";
+            products.forEach(product => {
+                const productElement = document.createElement("div");
+                productElement.classList.add("product");
+                productElement.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p class="price">${product.price}</p>
+                    <button class="add-to-cart-btn">Aggiungi al Carrello</button>
                 `;
-                productElement.querySelector('.add-to-cart-btn').addEventListener('click', (e) => { <!-- Aggiungi un listener per il click sul pulsante del carrello -->
-                    e.stopPropagation(); <!-- Impedisce che il click propaghi l'evento al contenitore del prodotto -->
-                    addToCart(product); <!-- Aggiungi il prodotto al carrello -->
+                productElement.querySelector('.add-to-cart-btn').addEventListener('click', (e) => {
+                    e.stopPropagation(); // Evita trigger del click sul contenitore
+                    addToCart(product);
                 });
 
-                productElement.addEventListener("click", () => { <!-- Aggiungi un listener per il click sul prodotto -->
-                    localStorage.setItem("selectedProduct", JSON.stringify(product)); <!-- Salva il prodotto selezionato -->
-                    window.location.href = "prodotto.html"; <!-- Vai alla pagina di dettaglio del prodotto -->
+                productElement.addEventListener("click", () => {
+                    localStorage.setItem("selectedProduct", JSON.stringify(product));
+                    window.location.href = "prodotto.html";
                 });
 
-                productList.appendChild(productElement); <!-- Aggiungi l'elemento del prodotto alla lista -->
+                productList.appendChild(productElement);
             });
         }
 
-        function addToCart(product) { <!-- Funzione per aggiungere il prodotto al carrello -->
-            let cart = JSON.parse(localStorage.getItem("cart")) || []; <!-- Recupera il carrello dal localStorage -->
-            cart.push(product); <!-- Aggiungi il prodotto al carrello -->
-            localStorage.setItem("cart", JSON.stringify(cart)); <!-- Salva il carrello aggiornato nel localStorage -->
+        function addToCart(product) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.push(product);
+            localStorage.setItem("cart", JSON.stringify(cart));
         }
 
-        window.clearSavedProducts = function () { <!-- Funzione per svuotare la lista dei prodotti -->
-            localStorage.removeItem("productList"); <!-- Rimuove i prodotti salvati dal localStorage -->
-            location.reload(); <!-- Ricarica la pagina per aggiornare la visualizzazione -->
+        window.clearSavedProducts = function () {
+            localStorage.removeItem("productList");
+            location.reload();
         };
     });
 
-    function logout() { <!-- Funzione di logout -->
-        localStorage.removeItem('loggedInUser'); <!-- Rimuove l'utente loggato dal localStorage -->
-        window.location.href = "login.html"; <!-- Redirige alla pagina di login -->
+    function logout() {
+        localStorage.removeItem('loggedInUser');
+        window.location.href = "login.html";
     }
 </script>
 
