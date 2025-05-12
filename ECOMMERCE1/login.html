@@ -152,23 +152,23 @@
       const password = document.getElementById('password').value;
       const errorMessage = document.getElementById('errorMessage');
 
-      // Recupera gli utenti registrati dal localStorage
-      const users = JSON.parse(localStorage.getItem('users')) || [];
+      // Recupera gli utenti esistenti dal localStorage
+      let users = JSON.parse(localStorage.getItem('users')) || [];
 
       // Verifica se l'email e la password corrispondono a un utente esistente
       const user = users.find(u => u.email === email && u.password === password);
 
-      if (!user) {
-        errorMessage.textContent = 'Email o password errati.'; // Mostra errore se l'utente non esiste
-        return; // Interrompe l'esecuzione
+      if (user) {
+        // Simula un login riuscito
+        console.log('Accesso riuscito:', { email, password }); // Log nel console
+        alert('Accesso riuscito! Verrai reindirizzato alla home.'); // Messaggio all'utente
+
+        // Reindirizza alla home page
+        window.location.href = 'index.html';
+      } else {
+        // Se le credenziali non corrispondono, mostra un messaggio di errore
+        errorMessage.textContent = 'Email o password errati.';
       }
-
-      // Simula un login riuscito
-      console.log('Accesso riuscito:', { email, password }); // Log nel console
-      alert('Accesso riuscito! Verrai reindirizzato alla home.'); // Messaggio all'utente
-
-      // Reindirizza alla home page
-      window.location.href = 'index.html';
     });
   </script>
 </body>
