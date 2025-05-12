@@ -1,63 +1,62 @@
 [
     {
       "name": "Moog Sub 37",
-      "description": "Il Moog Sub 37 Ã¨ un sintetizzatore monofonico analogico con una potenza sonora incredibile, perfetto per bassi e lead potenti.",
-      "price": "â‚¬1.499",
-      "image": "https://rvb-img.reverb.com/image/upload/s--Rniv9G5g--/f_auto,t_large/v1731403450/imrjluka8iedwxd54j8k.jpg"
+      "description": "Il Moog Sub 37 è un sintetizzatore monofonico analogico con una potenza sonora incredibile, perfetto per bassi e lead potenti.",
+      "price": "€1.499",
+      "image": "https://thumbs.static-thomann.de/thumb/thumb220x220/pics/prod/419761.webp"
     },
     {
       "name": "Yamaha Montage 8",
-      "description": "Il Yamaha Montage 8 Ã¨ un sintetizzatore workstation che unisce potenza e versatilitÃ  con suoni digitali ed analogici di altissima qualitÃ .",
-      "price": "â‚¬3.799",
-      "image": "https://www.yamaha.com/en/products/musical_instruments/keyboards/images/montage_8_hero_1000.jpg"
+      "description": "Il Yamaha Montage 8 è un sintetizzatore workstation che unisce potenza e versatilità con suoni digitali ed analogici di altissima qualità.",
+      "price": "€3.799",
+      "image": "https://thumbs.static-thomann.de/thumb/thumb220x220/pics/prod/395631.webp"
     },
     {
       "name": "Korg Minilogue XD",
-      "description": "Il Korg Minilogue XD Ã¨ un sintetizzatore polifonico analogico con capacitÃ  digitali avanzate, ideale per creare suoni unici.",
-      "price": "â‚¬649",
-      "image": "https://www.korg.com/us/products/synthesizers/minilogue_xd/images/overview.png"
+      "description": "Il Korg Minilogue XD è un sintetizzatore polifonico analogico con capacità digitali avanzate, ideale per creare suoni unici.",
+      "price": "€649",
+      "image": "https://thumbs.static-thomann.de/thumb/thumb220x220/pics/prod/457066.webp"
     },
     {
       "name": "Roland Jupiter-X",
-      "description": "Il Roland Jupiter-X Ã¨ un sintetizzatore ibrido che offre un'ampia varietÃ  di suoni analogici e digitali, con un design moderno e potente.",
-      "price": "â‚¬2.099",
-      "image": "https://www.roland.com/us/products/jupiter-x/images/jupiter-x-gallery01.jpg"
+      "description": "Il Roland Jupiter-X è un sintetizzatore ibrido che offre un'ampia varietà di suoni analogici e digitali, con un design moderno e potente.",
+      "price": "€2.099",
+      "image": "https://thumbs.static-thomann.de/thumb/thumb220x220/pics/prod/485920.webp"
     },
     {
       "name": "Arturia MiniBrute 2S",
-      "description": "L'Arturia MiniBrute 2S Ã¨ un sintetizzatore analogico semimodulare che offre un potente motore sonoro e possibilitÃ  di patching infinite.",
-      "price": "â‚¬599",
-      "image": "https://www.arturia.com/products/analog-classics/minibrute-2s/images/minibrute2s.jpg"
+      "description": "L'Arturia MiniBrute 2S è un sintetizzatore analogico semimodulare che offre un potente motore sonoro e possibilità di patching infinite.",
+      "price": "€599",
+      "image": "https://thumbs.static-thomann.de/thumb/thumb220x220/pics/prod/535514.webp"
     },
     {
       "name": "Sequential Prophet-6",
-      "description": "Il Prophet-6 Ã¨ un sintetizzatore analogico monofonico con un timbro caldo e ricco, che emula i suoni vintage delle leggende.",
-      "price": "â‚¬2.999",
-      "image": "https://www.sequential.com/wp-content/uploads/2019/11/Prophet-6-Front.jpg"
+      "description": "Il Prophet-6 è un sintetizzatore analogico monofonico con un timbro caldo e ricco, che emula i suoni vintage delle leggende.",
+      "price": "€2.999",
+      "image": "https://thumbs.static-thomann.de/thumb/thumb220x220/pics/prod/357640.webp"
     },
     {
       "name": "Korg ARP Odyssey",
-      "description": "L'ARP Odyssey Ã¨ una rivisitazione del classico sintetizzatore analogico degli anni '70, noto per i suoi suoni ricchi e affascinanti.",
-      "price": "â‚¬899",
-      "image": "https://www.korg.com/us/products/synthesizers/arp_odyssey/images/arp_odyssey_hero.jpg"
+      "description": "L'ARP Odyssey è una rivisitazione del classico sintetizzatore analogico degli anni '70, noto per i suoi suoni ricchi e affascinanti.",
+      "price": "€899",
+      "image": "https://thumbs.static-thomann.de/thumb/thumb220x220/pics/prod/511571.webp"
     },
     {
       "name": "Nord Lead A1",
-      "description": "Il Nord Lead A1 Ã¨ un sintetizzatore virtual-analogico, ideale per performance dal vivo con una qualitÃ  sonora e una reattivitÃ  superiori.",
-      "price": "â‚¬1.199",
-      "image": "https://www.nordkeyboards.com/sites/default/files/styles/large/public/2020-02/Lead-A1-SIDE-PRODUCT-IMAGE-1280px.jpg"
+      "description": "Il Nord Lead A1 è un sintetizzatore virtual-analogico, ideale per performance dal vivo con una qualità sonora e una reattività superiori.",
+      "price": "€1.199",
+      "image": "https://thumbs.static-thomann.de/thumb/thumb220x220/pics/prod/338756.webp"
     },
     {
       "name": "Moog Grandmother",
-      "description": "Il Moog Grandmother Ã¨ un sintetizzatore semi-modulare che combina suoni analogici caldi con una potenza espressiva unica.",
-      "price": "â‚¬1.099",
-      "image": "https://static.moogmusic.com/sites/default/files/grandmother-front.jpg"
+      "description": "Il Moog Grandmother è un sintetizzatore semi-modulare che combina suoni analogici caldi con una potenza espressiva unica.",
+      "price": "€1.099",
+      "image": "https://thumbs.static-thomann.de/thumb/thumb220x220/pics/prod/439985.webp"
     },
     {
       "name": "Roland SH-01A",
-      "description": "Il Roland SH-01A Ã¨ una riproduzione del leggendario sintetizzatore SH-101, con suoni analogici e capacitÃ  di programmazione moderne.",
-      "price": "â‚¬349",
-      "image": "https://www.roland.com/us/products/sh-01a/images/sh-01a.jpg"
+      "description": "Il Roland SH-01A è una riproduzione del leggendario sintetizzatore SH-101, con suoni analogici e capacità di programmazione moderne.",
+      "price": "€349",
+      "image": "https://thumbs.static-thomann.de/thumb/thumb220x220/pics/prod/419465.webp"
     }
   ]
-  
