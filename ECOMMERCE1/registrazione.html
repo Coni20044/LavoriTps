@@ -155,13 +155,13 @@
 
             // Verifica che tutti i campi siano riempiti
             if (username === '' || email === '' || password === '' || confirmPassword === '') {
-                errorMessage.textContent = 'Tutti i campi sono obbligatori.'; // Mostra errore se ci sono campi vuoti
+                errorMessage.textContent = 'Tutti i campi sono obbligatori.';
                 return;
             }
 
             // Verifica che le password corrispondano
             if (password !== confirmPassword) {
-                errorMessage.textContent = 'Le password non corrispondono.'; // Mostra errore se le password non corrispondono
+                errorMessage.textContent = 'Le password non corrispondono.';
                 return;
             }
 
@@ -170,8 +170,22 @@
 
             // Verifica se l'email è già registrata
             if (users.some(user => user.email === email)) {
-                errorMessage.textContent = 'Questa email è già registrata.'; // Mostra errore se l'email è già presente
+                errorMessage.textContent = 'Questa email è già registrata.';
                 return;
             }
 
             // Crea un nuovo oggetto utente
+            const newUser = { username, email, password };
+
+            // Aggiunge il nuovo utente all'array degli utenti e lo salva nel localStorage
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+
+            // Mostra un messaggio di successo e resetta il modulo
+            alert('Registrazione completata con successo!');
+            document.getElementById('registerForm').reset(); // Reset del form
+        });
+    </script>
+
+</body>
+</html>
