@@ -152,9 +152,14 @@
       const password = document.getElementById('password').value;
       const errorMessage = document.getElementById('errorMessage');
 
-      // Controlla se i campi sono vuoti
-      if (email === '' || password === '') {
-        errorMessage.textContent = 'Tutti i campi sono obbligatori.'; // Mostra errore
+      // Recupera gli utenti registrati dal localStorage
+      const users = JSON.parse(localStorage.getItem('users')) || [];
+
+      // Verifica se l'email e la password corrispondono a un utente esistente
+      const user = users.find(u => u.email === email && u.password === password);
+
+      if (!user) {
+        errorMessage.textContent = 'Email o password errati.'; // Mostra errore se l'utente non esiste
         return; // Interrompe l'esecuzione
       }
 
