@@ -1,0 +1,51 @@
+<link rel="stylesheet" href="letturaanagrafica.css">
+<html>
+<head>
+    <script>
+        function lettura(){
+            const richiesta = new XMLHttpRequest();
+            richiesta.open("GET", 'letturaanagrafica.json', true); 
+            richiesta.send();
+
+            richiesta.onload=function(){
+                const parseJSON= JSON.parse(richiesta.responseText);
+
+                console.log(parseJSON);
+
+                let tabella= document.createElement("table");
+
+                const chiavi=Object.keys(parseJSON[0])
+                
+                let intestazioneRow=document.createElement("tr")
+                for(let i=0; i<chiavi.length; i++){
+                    let intestazione=document.createElement("th");
+                    intestazione.textContent= chiavi[i];
+                    intestazioneRow.appendChild(intestazione)  
+                }
+                tabella.appendChild(intestazioneRow)
+                
+                for(let i=0; i<parseJSON.length ;i++){
+                    let righe= document.createElement("tr");
+                    for(let j=0; j<chiavi.length; j++ ){
+                        let colonne= document.createElement("td");
+                        colonne.textContent = colonne.textContent = parseJSON[i][chiavi[j]];;
+                        righe.appendChild(colonne);
+                    }
+                tabella.appendChild(righe);
+                }   
+                let output= document.getElementById("output");
+                output.appendChild(tabella);
+        }
+    }
+    </script>
+</head>
+
+
+<body>
+
+    <h1>Lettura Anagrafica</h1>
+   <p id="output">  </p>
+   <input type="button" value="accarezza" onclick="lettura()">
+</body>
+
+</html>
