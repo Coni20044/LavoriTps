@@ -1,16 +1,16 @@
 [
   {
-  "nome": "Stefano",
-  "cognome":"Re",
-  "citta": "Parabiago",
-  "indirizzo": "Via Roma 1",
-  "cap": "20015"
+  "nome": "Aldo",
+  "cognome":"Baglio",
+  "citta": "Palermo",
+  "indirizzo": "Via Catania 69",
+  "cap": "40973"
 },
 {
-  "nome": "Trevor",
-  "cognome":"LaProvince",
-  "citta": "Rho",
-  "indirizzo": "Stazione di Rho",
-  "cap": "20017"
+  "nome": "Davide",
+  "cognome":"Prestileo",
+  "citta": "Garbagnae",
+  "indirizzo": "Pt",
+  "cap": "20024"
   }
 ]
