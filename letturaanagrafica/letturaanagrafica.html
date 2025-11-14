@@ -1,51 +1,52 @@
-<link rel="stylesheet" href="letturaanagrafica.css">
+<link rel="stylesheet" href="letturaanagrafica.css"> <!-- Collegamento al file CSS -->
 <html>
 <head>
     <script>
-        function lettura(){
-            const richiesta = new XMLHttpRequest();
-            richiesta.open("GET", 'letturaanagrafica.json', true); 
-            richiesta.send();
+        function lettura(){ // Funzione che legge il file JSON
+            const richiesta = new XMLHttpRequest(); // Crea un oggetto XMLHttpRequest
+            richiesta.open("GET", 'letturaanagrafica.json', true);  // Apre la richiesta GET in modo asincrono
+            richiesta.send(); // Invia la richiesta
 
-            richiesta.onload=function(){
-                const parseJSON= JSON.parse(richiesta.responseText);
+            richiesta.onload=function(){ // Funzione eseguita al caricamento della risposta
+                const parseJSON= JSON.parse(richiesta.responseText); // Converte il testo JSON in un array di oggetti
 
-                console.log(parseJSON);
+                console.log(parseJSON); // Stampa il JSON in console (debug)
 
-                let tabella= document.createElement("table");
+                let tabella= document.createElement("table"); // Crea una tabella dinamicamente
 
-                const chiavi=Object.keys(parseJSON[0])
-                
-                let intestazioneRow=document.createElement("tr")
-                for(let i=0; i<chiavi.length; i++){
-                    let intestazione=document.createElement("th");
-                    intestazione.textContent= chiavi[i];
-                    intestazioneRow.appendChild(intestazione)  
+                const chiavi=Object.keys(parseJSON[0]) // Ottiene le chiavi del primo oggetto (intestazioni)
+
+                let intestazioneRow=document.createElement("tr") // Crea la riga delle intestazioni
+                for(let i=0; i<chiavi.length; i++){ // Cicla su tutte le chiavi
+                    let intestazione=document.createElement("th"); // Crea una cella di intestazione
+                    intestazione.textContent= chiavi[i]; // Inserisce il nome della chiave
+                    intestazioneRow.appendChild(intestazione)  // Aggiunge la cella alla riga
                 }
-                tabella.appendChild(intestazioneRow)
-                
-                for(let i=0; i<parseJSON.length ;i++){
-                    let righe= document.createElement("tr");
-                    for(let j=0; j<chiavi.length; j++ ){
-                        let colonne= document.createElement("td");
-                        colonne.textContent = colonne.textContent = parseJSON[i][chiavi[j]];;
-                        righe.appendChild(colonne);
+                tabella.appendChild(intestazioneRow) // Aggiunge la riga delle intestazioni alla tabella
+
+                for(let i=0; i<parseJSON.length ;i++){ // Cicla su tutti gli oggetti del JSON
+                    let righe= document.createElement("tr"); // Crea una nuova riga
+                    for(let j=0; j<chiavi.length; j++ ){ // Cicla su tutte le colonne
+                        let colonne= document.createElement("td"); // Crea una cella
+                        colonne.textContent = parseJSON[i][chiavi[j]]; // Inserisce il valore corrispondente alla chiave
+                        righe.appendChild(colonne); // Aggiunge la cella alla riga
                     }
-                tabella.appendChild(righe);
+                    tabella.appendChild(righe); // Aggiunge la riga alla tabella
                 }   
-                let output= document.getElementById("output");
-                output.appendChild(tabella);
+
+                let output= document.getElementById("output"); // Seleziona l'elemento dove inserire la tabella
+                output.appendChild(tabella); // Mostra la tabella nella pagina
         }
     }
     </script>
 </head>
 
-
 <body>
 
-    <h1>Lettura Anagrafica</h1>
-   <p id="output">  </p>
-   <input type="button" value="accarezza" onclick="lettura()">
+    <h1>Lettura Anagrafica</h1> <!-- Titolo della pagina -->
+
+   <p id="output">  </p> <!-- Contenitore per la tabella -->
+   <input type="button" value="accarezza" onclick="lettura()"> <!-- Bottone che avvia la funzione lettura() -->
 </body>
 
 </html>
