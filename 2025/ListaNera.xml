@@ -1,38 +1,41 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ListaNera>
-    <vittima genere="M">
-        <nome>Mario</nome>
-        <Cognome>Rossi</Cognome>
-        <citta>Carlo</citta>
-        <indirizzo>Via Roma 12</indirizzo>
-        <eta>72</eta>
-        <GSanguigno>A+</GSanguigno>
-    </vittima>
+<?xml version="1.0" encoding="UTF-8"?>  <!-- Dichiarazione XML: versione e codifica caratteri -->
 
-    <vittima genere="F">
-        <nome>Maria</nome>
-        <Cognome>Rossi</Cognome>
-        <citta>Monte Carlo</citta>
-        <indirizzo>Via Roma 12</indirizzo>
-        <eta>25</eta>
-        <GSanguigno>AB-</GSanguigno>
-    </vittima>
+<ListaNera>  <!-- Tag radice che contiene tutte le vittime -->
 
-    <vittima genere="M">
-        <nome>Michael</nome>
-        <Cognome>Dest</Cognome>
-        <citta>Canegrate</citta>
-        <indirizzo>Via Milano 27</indirizzo>
-        <eta>23</eta>
-        <GSanguigno>0+</GSanguigno>
-    </vittima>
+    <vittima genere="M">  <!-- Primo elemento 'vittima', con attributo genere = Maschio -->
+        <nome>Mario</nome>  <!-- Nome della persona -->
+        <Cognome>Rossi</Cognome>  <!-- Cognome della persona -->
+        <citta>Carlo</citta>  <!-- Città di residenza (attenzione: 'Carlo' sembra un nome) -->
+        <indirizzo>Via Roma 12</indirizzo>  <!-- Indirizzo completo -->
+        <eta>72</eta>  <!-- Età della persona -->
+        <GSanguigno>A+</GSanguigno>  <!-- Gruppo sanguigno -->
+    </vittima>  <!-- Fine primo blocco vittima -->
 
-    <vittima genere="M">
-        <nome>Mirko</nome>
-        <Cognome>Guarracino</Cognome>
-        <citta>Canegrate</citta>
-        <indirizzo>Viale Europa 19</indirizzo>
-        <eta>17</eta>
-        <GSanguigno>AB-</GSanguigno>
-    </vittima>
-</ListaNera>
+    <vittima genere="F">  <!-- Seconda vittima, genere = Femmina -->
+        <nome>Maria</nome>  <!-- Nome della persona -->
+        <Cognome>Rossi</Cognome>  <!-- Cognome della persona -->
+        <citta>Monte Carlo</citta>  <!-- Città di residenza -->
+        <indirizzo>Via Roma 12</indirizzo>  <!-- Indirizzo completo -->
+        <eta>25</eta>  <!-- Età della persona -->
+        <GSanguigno>AB-</GSanguigno>  <!-- Gruppo sanguigno -->
+    </vittima>  <!-- Fine seconda vittima -->
+
+    <vittima genere="M">  <!-- Terza vittima, genere = Maschio -->
+        <nome>Michael</nome>  <!-- Nome della persona -->
+        <Cognome>Dest</Cognome>  <!-- Cognome della persona -->
+        <citta>Canegrate</citta>  <!-- Città di residenza -->
+        <indirizzo>Via Milano 27</indirizzo>  <!-- Indirizzo completo -->
+        <eta>23</eta>  <!-- Età della persona -->
+        <GSanguigno>0+</GSanguigno>  <!-- Gruppo sanguigno -->
+    </vittima>  <!-- Fine terza vittima -->
+
+    <vittima genere="M">  <!-- Quarta vittima, genere = Maschio -->
+        <nome>Mirko</nome>  <!-- Nome della persona -->
+        <Cognome>Guarracino</Cognome>  <!-- Cognome della persona -->
+        <citta>Canegrate</citta>  <!-- Città di residenza -->
+        <indirizzo>Viale Europa 19</indirizzo>  <!-- Indirizzo completo -->
+        <eta>17</eta>  <!-- Età della persona -->
+        <GSanguigno>AB-</GSanguigno>  <!-- Gruppo sanguigno -->
+    </vittima>  <!-- Fine quarta vittima -->
+
+</ListaNera>  <!-- Chiusura del tag radice -->
