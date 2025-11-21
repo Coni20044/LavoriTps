@@ -1,121 +1,125 @@
-<link rel="stylesheet" href="listanera.css">
+<link rel="stylesheet" href="listanera.css"> <!-- Importa il file CSS esterno -->
 <html>
 <head>
     <script>
-        let parseJSON= [] //variabile salvata in globale per essere utilizzata anche nelle altre funzioni
+        let parseJSON= [] // variabile globale che conterrà i dati JSON caricati
 
-        let filehttp 
+        let filehttp // variabile globale che conterrà il file XML
 
-        //funzione per caricare il JSON
+        // funzione per caricare il JSON
         function caricaDatiJ() {
-            const richiesta = new XMLHttpRequest()
-            richiesta.open("GET", "https://coni20044.github.io/LavoriTps/2025/ListaNera.json", true)
-            richiesta.send()
+            const richiesta = new XMLHttpRequest() // crea richiesta HTTP
+            richiesta.open("GET", "https://coni20044.github.io/LavoriTps/2025/ListaNera.json", true) // imposta richiesta GET verso il file JSON
+            richiesta.send() // invia la richiesta
 
-            richiesta.onload = function () {
-                parseJSON = JSON.parse(richiesta.responseText);
+            richiesta.onload = function () { // quando i dati arrivano
+                parseJSON = JSON.parse(richiesta.responseText); // converte il testo JSON in oggetto JavaScript
                 //console.log(parseJSON)
             }
         }
-        //funzione per caricare l'XML
+
+        // funzione per caricare l'XML
         function caricaDatiX(){
-            const richiesta= new XMLHttpRequest(); 
-            richiesta.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) { //se lo stato della richiesta==4 la risposta è stata ricevuta ed è pronta, status==200 la richiesta è andata a buon fine
-                myFunction(this);//manda la richiesta come argomento
+            const richiesta= new XMLHttpRequest(); // crea richiesta HTTP
+            richiesta.onreadystatechange = function() { // viene eseguito a ogni cambiamento di stato della richiesta
+                if (this.readyState == 4 && this.status == 200) { // readyState 4 = risposta completa, status 200 = OK
+                myFunction(this); // passa la risposta alla funzione dedicata
                 }
                 };
-                richiesta.open("GET", "https://coni20044.github.io/LavoriTps/2025/ListaNera.xml", true);
-                richiesta.send();
-                function myFunction(file) { //si occupa di fare qualcosa col file una volta caricato
-                    filehttp = file.responseXML;
-                    console.log(filehttp)
+                richiesta.open("GET", "https://coni20044.github.io/LavoriTps/2025/ListaNera.xml", true); // apre richiesta verso l'XML
+                richiesta.send(); // invia la richiesta
+
+                function myFunction(file) { // funzione che gestisce il file ricevuto
+                    filehttp = file.responseXML; // salva contenuto XML nella variabile globale
+                    console.log(filehttp) // stampa per debug
                 }
         }
-        //creazione tabellaXML
-        function letturaX(){
-            let vittime= filehttp.documentElement.children //trova tutti i "vittima"
-            let campi= vittime[0].children; //campi intestazione
-            let tabella=document.createElement("table")
-            //creazione intestazione tabella
-            let intestazioneRow=document.createElement("tr")
-            for(let i=0; i<campi.length; i++){
-                let intestazione=document.createElement("th")
-                intestazione.textContent = campi[i].tagName //prende i tag di vittima
-                intestazioneRow.appendChild(intestazione)
-            }
-            tabella.appendChild(intestazioneRow)
 
-            //righe vittime
-            for(let i=0; i<vittime.length; i++){
-                let riga= document.createElement("tr")
-                let dati = vittime[i].children //prende i dati dentro ogni vittima
-                for(let j=0; j<dati.length; j++){ //scorre tutti i campi della vittima
-                    let intestazione = document.createElement("td")
-                    intestazione.textContent = dati[j].textContent //contenuto dei campi di vittima
-                    riga.appendChild(intestazione)
-                }
-                tabella.appendChild(riga)
+        // creazione tabella XML
+        function letturaX(){
+            let vittime= filehttp.documentElement.children // ottiene tutti i tag <vittima>
+            let campi= vittime[0].children; // prende i campi del primo record per creare l'intestazione
+            let tabella=document.createElement("table") // crea tabella HTML
+
+            // creazione intestazione tabella
+            let intestazioneRow=document.createElement("tr") // crea riga intestazione
+            for(let i=0; i<campi.length; i++){
+                let intestazione=document.createElement("th") // crea colonna intestazione
+                intestazione.textContent = campi[i].tagName // inserisce il nome del tag come titolo colonna
+                intestazioneRow.appendChild(intestazione) // aggiunge colonna alla riga
             }
-            document.getElementById("outputX").appendChild(tabella)
+            tabella.appendChild(intestazioneRow) // aggiunge riga intestazione alla tabella
+
+            // righe vittime
+            for(let i=0; i<vittime.length; i++){
+                let riga= document.createElement("tr") // nuova riga
+                let dati = vittime[i].children // ottiene tutti i sotto-elementi del tag vittima
+                for(let j=0; j<dati.length; j++){ // scorre tutti i campi
+                    let intestazione = document.createElement("td") // cella
+                    intestazione.textContent = dati[j].textContent // inserisce il contenuto del tag XML
+                    riga.appendChild(intestazione) // aggiunge alla riga
+                }
+                tabella.appendChild(riga) // aggiunge riga completa alla tabella
+            }
+            document.getElementById("outputX").appendChild(tabella) // mostra tabella in pagina
         }
 
         function lettura(){
-                //creazione tabella
-                let tabella= document.createElement("table")
+                // creazione tabella
+                let tabella= document.createElement("table") // crea tabella JSON
 
-                const chiavi=Object.keys(parseJSON[0])//chiavi del primo oggetto del file JSON per fare l'intestazione
+                const chiavi=Object.keys(parseJSON[0]) // prende tutte le chiavi del primo oggetto JSON
                 
-                //creazione della prima riga di intestazione con le chiavi e appensione di essa alla tabella
-                let intestazioneRow=document.createElement("tr")
+                // creazione intestazione tabella
+                let intestazioneRow=document.createElement("tr") // crea riga intestazione
                 for(let i=0; i<chiavi.length; i++){
-                    let intestazione=document.createElement("th");
-                    intestazione.textContent= chiavi[i];
+                    let intestazione=document.createElement("th"); // crea colonna
+                    intestazione.textContent= chiavi[i]; // nome della colonna
                     intestazioneRow.appendChild(intestazione)  
                 }
                 tabella.appendChild(intestazioneRow)
 
-                //creazione contenuto tabella
-                
+                // creazione contenuto tabella
                 for(let i=0; i<parseJSON.length ;i++){
-                    let righe= document.createElement("tr");
+                    let righe= document.createElement("tr"); // nuova riga
                     for(let j=0; j<chiavi.length; j++ ){
-                        let colonne= document.createElement("td")
-                        colonne.textContent = colonne.textContent = parseJSON[i][chiavi[j]] //prende valore della chiave al posto "j" dell'oggetto "i"
-                        righe.appendChild(colonne)
+                        let colonne= document.createElement("td") // colonna della riga
+                        colonne.textContent = parseJSON[i][chiavi[j]] // inserisce il valore relativo alla chiave j
+                        righe.appendChild(colonne) // aggiunge colonna alla riga
                     }
-                tabella.appendChild(righe)
+                tabella.appendChild(righe) // aggiunge riga alla tabella
                 }   
-                let output= document.getElementById("output")
-                output.appendChild(tabella);
+                let output= document.getElementById("output") // individua il contenitore
+                output.appendChild(tabella); // mostra la tabella
      }
     
 
     function maggiorenni(){ 
-        console.log(parseJSON)
-                let maggiorenni="" 
-                for(let i=0;i<parseJSON.length; i++){
-                    if(parseJSON[i]["età"]>18){
-                        maggiorenni += parseJSON[i]["cognome"] + " " + parseJSON[i]["età"] + "<br>"
+        console.log(parseJSON) // debug
+                let maggiorenni="" // stringa con la lista dei maggiorenni
+                for(let i=0;i<parseJSON.length; i++){ // ciclo su tutti i record
+                    if(parseJSON[i]["età"]>18){ // condizione età >18
+                        maggiorenni += parseJSON[i]["cognome"] + " " + parseJSON[i]["età"] + "<br>" // aggiunge cognome e età
                     }
-
                 }
-                let output=document.getElementById("outputM").innerHTML = maggiorenni
+                let output=document.getElementById("outputM").innerHTML = maggiorenni // stampa risultato
             }
 
     function ricerca(){
-        let lettera=document.getElementById("ricerca").value
-        let cognomi="I cognomi che iniziano con " + lettera + " sono: "
+        let lettera=document.getElementById("ricerca").value // prende lettera dal select
+        let cognomi="I cognomi che iniziano con " + lettera + " sono: " // testo iniziale
         for (let i = 0; i < parseJSON.length; i++) {
-            if(parseJSON[i]["cognome"].startsWith(lettera)) //il metodo startsWith restituisce true o false in base alla variabile a cui si applica il metodo
-            cognomi += parseJSON[i]["cognome"] +"<br>"
+            if(parseJSON[i]["cognome"].startsWith(lettera)) // controlla se inizia con la lettera
+            cognomi += parseJSON[i]["cognome"] +"<br>" // aggiunge il cognome trovato
         }
-        let output=document.getElementById("outputC").innerHTML = cognomi
+        let output=document.getElementById("outputC").innerHTML = cognomi // mostra tutti i cognomi
     }
 
     function generazione(){
-        let anno = document.getElementById("eta").value;
-        let generazione = "";
+        let anno = document.getElementById("eta").value; // legge anno inserito
+        let generazione = ""; // variabile per risultato
+
+        // serie di intervalli che identificano la generazione
         if (anno >= 1901 && anno <= 1927) {
             generazione = "Appartieni alla Greatest Generation (1901-1927)";
         } else if (anno >= 1928 && anno <= 1945) {
@@ -131,28 +135,33 @@
         } else if (anno >= 2013) {
             generazione = "Appartieni alla Generazione Alpha (dal 2013 in poi)";
         } else {
-            generazione = "Anno di nascita non valido";
+            generazione = "Anno di nascita non valido"; // casistica errata
         }
-            let output=document.getElementById("outputG").innerHTML = generazione
+            let output=document.getElementById("outputG").innerHTML = generazione // mostra il risultato
     }
+
     function caricaDati(){
-        caricaDatiX()
-        caricaDatiJ()
+        caricaDatiX() // carica XML
+        caricaDatiJ() // carica JSON
     }
     </script>
     
 </head>
 
 
-<body onload="caricaDati()">
+<body onload="caricaDati()"> <!-- quando la pagina viene caricata, vengono caricati XML e JSON -->
 
-    <h1>Lista Nera</h1>
-   <p id="output">  </p>
-   <p id="outputX"> </p>
-    <input type="button" value="visualizza JSON" onclick="lettura()">
-    <input type="button" value="visualizza XML" onclick="letturaX()">
-    <label for="ricerca">inserisci la lettera dei cognomi da cercare</label>
-    <select id="ricerca" name="ricerca">
+    <h1>Lista Nera</h1> <!-- titolo principale -->
+
+   <p id="output">  </p> <!-- tabella JSON comparirà qui -->
+   <p id="outputX"> </p> <!-- tabella XML comparirà qui -->
+
+    <input type="button" value="visualizza JSON" onclick="lettura()"> <!-- pulsante per creare la tabella JSON -->
+    <input type="button" value="visualizza XML" onclick="letturaX()"> <!-- pulsante per creare la tabella XML -->
+
+    <label for="ricerca">inserisci la lettera dei cognomi da cercare</label> <!-- etichetta select -->
+
+    <select id="ricerca" name="ricerca"> <!-- menu lettere A-Z -->
      <option value="A">A</option>
      <option value="B">B</option>
      <option value="C">C</option>
@@ -180,15 +189,17 @@
      <option value="Y">Y</option>
      <option value="Z">Z</option>
   </select>
-  <input type="button" value="Ricerca Cognomi JSON" onclick="ricerca()">
-  <p id="outputC"> </p>
 
-  <input type="number" id="eta" name="età">
-  <input type="button" value=" Inserisci il tuo anno di nascita e scopri la tua generazione" onclick="generazione()">
-  <p id="outputG"></p>
+  <input type="button" value="Ricerca Cognomi JSON" onclick="ricerca()"> <!-- pulsante ricerca cognomi -->
+  <p id="outputC"> </p> <!-- dove apparirà il risultato -->
 
-  <input type="button" value="stampa maggiorenni JSON" onclick="maggiorenni()">
-  <p id="outputM"> </p>
+  <input type="number" id="eta" name="età"> <!-- input anno nascita -->
+  <input type="button" value=" Inserisci il tuo anno di nascita e scopri la tua generazione" onclick="generazione()"> <!-- pulsante -->
+
+  <p id="outputG"></p> <!-- generazione visualizzata qui -->
+
+  <input type="button" value="stampa maggiorenni JSON" onclick="maggiorenni()"> <!-- pulsante maggiorenni -->
+  <p id="outputM"> </p> <!-- lista maggiorenni -->
   
 </body>
 
