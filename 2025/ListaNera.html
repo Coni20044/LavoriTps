@@ -1,244 +1,235 @@
-<!DOCTYPE html> <!-- Dichiara il tipo di documento HTML5 -->
-<html lang="it"> <!-- Imposta la lingua della pagina su italiano -->
+<!DOCTYPE html> 
 <head>
-<meta charset="UTF-8"> <!-- Imposta la codifica dei caratteri a UTF-8 -->
-<title>Lista Nera</title> <!-- Titolo della scheda del browser (non visibile in pagina) -->
+<title>Lista Nera</title> 
 
 <style>
-/* Layout generale */
 body {
-  margin: 0; /* Nessun margine intorno alla pagina */
-  font-family: "Segoe UI", Tahoma, sans-serif; /* Font principale della pagina */
-  background: linear-gradient(135deg, #ffe5e5, #fff5f5); /* Sfondo sfumato rosa chiaro */
-  color: #5a1a1a; /* Colore del testo principale */
-  display: flex; /* Utilizza Flexbox per layout verticale */
-  flex-direction: column; /* Gli elementi figli saranno disposti in colonna */
-  align-items: center; /* Centra gli elementi orizzontalmente */
-  min-height: 100vh; /* Altezza minima della pagina = altezza finestra */
-  padding: 20px; /* Spaziatura interna */
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background: linear-gradient(135deg, #ffe5e5, #fff5f5); 
+  color: #5a1a1a; 
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+  min-height: 100vh; 
+  padding: 20px; 
 }
 
-/* Header */
 header {
-  width: 100%; /* L'header occupa tutta la larghezza */
-  text-align: center; /* Testo centrato */
-  padding: 20px 0; /* Spaziatura verticale interna */
-  background-color: #b71c1c; /* Colore di sfondo rosso scuro */
-  color: white; /* Colore del testo bianco */
-  font-size: 2.2em; /* Dimensione testo più grande */
-  font-weight: bold; /* Testo in grassetto */
-  letter-spacing: 1px; /* Spaziatura tra lettere */
-  box-shadow: 0 4px 8px rgba(120,0,0,0.3); /* Ombra sotto l'header */
-  border-radius: 8px; /* Angoli arrotondati */
+  width: 100%;
+  text-align: center;
+  padding: 20px 0;
+  background-color: #b71c1c;
+  color: white;
+  font-size: 2.2em;
+  font-weight: bold;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 8px rgba(120,0,0,0.3);
+  border-radius: 8px;
 }
 
-/* Container principale */
 .main-container {
-  display: grid; /* Usa layout a griglia */
-  grid-template-columns: 1fr 2fr; /* Due colonne: sinistra controlli / destra output */
-  gap: 30px; /* Spazio tra le colonne */
-  width: 90%; /* Larghezza complessiva container */
-  margin-top: 30px; /* Margine superiore */
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 30px;
+  width: 90%;
+  margin-top: 30px;
 }
 
-/* Colonna dei controlli */
 .controls {
-  display: flex; /* Flexbox verticale */
-  flex-direction: column; /* Gli elementi si dispongono in colonna */
-  gap: 20px; /* Spazio verticale tra i controlli */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-/* Pulsanti e input */
 input[type="button"], button, select, input[type="number"] {
-  padding: 12px; /* Spaziatura interna */
-  font-size: 15px; /* Dimensione testo */
-  border-radius: 6px; /* Angoli arrotondati */
-  border: none; /* Nessun bordo */
-  cursor: pointer; /* Cambia il cursore al passaggio del mouse */
-  background-color: #c62828; /* Sfondo rosso */
-  color: white; /* Testo bianco */
-  transition: 0.3s; /* Transizione effetti hover */
-  box-shadow: 0 3px 6px rgba(150,0,0,0.25); /* Ombra leggera */
+  padding: 12px;
+  font-size: 15px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background-color: #c62828;
+  color: white;
+  transition: 0.3s;
+  box-shadow: 0 3px 6px rgba(150,0,0,0.25);
 }
 
 input[type="button"]:hover, button:hover {
-  background-color: #8e0000; /* Colore scuro al passaggio del mouse */
-  transform: translateY(-2px); /* Leggera animazione di spostamento */
+  background-color: #8e0000;
+  transform: translateY(-2px);
 }
 
 select, input[type="number"] {
-  width: 100%; /* Larghezza massima del contenitore */
-  box-sizing: border-box; /* Include padding e bordo nella larghezza */
+  width: 100%;
+  box-sizing: border-box;
 }
 
-/* Output */
 .output {
-  background-color: #fffafa; /* Sfondo bianco-rosa chiaro */
-  padding: 20px; /* Spaziatura interna */
-  border-radius: 8px; /* Angoli arrotondati */
-  box-shadow: 0 5px 15px rgba(120,0,0,0.25); /* Ombra leggera */
-  min-height: 300px; /* Altezza minima */
-  overflow-x: auto; /* Scroll orizzontale se necessario */
+  background-color: #fffafa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(120,0,0,0.25);
+  min-height: 300px;
+  overflow-x: auto;
 }
 
-/* Tabelle */
 table {
-  width: 100%; /* Larghezza massima */
-  border-collapse: collapse; /* Elimina spazi tra celle */
-  margin-top: 15px; /* Spazio sopra la tabella */
-  font-size: 16px; /* Dimensione testo tabella */
-  border-radius: 8px; /* Angoli arrotondati */
-  overflow: hidden; /* Nasconde parti eccedenti */
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  font-size: 16px;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 th, td {
-  padding: 12px; /* Spaziatura interna celle */
-  text-align: center; /* Testo centrato */
-  border: 1px solid #ffcccc; /* Bordo rosa chiaro */
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #ffcccc;
 }
 
 th {
-  background-color: #b71c1c; /* Sfondo intestazione rosso scuro */
-  color: white; /* Testo bianco */
-  font-weight: bold; /* Grassetto */
-  text-transform: uppercase; /* Maiuscole */
+  background-color: #b71c1c;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 tr:nth-child(even) {
-  background-color: #ffecec; /* Colore sfondo righe pari */
+  background-color: #ffecec;
 }
 
 label {
-  font-weight: bold; /* Grassetto per le etichette */
-  margin-bottom: 5px; /* Spazio sotto l'etichetta */
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 </style>
 
 <script>
-let parseJSON= [] // Variabile globale che conterrà i dati JSON
-let filehttp // Variabile globale per contenuto XML
+let parseJSON= [] 
+let filehttp 
 
 // Funzione per caricare dati JSON
 function caricaDatiJ() {
-    const richiesta = new XMLHttpRequest() // Crea richiesta HTTP
-    richiesta.open("GET", "https://coni20044.github.io/LavoriTps/2025/ListaNera.json", true) // URL del JSON
-    richiesta.send() // Invia richiesta
+    const richiesta = new XMLHttpRequest() // Crea una nuova richiesta HTTP
+    richiesta.open("GET", "https://coni20044.github.io/LavoriTps/2025/ListaNera.json", true) // Imposta metodo e URL
+    richiesta.send() // Invia la richiesta al server
     richiesta.onload = function () {
-        parseJSON = JSON.parse(richiesta.responseText); // Salva dati JSON in parseJSON
+        parseJSON = JSON.parse(richiesta.responseText); // Converte la risposta JSON in oggetto JS e la salva
     }
 }
 
 // Funzione per caricare dati XML
 function caricaDatiX(){
-    const richiesta= new XMLHttpRequest(); // Crea richiesta HTTP
+    const richiesta= new XMLHttpRequest(); // Crea nuova richiesta HTTP
     richiesta.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            filehttp = richiesta.responseXML; // Salva XML in variabile globale
+        if (this.readyState == 4 && this.status == 200) { // Controlla se la richiesta è completata e OK
+            filehttp = richiesta.responseXML; // Salva il contenuto XML nella variabile globale
         }
     };
-    richiesta.open("GET", "https://coni20044.github.io/LavoriTps/2025/ListaNera.xml", true); // URL XML
-    richiesta.send(); // Invia richiesta
+    richiesta.open("GET", "https://coni20044.github.io/LavoriTps/2025/ListaNera.xml", true) // Imposta metodo e URL
+    richiesta.send(); // Invia la richiesta al server
 }
 
-// Funzione per leggere dati XML e creare tabella
+// Funzione per leggere XML e creare tabella HTML
 function letturaX(){
-    let vittime= filehttp.documentElement.children // Tutti i tag <vittima>
-    let campi= vittime[0].children; // Campi del primo elemento per intestazione
-    let tabella=document.createElement("table") // Crea tabella HTML
-    let intestazioneRow=document.createElement("tr") // Riga intestazione
+    let vittime= filehttp.documentElement.children // Seleziona tutti gli elementi <vittima>
+    let campi= vittime[0].children; // Prende i figli del primo elemento per creare intestazioni
+    let tabella=document.createElement("table") // Crea elemento <table>
+    let intestazioneRow=document.createElement("tr") // Crea riga intestazione
     for(let i=0; i<campi.length; i++){
-        let intestazione=document.createElement("th") // Crea intestazione colonna
-        intestazione.textContent = campi[i].tagName // Nome colonna = tag XML
-        intestazioneRow.appendChild(intestazione)
+        let intestazione=document.createElement("th") // Crea cella intestazione
+        intestazione.textContent = campi[i].tagName // Inserisce il nome del tag XML
+        intestazioneRow.appendChild(intestazione) // Aggiunge cella alla riga intestazione
     }
-    tabella.appendChild(intestazioneRow)
+    tabella.appendChild(intestazioneRow) // Aggiunge riga intestazione alla tabella
     for(let i=0; i<vittime.length; i++){
-        let riga= document.createElement("tr") // Riga dati
-        let dati = vittime[i].children
+        let riga= document.createElement("tr") // Crea nuova riga dati
+        let dati = vittime[i].children // Prende i figli di ogni vittima
         for(let j=0; j<dati.length; j++){
-            let intestazione = document.createElement("td") // Cella dati
-            intestazione.textContent = dati[j].textContent
-            riga.appendChild(intestazione)
+            let cella = document.createElement("td") // Crea cella dati
+            cella.textContent = dati[j].textContent // Inserisce testo della cella
+            riga.appendChild(cella) // Aggiunge cella alla riga
         }
-        tabella.appendChild(riga)
+        tabella.appendChild(riga) // Aggiunge riga alla tabella
     }
-    document.getElementById("outputX").innerHTML = ""; // Pulisce contenuto precedente
-    document.getElementById("outputX").appendChild(tabella) // Aggiunge tabella
+    document.getElementById("outputX").innerHTML = ""; // Pulisce eventuali contenuti precedenti
+    document.getElementById("outputX").appendChild(tabella) // Inserisce la tabella nell'HTML
 }
 
-// Funzione per leggere dati JSON e creare tabella
+// Funzione per leggere JSON e creare tabella HTML
 function lettura(){
-    let tabella= document.createElement("table")
-    const chiavi=Object.keys(parseJSON[0]) // Chiavi JSON per intestazione
-    let intestazioneRow=document.createElement("tr")
+    let tabella= document.createElement("table") // Crea tabella
+    const chiavi=Object.keys(parseJSON[0]) // Prende le chiavi del primo oggetto JSON per intestazioni
+    let intestazioneRow=document.createElement("tr") // Riga intestazioni
     for(let i=0; i<chiavi.length; i++){
-        let intestazione=document.createElement("th");
-        intestazione.textContent= chiavi[i]; // Testo colonna = chiave JSON
-        intestazioneRow.appendChild(intestazione)
+        let intestazione=document.createElement("th") // Crea cella intestazione
+        intestazione.textContent= chiavi[i] // Inserisce nome colonna
+        intestazioneRow.appendChild(intestazione) // Aggiunge cella alla riga
     }
-    tabella.appendChild(intestazioneRow)
+    tabella.appendChild(intestazioneRow) // Aggiunge riga intestazioni alla tabella
     for(let i=0; i<parseJSON.length ;i++){
-        let righe= document.createElement("tr"); // Riga dati
+        let riga= document.createElement("tr") // Crea nuova riga dati
         for(let j=0; j<chiavi.length; j++ ){
-            let colonne= document.createElement("td") // Cella dati
-            colonne.textContent = parseJSON[i][chiavi[j]] // Inserisce valore JSON
-            righe.appendChild(colonne)
+            let cella= document.createElement("td") // Crea cella dati
+            cella.textContent = parseJSON[i][chiavi[j]] // Inserisce valore JSON
+            riga.appendChild(cella) // Aggiunge cella alla riga
         }
-        tabella.appendChild(righe)
+        tabella.appendChild(riga) // Aggiunge riga alla tabella
     }   
-    let output= document.getElementById("output")
-    output.innerHTML = ""; // Pulisce eventuale tabella precedente
-    output.appendChild(tabella)
+    let output= document.getElementById("output") // Seleziona contenitore output
+    output.innerHTML = ""; // Pulisce contenuto precedente
+    output.appendChild(tabella) // Inserisce tabella
 }
 
 // Funzione per stampare maggiorenni
 function maggiorenni(){ 
     let maggiorenni=""
     for(let i=0;i<parseJSON.length; i++){
-        if(parseJSON[i]["età"]>18){ // Condizione maggiore età
-            maggiorenni += parseJSON[i]["cognome"] + " " + parseJSON[i]["età"] + "<br>"
+        if(parseJSON[i]["età"]>18){ // Controlla età > 18
+            maggiorenni += parseJSON[i]["cognome"] + " " + parseJSON[i]["età"] + "<br>" // Aggiunge a stringa
         }
     }
-    document.getElementById("outputM").innerHTML = maggiorenni
+    document.getElementById("outputM").innerHTML = maggiorenni // Mostra risultato
 }
 
 // Funzione ricerca cognomi per lettera
 function ricerca(){
-    let lettera=document.getElementById("ricerca").value
+    let lettera=document.getElementById("ricerca").value // Prende valore selezionato
     let cognomi="I cognomi che iniziano con " + lettera + " sono: <br>"
     for (let i = 0; i < parseJSON.length; i++) {
-        if(parseJSON[i]["cognome"].startsWith(lettera))
-            cognomi += parseJSON[i]["cognome"] +"<br>"
+        if(parseJSON[i]["cognome"].startsWith(lettera)) // Controlla iniziale
+            cognomi += parseJSON[i]["cognome"] +"<br>" // Aggiunge cognome alla stringa
     }
-    document.getElementById("outputC").innerHTML = cognomi
+    document.getElementById("outputC").innerHTML = cognomi // Mostra risultato
 }
 
 // Funzione per determinare generazione dall'anno di nascita
 function generazione(){
-    let anno = document.getElementById("eta").value;
-    let generazione = "";
-    if (anno >= 1901 && anno <= 1927) generazione = "Appartieni alla Greatest Generation (1901-1927)";
-    else if (anno >= 1928 && anno <= 1945) generazione = "Appartieni alla Generazione Silenziosa (1928-1945)";
-    else if (anno >= 1946 && anno <= 1964) generazione = "Appartieni ai Baby Boomers (1946-1964)";
-    else if (anno >= 1965 && anno <= 1980) generazione = "Appartieni alla Generazione X (1965-1980)";
-    else if (anno >= 1981 && anno <= 1996) generazione = "Appartieni ai Millenials (1981-1996)";
-    else if (anno >= 1997 && anno <= 2012) generazione = "Appartieni alla Generazione Z (1997-2012)";
-    else if (anno >= 2013) generazione = "Appartieni alla Generazione Alpha (dal 2013 in poi)";
-    else generazione = "Anno di nascita non valido";
-    document.getElementById("outputG").innerHTML = generazione
+    let anno = document.getElementById("eta").value // Prende anno inserito
+    let generazione = ""
+    if (anno >= 1901 && anno <= 1927) generazione = "Appartieni alla Greatest Generation (1901-1927)"
+    else if (anno >= 1928 && anno <= 1945) generazione = "Appartieni alla Generazione Silenziosa (1928-1945)"
+    else if (anno >= 1946 && anno <= 1964) generazione = "Appartieni ai Baby Boomers (1946-1964)"
+    else if (anno >= 1965 && anno <= 1980) generazione = "Appartieni alla Generazione X (1965-1980)"
+    else if (anno >= 1981 && anno <= 1996) generazione = "Appartieni ai Millenials (1981-1996)"
+    else if (anno >= 1997 && anno <= 2012) generazione = "Appartieni alla Generazione Z (1997-2012)"
+    else if (anno >= 2013) generazione = "Appartieni alla Generazione Alpha (dal 2013 in poi)"
+    else generazione = "Anno di nascita non valido"
+    document.getElementById("outputG").innerHTML = generazione // Mostra generazione
 }
 
 // Funzione per caricare sia XML che JSON all'avvio
 function caricaDati(){
-    caricaDatiX()
-    caricaDatiJ()
+    caricaDatiX() // Carica dati XML
+    caricaDatiJ() // Carica dati JSON
 }
 </script>
 </head>
 
 <body onload="caricaDati()">
 
-<header>Lettura Anagrafica Riccardo Marconi</header> <!-- Titolo in alto modificato -->
+<header>Lettura Anagrafica Riccardo Marconi</header>
 
 <div class="main-container">
 
@@ -289,11 +280,11 @@ function caricaDati(){
 </div>
 
 <div class="output">
-    <p id="output"></p> <!-- Tabella JSON -->
-    <p id="outputX"></p> <!-- Tabella XML -->
-    <p id="outputC"></p> <!-- Risultati ricerca cognomi -->
-    <p id="outputG"></p> <!-- Risultato generazione -->
-    <p id="outputM"></p> <!-- Lista maggiorenni -->
+    <p id="output"></p>
+    <p id="outputX"></p>
+    <p id="outputC"></p>
+    <p id="outputG"></p>
+    <p id="outputM"></p>
 </div>
 
 </div>
