@@ -1,142 +1,50 @@
-let datiJson = [];               // Array che conterrà i dati JSON caricati
-let datiXml = null;              // Variabile che conterrà il documento XML
-
-// ---- CARICAMENTO JSON ----
-async function caricaJSON() {     // Funzione asincrona per caricare il JSON
-    const risposta = await fetch("ListaPersone.json"); // Richiesta al file JSON
-    datiJson = await risposta.json(); // Converte la risposta in oggetto JS
-}
-
-// ---- CARICAMENTO XML ----
-async function caricaXML() {      // Funzione asincrona per caricare XML
-    const risposta = await fetch("ListaPersone.xml"); // Richiesta del file XML
-    const testo = await risposta.text(); // Converte risposta in testo
-
-    const parser = new DOMParser();   // Oggetto che converte stringhe in XML
-    datiXml = parser.parseFromString(testo, "application/xml"); // Parsing XML
-}
-
-// Evento al caricamento della pagina
-window.onload = () => {             
-    caricaJSON();                   // Carica JSON
-    caricaXML();                    // Carica XML
-
-    // Associa bottoni alle funzioni
-    document.getElementById("btnJson").onclick = stampaJSON;
-    document.getElementById("btnXml").onclick = stampaXML;
-    document.getElementById("btnCerca").onclick = cercaCognome;
-    document.getElementById("btnGen").onclick = generazione;
-    document.getElementById("btnMaggiori").onclick = maggiorenni;
-};
-
-// ---------- MOSTRA JSON ----------
-function stampaJSON() {
-    const zona = document.getElementById("areaJson"); // Prende la zona output
-    zona.innerHTML = "";                               // La svuota
-
-    const tab = document.createElement("table");       // Crea tabella
-    const header = Object.keys(datiJson[0]);           // Prende nomi delle colonne
-
-    // --- Intestazione tabella ---
-    let trh = document.createElement("tr");            // Crea riga intestazione
-    header.forEach(k => {                              // Ciclo su ogni colonna
-        let th = document.createElement("th");         // Crea cella intestazione
-        th.textContent = k.toUpperCase();              // Testo della colonna
-        trh.appendChild(th);                           // La aggiunge alla riga
-    });
-    tab.appendChild(trh);                              // Aggiunge riga alla tabella
-
-    // --- Righe dati ---
-    datiJson.forEach(persona => {                      // Ciclo sulle persone
-        let tr = document.createElement("tr");         // Nuova riga
-
-        header.forEach(k => {                          // Per ogni proprietà
-            let td = document.createElement("td");     // Crea cella
-            td.textContent = persona[k];               // Inserisce valore
-            tr.appendChild(td);                        // Aggiunge cella
-        });
-
-        tab.appendChild(tr);                           // Aggiunge riga finale
-    });
-
-    zona.appendChild(tab);                             // Inserisce tabella nel div
-}
-
-// ---------- MOSTRA XML ----------
-function stampaXML() {
-    const zona = document.getElementById("areaXml"); // Zona output
-    zona.innerHTML = "";                              // Svuota
-
-    const tab = document.createElement("table");      // Crea tabella
-
-    let elementi = datiXml.getElementsByTagName("record"); // Prende nodi XML
-
-    // --- Intestazione ---
-    let campi = elementi[0].children;                // Prende campi del primo record
-    let trh = document.createElement("tr");          // Riga intestazione
-
-    for(let c of campi) {                            // Ciclo su ogni campo XML
-        let th = document.createElement("th");       // Crea th
-        th.textContent = c.tagName;                  // Nome del tag
-        trh.appendChild(th);                         // Aggiunge th
-    }
-    tab.appendChild(trh);                            // Aggiunge intestazione
-
-    // --- Righe dati ---
-    for(let nodo of elementi) {                      // Ciclo sui record
-        let tr = document.createElement("tr");       // Riga
-
-        for(let el of nodo.children) {               // Campi del record
-            let td = document.createElement("td");   // Cella
-            td.textContent = el.textContent;         // Valore testuale
-            tr.appendChild(td);                      // Aggiunge cella
-        }
-        tab.appendChild(tr);                         // Aggiunge riga completa
-    }
-
-    zona.appendChild(tab);                           // Inserisce tabella
-}
-
-// ---------- CERCA COGNOME ----------
-function cercaCognome() {
-    let lettera = document.getElementById("iniziale").value; // Prende lettera
-    let ris = "Trovati:<br>";                                // Testo base
-
-    datiJson.forEach(p => {                                   // Cicla sulle persone
-        if (p.cognome.startsWith(lettera)) {                  // Controlla inizio cognome
-            ris += p.cognome + "<br>";                        // Accoda cognome
-        }
-    });
-
-    document.getElementById("risCerca").innerHTML = ris;      // Scrive risultati
-}
-
-// ---------- GENERAZIONE ----------
-function generazione() {
-    let anno = parseInt(document.getElementById("annoNascita").value); // Prende anno
-    let res = "";                                                      // Risultato
-
-    if (anno >= 1900 && anno <= 1927) res = "Greatest Generation";     // Controlli
-    else if (anno <= 1945) res = "Silent Generation";
-    else if (anno <= 1964) res = "Baby Boomers";
-    else if (anno <= 1980) res = "Gen X";
-    else if (anno <= 1996) res = "Millennials";
-    else if (anno <= 2012) res = "Gen Z";
-    else if (anno >= 2013) res = "Gen Alpha";
-    else res = "Anno non valido";
-
-    document.getElementById("risGenerazione").textContent = res; // Output
-}
-
-// ---------- MAGGIORENNI ----------
-function maggiorenni() {
-    let ris = "";                                   // Risultato
-
-    datiJson.forEach(p => {                         // Ciclo su persone
-        if (p.eta >= 18) {                          // Se maggiorenne
-            ris += `${p.cognome} (${p.eta})<br>`;   // Aggiunge alla lista
-        }
-    });
-
-    document.getElementById("risMaggiori").innerHTML = ris; // Stampa output
-}
+[
+  {
+  "nome": "Marco",
+  "cognome":"Rossi",
+  "citta": "Anzio",
+  "indirizzo": "Via Garibaldi 5",
+  "cap": "00042",
+  "età": 7
+},
+{
+  "nome": "Giovanni",
+  "cognome":"Muciacia",
+  "citta": "Treviglio",
+  "indirizzo": "Via Matteotti 2",
+  "cap": "24047",
+  "età": 26
+  },
+  {
+  "nome": "Alberto",
+  "cognome":"Giovannetti",
+  "citta": "Sassuolo",
+  "indirizzo": "Via Battisti 69",
+  "cap": "41049",
+  "età": 96
+  },
+  {
+  "nome": "Federica",
+  "cognome":"Floriano",
+  "citta": "Ladispoli",
+  "indirizzo": "Via San Vittore 1",
+  "cap": "00055",
+  "età": 17
+  },
+  {
+  "nome": "Mattia",
+  "cognome":"Alfieri",
+  "citta": "Ancona",
+  "indirizzo": "Via XV Settembre 15",
+  "cap": "60100",
+  "età": 29
+  },
+  {
+  "nome": "Alessandro",
+  "cognome":"Meloni",
+  "citta": "Iglesias",
+  "indirizzo": "Via Mori 3",
+  "cap": "09016",
+  "età": 25
+  }
+]
