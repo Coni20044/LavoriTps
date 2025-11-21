@@ -1,200 +1,208 @@
-<!DOCTYPE html>
-<html lang="it">
+<!DOCTYPE html> <!-- Dichiara il tipo di documento HTML5 -->
+<html lang="it"> <!-- Imposta la lingua della pagina su italiano -->
 <head>
-<meta charset="UTF-8">
-<title>Lista Nera</title>
+<meta charset="UTF-8"> <!-- Imposta la codifica dei caratteri a UTF-8 -->
+<title>Lista Nera</title> <!-- Titolo della scheda del browser (non visibile in pagina) -->
+
 <style>
 /* Layout generale */
 body {
-  margin: 0;
-  font-family: "Segoe UI", Tahoma, sans-serif;
-  background: linear-gradient(135deg, #ffe5e5, #fff5f5);
-  color: #5a1a1a;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-  padding: 20px;
+  margin: 0; /* Nessun margine intorno alla pagina */
+  font-family: "Segoe UI", Tahoma, sans-serif; /* Font principale della pagina */
+  background: linear-gradient(135deg, #ffe5e5, #fff5f5); /* Sfondo sfumato rosa chiaro */
+  color: #5a1a1a; /* Colore del testo principale */
+  display: flex; /* Utilizza Flexbox per layout verticale */
+  flex-direction: column; /* Gli elementi figli saranno disposti in colonna */
+  align-items: center; /* Centra gli elementi orizzontalmente */
+  min-height: 100vh; /* Altezza minima della pagina = altezza finestra */
+  padding: 20px; /* Spaziatura interna */
 }
 
 /* Header */
 header {
-  width: 100%;
-  text-align: center;
-  padding: 20px 0;
-  background-color: #b71c1c;
-  color: white;
-  font-size: 2.2em;
-  font-weight: bold;
-  letter-spacing: 1px;
-  box-shadow: 0 4px 8px rgba(120,0,0,0.3);
-  border-radius: 8px;
+  width: 100%; /* L'header occupa tutta la larghezza */
+  text-align: center; /* Testo centrato */
+  padding: 20px 0; /* Spaziatura verticale interna */
+  background-color: #b71c1c; /* Colore di sfondo rosso scuro */
+  color: white; /* Colore del testo bianco */
+  font-size: 2.2em; /* Dimensione testo più grande */
+  font-weight: bold; /* Testo in grassetto */
+  letter-spacing: 1px; /* Spaziatura tra lettere */
+  box-shadow: 0 4px 8px rgba(120,0,0,0.3); /* Ombra sotto l'header */
+  border-radius: 8px; /* Angoli arrotondati */
 }
 
 /* Container principale */
 .main-container {
-  display: grid;
-  grid-template-columns: 1fr 2fr; /* Colonna pulsanti / output */
-  gap: 30px;
-  width: 90%;
-  margin-top: 30px;
+  display: grid; /* Usa layout a griglia */
+  grid-template-columns: 1fr 2fr; /* Due colonne: sinistra controlli / destra output */
+  gap: 30px; /* Spazio tra le colonne */
+  width: 90%; /* Larghezza complessiva container */
+  margin-top: 30px; /* Margine superiore */
 }
 
 /* Colonna dei controlli */
 .controls {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  display: flex; /* Flexbox verticale */
+  flex-direction: column; /* Gli elementi si dispongono in colonna */
+  gap: 20px; /* Spazio verticale tra i controlli */
 }
 
 /* Pulsanti e input */
 input[type="button"], button, select, input[type="number"] {
-  padding: 12px;
-  font-size: 15px;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  background-color: #c62828;
-  color: white;
-  transition: 0.3s;
-  box-shadow: 0 3px 6px rgba(150,0,0,0.25);
+  padding: 12px; /* Spaziatura interna */
+  font-size: 15px; /* Dimensione testo */
+  border-radius: 6px; /* Angoli arrotondati */
+  border: none; /* Nessun bordo */
+  cursor: pointer; /* Cambia il cursore al passaggio del mouse */
+  background-color: #c62828; /* Sfondo rosso */
+  color: white; /* Testo bianco */
+  transition: 0.3s; /* Transizione effetti hover */
+  box-shadow: 0 3px 6px rgba(150,0,0,0.25); /* Ombra leggera */
 }
 
 input[type="button"]:hover, button:hover {
-  background-color: #8e0000;
-  transform: translateY(-2px);
+  background-color: #8e0000; /* Colore scuro al passaggio del mouse */
+  transform: translateY(-2px); /* Leggera animazione di spostamento */
 }
 
 select, input[type="number"] {
-  width: 100%;
-  box-sizing: border-box;
+  width: 100%; /* Larghezza massima del contenitore */
+  box-sizing: border-box; /* Include padding e bordo nella larghezza */
 }
 
 /* Output */
 .output {
-  background-color: #fffafa;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(120,0,0,0.25);
-  min-height: 300px;
-  overflow-x: auto;
+  background-color: #fffafa; /* Sfondo bianco-rosa chiaro */
+  padding: 20px; /* Spaziatura interna */
+  border-radius: 8px; /* Angoli arrotondati */
+  box-shadow: 0 5px 15px rgba(120,0,0,0.25); /* Ombra leggera */
+  min-height: 300px; /* Altezza minima */
+  overflow-x: auto; /* Scroll orizzontale se necessario */
 }
 
 /* Tabelle */
 table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 15px;
-  font-size: 16px;
-  border-radius: 8px;
-  overflow: hidden;
+  width: 100%; /* Larghezza massima */
+  border-collapse: collapse; /* Elimina spazi tra celle */
+  margin-top: 15px; /* Spazio sopra la tabella */
+  font-size: 16px; /* Dimensione testo tabella */
+  border-radius: 8px; /* Angoli arrotondati */
+  overflow: hidden; /* Nasconde parti eccedenti */
 }
 
 th, td {
-  padding: 12px;
-  text-align: center;
-  border: 1px solid #ffcccc;
+  padding: 12px; /* Spaziatura interna celle */
+  text-align: center; /* Testo centrato */
+  border: 1px solid #ffcccc; /* Bordo rosa chiaro */
 }
 
 th {
-  background-color: #b71c1c;
-  color: white;
-  font-weight: bold;
-  text-transform: uppercase;
+  background-color: #b71c1c; /* Sfondo intestazione rosso scuro */
+  color: white; /* Testo bianco */
+  font-weight: bold; /* Grassetto */
+  text-transform: uppercase; /* Maiuscole */
 }
 
 tr:nth-child(even) {
-  background-color: #ffecec;
+  background-color: #ffecec; /* Colore sfondo righe pari */
 }
 
 label {
-  font-weight: bold;
-  margin-bottom: 5px;
+  font-weight: bold; /* Grassetto per le etichette */
+  margin-bottom: 5px; /* Spazio sotto l'etichetta */
 }
 </style>
-<script>
-let parseJSON= [] // variabile globale che conterrà i dati JSON
-let filehttp // variabile globale per XML
 
+<script>
+let parseJSON= [] // Variabile globale che conterrà i dati JSON
+let filehttp // Variabile globale per contenuto XML
+
+// Funzione per caricare dati JSON
 function caricaDatiJ() {
-    const richiesta = new XMLHttpRequest()
-    richiesta.open("GET", "https://coni20044.github.io/LavoriTps/2025/ListaNera.json", true)
-    richiesta.send()
+    const richiesta = new XMLHttpRequest() // Crea richiesta HTTP
+    richiesta.open("GET", "https://coni20044.github.io/LavoriTps/2025/ListaNera.json", true) // URL del JSON
+    richiesta.send() // Invia richiesta
     richiesta.onload = function () {
-        parseJSON = JSON.parse(richiesta.responseText);
+        parseJSON = JSON.parse(richiesta.responseText); // Salva dati JSON in parseJSON
     }
 }
 
+// Funzione per caricare dati XML
 function caricaDatiX(){
-    const richiesta= new XMLHttpRequest();
+    const richiesta= new XMLHttpRequest(); // Crea richiesta HTTP
     richiesta.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            filehttp = richiesta.responseXML;
+            filehttp = richiesta.responseXML; // Salva XML in variabile globale
         }
     };
-    richiesta.open("GET", "https://coni20044.github.io/LavoriTps/2025/ListaNera.xml", true);
-    richiesta.send();
+    richiesta.open("GET", "https://coni20044.github.io/LavoriTps/2025/ListaNera.xml", true); // URL XML
+    richiesta.send(); // Invia richiesta
 }
 
+// Funzione per leggere dati XML e creare tabella
 function letturaX(){
-    let vittime= filehttp.documentElement.children
-    let campi= vittime[0].children;
-    let tabella=document.createElement("table")
-    let intestazioneRow=document.createElement("tr")
+    let vittime= filehttp.documentElement.children // Tutti i tag <vittima>
+    let campi= vittime[0].children; // Campi del primo elemento per intestazione
+    let tabella=document.createElement("table") // Crea tabella HTML
+    let intestazioneRow=document.createElement("tr") // Riga intestazione
     for(let i=0; i<campi.length; i++){
-        let intestazione=document.createElement("th")
-        intestazione.textContent = campi[i].tagName
+        let intestazione=document.createElement("th") // Crea intestazione colonna
+        intestazione.textContent = campi[i].tagName // Nome colonna = tag XML
         intestazioneRow.appendChild(intestazione)
     }
     tabella.appendChild(intestazioneRow)
     for(let i=0; i<vittime.length; i++){
-        let riga= document.createElement("tr")
+        let riga= document.createElement("tr") // Riga dati
         let dati = vittime[i].children
         for(let j=0; j<dati.length; j++){
-            let intestazione = document.createElement("td")
+            let intestazione = document.createElement("td") // Cella dati
             intestazione.textContent = dati[j].textContent
             riga.appendChild(intestazione)
         }
         tabella.appendChild(riga)
     }
-    document.getElementById("outputX").innerHTML = "";
-    document.getElementById("outputX").appendChild(tabella)
+    document.getElementById("outputX").innerHTML = ""; // Pulisce contenuto precedente
+    document.getElementById("outputX").appendChild(tabella) // Aggiunge tabella
 }
 
+// Funzione per leggere dati JSON e creare tabella
 function lettura(){
     let tabella= document.createElement("table")
-    const chiavi=Object.keys(parseJSON[0])
+    const chiavi=Object.keys(parseJSON[0]) // Chiavi JSON per intestazione
     let intestazioneRow=document.createElement("tr")
     for(let i=0; i<chiavi.length; i++){
         let intestazione=document.createElement("th");
-        intestazione.textContent= chiavi[i];
+        intestazione.textContent= chiavi[i]; // Testo colonna = chiave JSON
         intestazioneRow.appendChild(intestazione)
     }
     tabella.appendChild(intestazioneRow)
     for(let i=0; i<parseJSON.length ;i++){
-        let righe= document.createElement("tr");
+        let righe= document.createElement("tr"); // Riga dati
         for(let j=0; j<chiavi.length; j++ ){
-            let colonne= document.createElement("td")
-            colonne.textContent = parseJSON[i][chiavi[j]]
+            let colonne= document.createElement("td") // Cella dati
+            colonne.textContent = parseJSON[i][chiavi[j]] // Inserisce valore JSON
             righe.appendChild(colonne)
         }
         tabella.appendChild(righe)
     }   
     let output= document.getElementById("output")
-    output.innerHTML = "";
-    output.appendChild(tabella);
+    output.innerHTML = ""; // Pulisce eventuale tabella precedente
+    output.appendChild(tabella)
 }
 
+// Funzione per stampare maggiorenni
 function maggiorenni(){ 
     let maggiorenni=""
     for(let i=0;i<parseJSON.length; i++){
-        if(parseJSON[i]["età"]>18){
+        if(parseJSON[i]["età"]>18){ // Condizione maggiore età
             maggiorenni += parseJSON[i]["cognome"] + " " + parseJSON[i]["età"] + "<br>"
         }
     }
     document.getElementById("outputM").innerHTML = maggiorenni
 }
 
+// Funzione ricerca cognomi per lettera
 function ricerca(){
     let lettera=document.getElementById("ricerca").value
     let cognomi="I cognomi che iniziano con " + lettera + " sono: <br>"
@@ -205,6 +213,7 @@ function ricerca(){
     document.getElementById("outputC").innerHTML = cognomi
 }
 
+// Funzione per determinare generazione dall'anno di nascita
 function generazione(){
     let anno = document.getElementById("eta").value;
     let generazione = "";
@@ -219,15 +228,17 @@ function generazione(){
     document.getElementById("outputG").innerHTML = generazione
 }
 
+// Funzione per caricare sia XML che JSON all'avvio
 function caricaDati(){
     caricaDatiX()
     caricaDatiJ()
 }
 </script>
 </head>
+
 <body onload="caricaDati()">
 
-<header>Lista Nera</header>
+<header>Lettura Anagrafica Riccardo Marconi</header> <!-- Titolo in alto modificato -->
 
 <div class="main-container">
 
@@ -278,11 +289,11 @@ function caricaDati(){
 </div>
 
 <div class="output">
-    <p id="output"></p>
-    <p id="outputX"></p>
-    <p id="outputC"></p>
-    <p id="outputG"></p>
-    <p id="outputM"></p>
+    <p id="output"></p> <!-- Tabella JSON -->
+    <p id="outputX"></p> <!-- Tabella XML -->
+    <p id="outputC"></p> <!-- Risultati ricerca cognomi -->
+    <p id="outputG"></p> <!-- Risultato generazione -->
+    <p id="outputM"></p> <!-- Lista maggiorenni -->
 </div>
 
 </div>
