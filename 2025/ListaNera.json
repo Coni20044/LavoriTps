@@ -1,11 +1,11 @@
 [
   {
-    "nome": "Luca",               // nome della prima persona
-    "cognome": "Bianchi",         // cognome della prima persona
-    "citta": "Torino",            // città di residenza
-    "indirizzo": "Via Po 12",     // indirizzo completo
-    "cap": "10124",               // codice di avviamento postale
-    "età": 14                     // età della persona
+    "nome": "Luca",               
+    "cognome": "Bianchi",       
+    "citta": "Torino",            
+    "indirizzo": "Via Po 12",     
+    "cap": "10124",               
+    "età": 14                    
   },
   {
     "nome": "Sara",              
