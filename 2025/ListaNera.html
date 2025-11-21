@@ -34,7 +34,7 @@ header {
 /* Container principale */
 .main-container {
   display: grid;
-  grid-template-columns: 1fr 2fr; /* Sinistra pulsanti / destra output */
+  grid-template-columns: 1fr 2fr; /* Colonna pulsanti / output */
   gap: 30px;
   width: 90%;
   margin-top: 30px;
@@ -112,14 +112,126 @@ label {
   margin-bottom: 5px;
 }
 </style>
+<script>
+let parseJSON= [] // variabile globale che conterrà i dati JSON
+let filehttp // variabile globale per XML
+
+function caricaDatiJ() {
+    const richiesta = new XMLHttpRequest()
+    richiesta.open("GET", "https://coni20044.github.io/LavoriTps/2025/ListaNera.json", true)
+    richiesta.send()
+    richiesta.onload = function () {
+        parseJSON = JSON.parse(richiesta.responseText);
+    }
+}
+
+function caricaDatiX(){
+    const richiesta= new XMLHttpRequest();
+    richiesta.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            filehttp = richiesta.responseXML;
+        }
+    };
+    richiesta.open("GET", "https://coni20044.github.io/LavoriTps/2025/ListaNera.xml", true);
+    richiesta.send();
+}
+
+function letturaX(){
+    let vittime= filehttp.documentElement.children
+    let campi= vittime[0].children;
+    let tabella=document.createElement("table")
+    let intestazioneRow=document.createElement("tr")
+    for(let i=0; i<campi.length; i++){
+        let intestazione=document.createElement("th")
+        intestazione.textContent = campi[i].tagName
+        intestazioneRow.appendChild(intestazione)
+    }
+    tabella.appendChild(intestazioneRow)
+    for(let i=0; i<vittime.length; i++){
+        let riga= document.createElement("tr")
+        let dati = vittime[i].children
+        for(let j=0; j<dati.length; j++){
+            let intestazione = document.createElement("td")
+            intestazione.textContent = dati[j].textContent
+            riga.appendChild(intestazione)
+        }
+        tabella.appendChild(riga)
+    }
+    document.getElementById("outputX").innerHTML = "";
+    document.getElementById("outputX").appendChild(tabella)
+}
+
+function lettura(){
+    let tabella= document.createElement("table")
+    const chiavi=Object.keys(parseJSON[0])
+    let intestazioneRow=document.createElement("tr")
+    for(let i=0; i<chiavi.length; i++){
+        let intestazione=document.createElement("th");
+        intestazione.textContent= chiavi[i];
+        intestazioneRow.appendChild(intestazione)
+    }
+    tabella.appendChild(intestazioneRow)
+    for(let i=0; i<parseJSON.length ;i++){
+        let righe= document.createElement("tr");
+        for(let j=0; j<chiavi.length; j++ ){
+            let colonne= document.createElement("td")
+            colonne.textContent = parseJSON[i][chiavi[j]]
+            righe.appendChild(colonne)
+        }
+        tabella.appendChild(righe)
+    }   
+    let output= document.getElementById("output")
+    output.innerHTML = "";
+    output.appendChild(tabella);
+}
+
+function maggiorenni(){ 
+    let maggiorenni=""
+    for(let i=0;i<parseJSON.length; i++){
+        if(parseJSON[i]["età"]>18){
+            maggiorenni += parseJSON[i]["cognome"] + " " + parseJSON[i]["età"] + "<br>"
+        }
+    }
+    document.getElementById("outputM").innerHTML = maggiorenni
+}
+
+function ricerca(){
+    let lettera=document.getElementById("ricerca").value
+    let cognomi="I cognomi che iniziano con " + lettera + " sono: <br>"
+    for (let i = 0; i < parseJSON.length; i++) {
+        if(parseJSON[i]["cognome"].startsWith(lettera))
+            cognomi += parseJSON[i]["cognome"] +"<br>"
+    }
+    document.getElementById("outputC").innerHTML = cognomi
+}
+
+function generazione(){
+    let anno = document.getElementById("eta").value;
+    let generazione = "";
+    if (anno >= 1901 && anno <= 1927) generazione = "Appartieni alla Greatest Generation (1901-1927)";
+    else if (anno >= 1928 && anno <= 1945) generazione = "Appartieni alla Generazione Silenziosa (1928-1945)";
+    else if (anno >= 1946 && anno <= 1964) generazione = "Appartieni ai Baby Boomers (1946-1964)";
+    else if (anno >= 1965 && anno <= 1980) generazione = "Appartieni alla Generazione X (1965-1980)";
+    else if (anno >= 1981 && anno <= 1996) generazione = "Appartieni ai Millenials (1981-1996)";
+    else if (anno >= 1997 && anno <= 2012) generazione = "Appartieni alla Generazione Z (1997-2012)";
+    else if (anno >= 2013) generazione = "Appartieni alla Generazione Alpha (dal 2013 in poi)";
+    else generazione = "Anno di nascita non valido";
+    document.getElementById("outputG").innerHTML = generazione
+}
+
+function caricaDati(){
+    caricaDatiX()
+    caricaDatiJ()
+}
+</script>
 </head>
-<body>
+<body onload="caricaDati()">
 
 <header>Lista Nera</header>
 
 <div class="main-container">
-  <!-- Colonna controlli -->
-  <div class="controls">
+
+<div class="controls">
     <input type="button" value="Visualizza JSON" onclick="lettura()">
     <input type="button" value="Visualizza XML" onclick="letturaX()">
     
@@ -163,21 +275,16 @@ label {
     </div>
 
     <input type="button" value="Stampa maggiorenni JSON" onclick="maggiorenni()">
-  </div>
+</div>
 
-  <!-- Colonna output -->
-  <div class="output">
+<div class="output">
     <p id="output"></p>
     <p id="outputX"></p>
     <p id="outputC"></p>
     <p id="outputG"></p>
     <p id="outputM"></p>
-  </div>
 </div>
 
-<script>
-/* QUI VA IL TUO SCRIPT JS già commentato */
-</script>
-
+</div>
 </body>
 </html>
