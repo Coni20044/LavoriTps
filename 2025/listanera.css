@@ -1,84 +1,84 @@
 /* Impostazioni generali e centratura */
-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: linear-gradient(135deg, #e0e7ff, #f3f4f6);
-  font-family: "Segoe UI", Tahoma, sans-serif;
-  margin: 0;
-  padding: 30px;
+body {                       /* Stile applicato al corpo della pagina */
+  display: flex;             /* Usa Flexbox per gestire il layout */
+  flex-direction: column;    /* Dispone gli elementi in colonna */
+  align-items: center;       /* Centra gli elementi orizzontalmente */
+  background: linear-gradient(135deg, #e0e7ff, #f3f4f6); /* Sfondo con gradiente diagonale */
+  font-family: "Segoe UI", Tahoma, sans-serif; /* Font della pagina */
+  margin: 0;                 /* Rimuove i margini predefiniti */
+  padding: 30px;             /* Aggiunge spazio interno */
 }
 
 /* Titoli */
-body, h1, h2 {
-  padding: 10px;
-  font-size: 30px;
-  color: #283593;
-  text-align: center;
-  letter-spacing: 1px;
+body, h1, h2 {               /* Regole applicate al body e ai titoli */
+  padding: 10px;             /* Spaziatura interna */
+  font-size: 30px;           /* Dimensione del testo */
+  color: #283593;            /* Colore del testo (blu intenso) */
+  text-align: center;        /* Allineamento centrato */
+  letter-spacing: 1px;       /* Spaziare leggermente le lettere */
 }
 
 /* Paragrafi */
 p {
-  padding: 8px;
-  font-size: 18px;
-  color: #374151;
-  text-align: center;
+  padding: 8px;              /* Spaziatura interna */
+  font-size: 18px;           /* Dimensione del testo */
+  color: #374151;            /* Colore grigio scuro */
+  text-align: center;        /* Allineamento centrato */
 }
 
 /* Pulsanti */
-input[type="button"],
-button {
-  padding: 12px 22px;
-  margin: 18px auto;
-  background: #5c6bc0;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 15px;
-  cursor: pointer;
-  transition: 0.3s;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+input[type="button"],         /* Selettore per pulsanti <input> */
+button {                      /* Selettore per eventuali <button> */
+  padding: 12px 22px;         /* Spaziatura interna del pulsante */
+  margin: 18px auto;          /* Margine superiore/inferiore, centrato */
+  background: #5c6bc0;        /* Colore di sfondo blu/viola */
+  color: white;               /* Testo bianco */
+  border: none;               /* Nessun bordo */
+  border-radius: 6px;         /* Bordo arrotondato */
+  font-size: 15px;            /* Dimensione testo */
+  cursor: pointer;            /* Mostra il cursore “mano” */
+  transition: 0.3s;           /* Animazione morbida al passaggio del mouse */
+  box-shadow: 0 3px 6px rgba(0,0,0,0.15); /* Ombra del pulsante */
 }
 
 input[type="button"]:hover,
-button:hover {
-  background: #3949ab;
-  transform: translateY(-2px);
+button:hover {                /* Effetto al passaggio del mouse sui pulsanti */
+  background: #3949ab;        /* Cambia colore di sfondo */
+  transform: translateY(-2px);/* Solleva leggermente il pulsante */
 }
 
 /* Tabelle */
-table {
-  width: 85%;
-  border-collapse: collapse;
-  font-size: 16px;
-  margin: 25px auto;
-  background: white;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+table {                       /* Stile della tabella */
+  width: 85%;                 /* Larghezza della tabella */
+  border-collapse: collapse;  /* Elimina gli spazi tra bordi delle celle */
+  font-size: 16px;            /* Dimensione testo della tabella */
+  margin: 25px auto;          /* Centrare la tabella con margini verticali */
+  background: white;          /* Sfondo bianco */
+  border-radius: 8px;         /* Angoli arrotondati */
+  overflow: hidden;           /* Nasconde elementi che superano i bordi */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15); /* Ombra esterna */
 }
 
 /* Bordo tabella */
-table, th, td {
-  border: 1px solid #c5cae9;
+table, th, td {               /* Applica lo stesso bordo a tabella, intestazioni e celle */
+  border: 1px solid #c5cae9;  /* Bordo grigio/azzurro chiaro */
 }
 
 /* Celle */
-th, td {
-  padding: 14px;
-  text-align: center;
+th, td {                      /* Stile sia per celle che per intestazioni */
+  padding: 14px;              /* Spaziatura interna */
+  text-align: center;         /* Testo centrato */
 }
 
 /* Intestazione tabella */
 th {
-  background-color: #3f51b5;
-  color: white;
-  font-weight: bold;
-  text-transform: uppercase;
+  background-color: #3f51b5;  /* Sfondo blu scuro */
+  color: white;               /* Testo bianco */
+  font-weight: bold;          /* Grassetto */
+  text-transform: uppercase;  /* Trasforma il testo in MAIUSCOLO */
 }
 
 /* Alternanza righe */
-tr:nth-child(even) {
-  background-color: #f4f5ff;
+tr:nth-child(even) {          /* Selettore per righe pari della tabella */
+  background-color: #f4f5ff;  /* Colore di sfondo alternato (molto chiaro) */
 }
