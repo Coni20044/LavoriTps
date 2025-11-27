@@ -8,13 +8,13 @@
 body {
   margin: 0;
   font-family: "Segoe UI", Tahoma, sans-serif;
-  background: linear-gradient(135deg, #ffe5e5, #fff5f5); 
-  color: #5a1a1a; 
+  background: linear-gradient(135deg, #ffe5e5, #fff5f5);
+  color: #5a1a1a;
   display: flex;
-  flex-direction: column; 
-  align-items: center; 
-  min-height: 100vh; 
-  padding: 20px; 
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
 }
 
 header {
@@ -109,132 +109,146 @@ label {
 
 <script>
 let parseJSON = [];
-let filehttp;
+let fileXML = null;
 
 // Carica dati JSON
-function caricaDatiJ() {
-    const richiesta = new XMLHttpRequest();
-    richiesta.open("GET", "https://coni20044.github.io/LavoriTps/2025/ListaNera.json", true);
-    richiesta.send();
-    richiesta.onload = function() {
-        parseJSON = JSON.parse(richiesta.responseText);
-    }
+function caricaDatiJSON() {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://coni20044.github.io/LavoriTps/2025/ListaNera.json", true);
+    xhr.send();
+    xhr.onload = function () {
+        parseJSON = JSON.parse(xhr.responseText);
+    };
 }
 
 // Carica dati XML
-function caricaDatiX() {
-    const richiesta = new XMLHttpRequest();
-    richiesta.overrideMimeType("text/xml"); // FIX per leggere XML correttamente
-    richiesta.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            filehttp = richiesta.responseXML;
-        }
+function caricaDatiXML() {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://coni20044.github.io/LavoriTps/2025/ListaNera.xml", true);
+    xhr.responseType = "document";
+    xhr.overrideMimeType('text/xml');
+    xhr.send();
+    xhr.onload = function () {
+        fileXML = xhr.responseXML;
     };
-    richiesta.open("GET", "https://coni20044.github.io/LavoriTps/2025/ListaNera.xml", true);
-    richiesta.send();
 }
 
-// Legge XML e crea tabella
-function letturaX() {
-    let vittime = filehttp.getElementsByTagName("vittima"); // FIX
-    let tabella = document.createElement("table");
-    let intestazioneRow = document.createElement("tr");
-
-    // Prende i tag del primo elemento come intestazioni
-    let campi = Array.from(vittime[0].children).map(el => el.tagName);
-    campi.forEach(campo => {
-        let th = document.createElement("th");
-        th.textContent = campo;
-        intestazioneRow.appendChild(th);
-    });
-    tabella.appendChild(intestazioneRow);
-
-    // Riempie le righe
-    for (let i = 0; i < vittime.length; i++) {
-        let riga = document.createElement("tr");
-        let dati = vittime[i].children;
-        for (let j = 0; j < dati.length; j++) {
-            let td = document.createElement("td");
-            td.textContent = dati[j].textContent;
-            riga.appendChild(td);
-        }
-        tabella.appendChild(riga);
-    }
-
-    let outputX = document.getElementById("outputX");
-    outputX.innerHTML = "";
-    outputX.appendChild(tabella);
-}
-
-// Legge JSON e crea tabella
-function lettura() {
+// Funzione per visualizzare JSON
+function letturaJSON() {
     if(parseJSON.length === 0) return;
     let tabella = document.createElement("table");
-    const chiavi = Object.keys(parseJSON[0]);
+    let chiavi = Object.keys(parseJSON[0]);
     let intestazioneRow = document.createElement("tr");
-
-    chiavi.forEach(key => {
+    chiavi.forEach(k => {
         let th = document.createElement("th");
-        th.textContent = key;
+        th.textContent = k;
+        intestazioneRow.appendChild(th);
+    });
+    tabella.appendChild(intestazioneRow);
+    parseJSON.forEach(obj => {
+        let riga = document.createElement("tr");
+        chiavi.forEach(k => {
+            let td = document.createElement("td");
+            td.textContent = obj[k];
+            riga.appendChild(td);
+        });
+        tabella.appendChild(riga);
+    });
+    document.getElementById("output").innerHTML = "";
+    document.getElementById("output").appendChild(tabella);
+}
+
+// Funzione per visualizzare XML
+function letturaXML() {
+    if(!fileXML) return;
+    let vittime = Array.from(fileXML.getElementsByTagName("vittima"));
+    if(vittime.length === 0) return;
+
+    let tabella = document.createElement("table");
+    let campi = Array.from(vittime[0].children);
+    let intestazioneRow = document.createElement("tr");
+    campi.forEach(c => {
+        let th = document.createElement("th");
+        th.textContent = c.tagName;
         intestazioneRow.appendChild(th);
     });
     tabella.appendChild(intestazioneRow);
 
-    parseJSON.forEach(item => {
+    vittime.forEach(v => {
         let riga = document.createElement("tr");
-        chiavi.forEach(key => {
+        campi.forEach(c => {
             let td = document.createElement("td");
-            td.textContent = item[key];
+            td.textContent = v.getElementsByTagName(c.tagName)[0].textContent;
             riga.appendChild(td);
         });
         tabella.appendChild(riga);
     });
 
-    let output = document.getElementById("output");
-    output.innerHTML = "";
-    output.appendChild(tabella);
+    document.getElementById("outputX").innerHTML = "";
+    document.getElementById("outputX").appendChild(tabella);
 }
 
-// Stampa maggiorenni JSON
+// Funzione per maggiorenni (JSON + XML)
 function maggiorenni() {
-    let maggiorenniStr = "";
-    parseJSON.forEach(item => {
-        if (item["età"] > 18) {
-            maggiorenniStr += item["cognome"] + " " + item["età"] + "<br>";
-        }
+    let result = "Maggiorenni JSON:<br>";
+    parseJSON.forEach(p => {
+        if(p.età > 18) result += p.cognome + " " + p.età + "<br>";
     });
-    document.getElementById("outputM").innerHTML = maggiorenniStr;
+
+    if(fileXML) {
+        let vittime = Array.from(fileXML.getElementsByTagName("vittima"));
+        result += "<br>Maggiorenni XML:<br>";
+        vittime.forEach(v => {
+            let eta = parseInt(v.getElementsByTagName("eta")[0].textContent);
+            if(eta > 18) {
+                let cognome = v.getElementsByTagName("Cognome")[0].textContent;
+                result += cognome + " " + eta + "<br>";
+            }
+        });
+    }
+
+    document.getElementById("outputM").innerHTML = result;
 }
 
-// Ricerca cognomi per lettera
+// Funzione per ricerca cognomi per lettera (JSON + XML)
 function ricerca() {
     let lettera = document.getElementById("ricerca").value;
-    let cognomi = "I cognomi che iniziano con " + lettera + " sono: <br>";
-    parseJSON.forEach(item => {
-        if (item["cognome"].startsWith(lettera)) cognomi += item["cognome"] + "<br>";
+    let result = "Cognomi JSON:<br>";
+    parseJSON.forEach(p => {
+        if(p.cognome.startsWith(lettera)) result += p.cognome + "<br>";
     });
-    document.getElementById("outputC").innerHTML = cognomi;
+
+    if(fileXML) {
+        let vittime = Array.from(fileXML.getElementsByTagName("vittima"));
+        result += "<br>Cognomi XML:<br>";
+        vittime.forEach(v => {
+            let cognome = v.getElementsByTagName("Cognome")[0].textContent;
+            if(cognome.startsWith(lettera)) result += cognome + "<br>";
+        });
+    }
+
+    document.getElementById("outputC").innerHTML = result;
 }
 
-// Determina generazione dall'anno
+// Funzione generazione per anno di nascita
 function generazione() {
-    let anno = document.getElementById("eta").value;
+    let anno = parseInt(document.getElementById("eta").value);
     let gen = "";
-    if (anno >= 1901 && anno <= 1927) gen = "Appartieni alla Greatest Generation (1901-1927)";
-    else if (anno >= 1928 && anno <= 1945) gen = "Appartieni alla Generazione Silenziosa (1928-1945)";
-    else if (anno >= 1946 && anno <= 1964) gen = "Appartieni ai Baby Boomers (1946-1964)";
-    else if (anno >= 1965 && anno <= 1980) gen = "Appartieni alla Generazione X (1965-1980)";
-    else if (anno >= 1981 && anno <= 1996) gen = "Appartieni ai Millenials (1981-1996)";
-    else if (anno >= 1997 && anno <= 2012) gen = "Appartieni alla Generazione Z (1997-2012)";
-    else if (anno >= 2013) gen = "Appartieni alla Generazione Alpha (dal 2013 in poi)";
-    else gen = "Anno di nascita non valido";
+    if (anno >= 1901 && anno <= 1927) gen = "Greatest Generation (1901-1927)";
+    else if (anno >= 1928 && anno <= 1945) gen = "Generazione Silenziosa (1928-1945)";
+    else if (anno >= 1946 && anno <= 1964) gen = "Baby Boomers (1946-1964)";
+    else if (anno >= 1965 && anno <= 1980) gen = "Generazione X (1965-1980)";
+    else if (anno >= 1981 && anno <= 1996) gen = "Millennials (1981-1996)";
+    else if (anno >= 1997 && anno <= 2012) gen = "Generazione Z (1997-2012)";
+    else if (anno >= 2013) gen = "Generazione Alpha (dal 2013 in poi)";
+    else gen = "Anno non valido";
     document.getElementById("outputG").innerHTML = gen;
 }
 
-// Carica dati JSON e XML all'avvio
+// Carica dati all'avvio
 function caricaDati() {
-    caricaDatiX();
-    caricaDatiJ();
+    caricaDatiJSON();
+    caricaDatiXML();
 }
 </script>
 </head>
@@ -244,51 +258,33 @@ function caricaDati() {
 <header>Lettura Anagrafica Riccardo Marconi</header>
 
 <div class="main-container">
-
 <div class="controls">
-    <input type="button" value="Visualizza JSON" onclick="lettura()">
-    <input type="button" value="Visualizza XML" onclick="letturaX()">
+    <input type="button" value="Visualizza JSON" onclick="letturaJSON()">
+    <input type="button" value="Visualizza XML" onclick="letturaXML()">
 
     <div>
       <label for="ricerca">Cognomi che iniziano con:</label>
-      <select id="ricerca" name="ricerca">
-        <option value="A">A</option>
-        <option value="B">B</option>
-        <option value="C">C</option>
-        <option value="D">D</option>
-        <option value="E">E</option>
-        <option value="F">F</option>
-        <option value="G">G</option>
-        <option value="H">H</option>
-        <option value="I">I</option>
-        <option value="J">J</option>
-        <option value="K">K</option>
-        <option value="L">L</option>
-        <option value="M">M</option>
-        <option value="N">N</option>
-        <option value="O">O</option>
-        <option value="P">P</option>
-        <option value="Q">Q</option>
-        <option value="R">R</option>
-        <option value="S">S</option>
-        <option value="T">T</option>
-        <option value="U">U</option>
-        <option value="V">V</option>
-        <option value="W">W</option>
-        <option value="X">X</option>
-        <option value="Y">Y</option>
-        <option value="Z">Z</option>
+      <select id="ricerca">
+        <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+        <option value="D">D</option><option value="E">E</option><option value="F">F</option>
+        <option value="G">G</option><option value="H">H</option><option value="I">I</option>
+        <option value="J">J</option><option value="K">K</option><option value="L">L</option>
+        <option value="M">M</option><option value="N">N</option><option value="O">O</option>
+        <option value="P">P</option><option value="Q">Q</option><option value="R">R</option>
+        <option value="S">S</option><option value="T">T</option><option value="U">U</option>
+        <option value="V">V</option><option value="W">W</option><option value="X">X</option>
+        <option value="Y">Y</option><option value="Z">Z</option>
       </select>
-      <input type="button" value="Ricerca Cognomi JSON" onclick="ricerca()">
+      <input type="button" value="Ricerca Cognomi" onclick="ricerca()">
     </div>
 
     <div>
       <label for="eta">Inserisci anno di nascita:</label>
-      <input type="number" id="eta" name="eta">
+      <input type="number" id="eta">
       <input type="button" value="Scopri la tua generazione" onclick="generazione()">
     </div>
 
-    <input type="button" value="Stampa maggiorenni JSON" onclick="maggiorenni()">
+    <input type="button" value="Stampa maggiorenni" onclick="maggiorenni()">
 </div>
 
 <div class="output">
@@ -298,7 +294,6 @@ function caricaDati() {
     <p id="outputG"></p>
     <p id="outputM"></p>
 </div>
-
 </div>
 </body>
 </html>
