@@ -1,50 +1,50 @@
 [
   {
-    "nome": "Luca",               
-    "cognome": "Bianchi",       
-    "citta": "Torino",            
-    "indirizzo": "Via Po 12",     
-    "cap": "10124",               
-    "età": 14                    
+    "nome": "Marco",
+    "cognome": "Rossi",
+    "citta": "Anzio",
+    "indirizzo": "Via Garibaldi 5",
+    "cap": "00042",
+    "età": 7
   },
   {
-    "nome": "Sara",              
-    "cognome": "Verdi",           
-    "citta": "Bari",              
-    "indirizzo": "Via Sparano 3",
-    "cap": "70121",               
-    "età": 33                     
+    "nome": "Giovanni",
+    "cognome": "Muciacia",
+    "citta": "Treviglio",
+    "indirizzo": "Via Matteotti 2",
+    "cap": "24047",
+    "età": 26
   },
   {
-    "nome": "Francesco",          
-    "cognome": "Costa",           
-    "citta": "Parma",             
-    "indirizzo": "Strada Garibaldi 22", 
-    "cap": "43121",               
-    "età": 52             
+    "nome": "Alberto",
+    "cognome": "Giovannetti",
+    "citta": "Sassuolo",
+    "indirizzo": "Via Battisti 69",
+    "cap": "41049",
+    "età": 96
   },
   {
-    "nome": "Chiara",          
-    "cognome": "Moretti",       
-    "citta": "Pisa",             
-    "indirizzo": "Via Roma 8",   
-    "cap": "56126",              
-    "età": 19                   
+    "nome": "Federica",
+    "cognome": "Floriano",
+    "citta": "Ladispoli",
+    "indirizzo": "Via San Vittore 1",
+    "cap": "00055",
+    "età": 17
   },
   {
-    "nome": "Davide",             
-    "cognome": "Caruso",         
-    "citta": "Genova",            
-    "indirizzo": "Via San Luca 7",
-    "cap": "16124",         
-    "età": 41                     
+    "nome": "Mattia",
+    "cognome": "Alfieri",
+    "citta": "Ancona",
+    "indirizzo": "Via XV Settembre 15",
+    "cap": "60100",
+    "età": 29
   },
   {
-    "nome": "Elena",           
-    "cognome": "Serra",      
-    "citta": "Cagliari",          
-    "indirizzo": "Via Dante 45",
-    "cap": "09128",               
-    "età": 28                 
+    "nome": "Alessandro",
+    "cognome": "Meloni",
+    "citta": "Iglesias",
+    "indirizzo": "Via Mori 3",
+    "cap": "09016",
+    "età": 25
   }
 ]
