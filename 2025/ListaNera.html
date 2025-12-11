@@ -87,9 +87,11 @@ p {
     </style>
     
     <script>
-        let parseJSON= [] 
-        let filehttp 
+        let parseJSON= [] //parseJSON conterrà il contenuto del file JSON convertito in array di oggetti.
+        let filehttp //conterrà il file XML convertito in responseXML
 
+
+        //qui viene fatta una richiesta http, al caricamento (onload) il testo JSON viene convertito in oggetti JS. I dati saranno disponibili per le funzioni successive
         function caricaDatiJ() {
             const richiesta = new XMLHttpRequest()
             richiesta.open("GET", "https://coni20044.github.io/LavoriTps/2025/ListaNera.json", true)
@@ -103,7 +105,7 @@ p {
         function caricaDatiX(){
             const richiesta= new XMLHttpRequest(); 
             richiesta.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) { 
+                if (this.readyState == 4 && this.status == 200) { //una volta che si raggiunge stato 4 e status 200 inizia la seguente funzione
                 myFunction(this);
                 }
             };
@@ -114,7 +116,7 @@ p {
             }
         }
 
-        function letturaX(){
+        function letturaX(){ //funzione di lettura e stampa xml
             let vittime= filehttp.documentElement.children 
             let campi= vittime[0].children; 
             let tabella=document.createElement("table")
@@ -140,7 +142,7 @@ p {
             document.getElementById("outputX").appendChild(tabella)
         }
 
-        function lettura(){
+        function lettura(){ //funzione di lettura e stampa JSON
             let tabella= document.createElement("table")
             const chiavi=Object.keys(parseJSON[0])
             let intestazioneRow=document.createElement("tr")
