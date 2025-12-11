@@ -1,84 +1,75 @@
-/* Impostazioni generali e centratura */
 body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(135deg, #ffe5e5, #fff5f5); /* Rosa/rosso molto chiaro */
-  font-family: "Segoe UI", Tahoma, sans-serif;
+  background-color: #eef2ff;
+  font-family: Arial, Helvetica, sans-serif;
   margin: 0;
-  padding: 30px;
+  padding: 20px;
 }
 
-/* Titoli */
-body, h1, h2 {
+h1 {
   padding: 10px;
-  font-size: 30px;
-  color: #8b0000; /* Rosso scuro */
+  font-size: 34px;
+  color: #4338ca;
   text-align: center;
-  letter-spacing: 1px;
+  font-weight: bold;
 }
 
-/* Paragrafi */
-p {
-  padding: 8px;
+p, label {
+  padding: 10px;
   font-size: 18px;
-  color: #5a1a1a; /* Rosso/marrone scuro */
+  color: #312e81;
   text-align: center;
 }
 
-/* Pulsanti */
-input[type="button"],
-button {
-  padding: 12px 22px;
-  margin: 18px auto;
-  background: #c62828; /* Rosso intenso */
+input[type="button"] {
+  padding: 10px 20px;
+  margin: 15px auto;
+  background-color: #6366f1;
   color: white;
   border: none;
+  font-size: 16px;
   border-radius: 6px;
-  font-size: 15px;
+}
+
+input[type="button"]:hover {
+  background-color: #4f46e5;
   cursor: pointer;
-  transition: 0.3s;
-  box-shadow: 0 3px 6px rgba(150, 0, 0, 0.25); /* Ombra rossa */
 }
 
-input[type="button"]:hover,
-button:hover {
-  background: #8e0000; /* Rosso ancora più scuro */
-  transform: translateY(-2px);
-}
-
-/* Tabelle */
 table {
-  width: 85%;
+  width: 90%;
   border-collapse: collapse;
   font-size: 16px;
-  margin: 25px auto;
-  background: #fffafa; /* Bianco rosato */
-  border-radius: 8px;
+  margin: 20px auto;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+  background-color: white;
+  border-radius: 6px;
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(120, 0, 0, 0.25); /* Ombra rossa */
 }
 
-/* Bordo tabella */
 table, th, td {
-  border: 1px solid #ffcccc; /* Rosa molto chiaro */
+  border: 1px solid #c7d2fe;
 }
 
-/* Celle */
 th, td {
-  padding: 14px;
+  padding: 12px;
   text-align: center;
 }
 
-/* Intestazione tabella */
 th {
-  background-color: #b71c1c; /* Rosso scuro elegante */
+  background-color: #818cf8;
   color: white;
   font-weight: bold;
-  text-transform: uppercase;
 }
 
-/* Alternanza righe */
-tr:nth-child(even) {
-  background-color: #ffecec; /* Rosa chiarissimo per alternanza */
+select, input[type="number"] {
+  padding: 8px;
+  font-size: 16px;
+  margin: 10px;
+  border: 1px solid #a5b4fc;
+  border-radius: 4px;
+  background-color: #eef2ff;
+  color: #312e81;
 }
