@@ -1,7 +1,7 @@
 //creo un oggetto XMLHttpRequest
 var richiesta = new XMLHttpRequest(); //<--- serve per leggere un file esterno (in questo caso il Json prodotti)
 //qua definisco cosa fare quando la risposta arriva
-richiesta.onreadychange = function(){
+richiesta.onreadysetchange = function(){
     //readyState 4 = operazione completata
     //status 200 = tutto OK
     if(richiesta.readyState === 4 && richiesta.status === 200){
@@ -12,6 +12,7 @@ richiesta.onreadychange = function(){
 
         //Ciclo tutti i prodotti scorrendoli 1 alla volta
         prodotti.forEach(function (prodotto) {
+            
 
             contenuto.innerHTML +=
                 "<div>" +
