@@ -1,0 +1,25 @@
+[
+    {
+        "nome":"Berretto",
+        "marca":"Louis Vuitton",
+        "taglia":"Taglia Unica",
+        "prezzo":2.60
+
+    },
+
+    {
+        "nome":"Felpa",
+        "marca":"Calvin Klein",
+        "taglia":"M",
+        "prezzo":19.99
+
+    },
+
+    {
+        "nome":"Jeans",
+        "marca":"Amiri Jeans",
+        "taglia":"46",
+        "prezzo":39.99
+
+    }
+]
