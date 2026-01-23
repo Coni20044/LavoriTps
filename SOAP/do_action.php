@@ -5,7 +5,7 @@ $wsdl = "http://TUO_SITO/soap/converter.wsdl";
 if (!empty($_POST['value']) && !empty($_POST['operation'])) {
 
     $client = new SoapClient($wsdl, [
-        "location" => "http://TUO_SITO/soap/server.php"
+        "location" => "https://coni20044.github.io/LavoriTps/SOAP/server.php"
     ]);
 
     $value = floatval($_POST['value']);
