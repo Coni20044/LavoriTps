@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions 
+    name="ConverterService"
+    targetNamespace="urn:converter"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:tns="urn:converter"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+    <message name="MetersToInchesRequest">
+        <part name="meters" type="xsd:float"/>
+    </message>
+
+    <message name="MetersToInchesResponse">
+        <part name="result" type="xsd:float"/>
+    </message>
+
+    <message name="InchesToMetersRequest">
+        <part name="inches" type="xsd:float"/>
+    </message>
+
+    <message name="InchesToMetersResponse">
+        <part name="result" type="xsd:float"/>
+    </message>
+
+    <portType name="ConverterPortType">
+        <operation name="metersToInches">
+            <input message="tns:MetersToInchesRequest"/>
+            <output message="tns:MetersToInchesResponse"/>
+        </operation>
+
+        <operation name="inchesToMeters">
+            <input message="tns:InchesToMetersRequest"/>
+            <output message="tns:InchesToMetersResponse"/>
+        </operation>
+    </portType>
+
+    <binding name="ConverterBinding" type="tns:ConverterPortType">
+        <soap:binding style="rpc"
+            transport="http://schemas.xmlsoap.org/soap/http"/>
+
+        <operation name="metersToInches">
+            <soap:operation soapAction="metersToInches"/>
+            <input>
+                <soap:body use="encoded"
+                    encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                    namespace="urn:converter"/>
+            </input>
+            <output>
+                <soap:body use="encoded"
+                    encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                    namespace="urn:converter"/>
+            </output>
+        </operation>
+
+        <operation name="inchesToMeters">
+            <soap:operation soapAction="inchesToMeters"/>
+            <input>
+                <soap:body use="encoded"
+                    encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                    namespace="urn:converter"/>
+            </input>
+            <output>
+                <soap:body use="encoded"
+                    encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                    namespace="urn:converter"/>
+            </output>
+        </operation>
+    </binding>
+
+    <service name="ConverterService">
+        <port name="ConverterPort" binding="tns:ConverterBinding">
+            <soap:address location="http://TUO_SITO/soap/server.php"/>
+        </port>
+    </service>
+
+</definitions>
