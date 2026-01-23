@@ -1,6 +1,6 @@
 <?php
 
-$wsdl = "http://TUO_SITO/soap/converter.wsdl";
+$wsdl = "https://coni20044.github.io/LavoriTps/SOAP/converter.wsdl";
 
 if (!empty($_POST['value']) && !empty($_POST['operation'])) {
 
