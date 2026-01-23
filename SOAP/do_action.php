@@ -1,5 +1,6 @@
 <?php
-
+echo "do_action raggiunto";
+exit;
 $wsdl = "https://coni20044.github.io/LavoriTps/SOAP/converter.wsdl";
 
 if (!empty($_POST['value']) && !empty($_POST['operation'])) {
