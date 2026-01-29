@@ -1,5 +1,5 @@
 <?php
-echo "do_action raggiunto";
+echo "do_action raggiunto"; //non arriva qua! chiedi aiuto al prof
 exit;
 $wsdl = "https://coni20044.github.io/LavoriTps/SOAP/converter.wsdl";
 
