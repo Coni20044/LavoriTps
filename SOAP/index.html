@@ -1,22 +1,53 @@
 <!DOCTYPE html>
+<!-- Dichiara il tipo di documento: HTML5 -->
+
 <html>
+<!-- Inizio della pagina HTML -->
+
 <head>
+    <!-- Sezione intestazione (metadati, titolo, ecc.) -->
+
     <title>SOAP Converter</title>
+    <!-- Titolo della pagina (quello che vedi nella scheda del browser) -->
 </head>
+
 <body>
+<!-- Corpo della pagina: tutto ciò che viene mostrato all’utente -->
 
 <h2>Conversione SOAP</h2>
+<!-- Titolo visibile nella pagina -->
 
 <form method="POST" action="do_action.php">
+    <!-- Form HTML:
+         - method="POST" → i dati vengono inviati in modo nascosto
+         - action="do_action.php" → file PHP che riceve i dati -->
+
     <input type="number" step="any" name="value" required>
+    <!-- Campo input numerico:
+         - type="number" → accetta solo numeri
+         - step="any" → permette numeri decimali
+         - name="value" → nome del dato inviato al server ($_POST['value'])
+         - required → obbligatorio -->
 
     <select name="operation">
+        <!-- Menu a tendina:
+             - name="operation" → inviato come $_POST['operation'] -->
+
         <option value="m2i">Metri → Pollici</option>
+        <!-- Opzione 1:
+             value="m2i" → valore inviato al server -->
+
         <option value="i2m">Pollici → Metri</option>
+        <!-- Opzione 2 -->
     </select>
 
     <input type="submit" value="Converti">
+    <!-- Pulsante invio:
+         - invia il form al file PHP -->
 </form>
 
 </body>
+<!-- Fine corpo pagina -->
+
 </html>
+<!-- Fine documento HTML -->
