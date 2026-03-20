@@ -1,66 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Dichiarazione XML: indica versione e codifica del documento -->
 
 <definitions 
     name="ConverterService"
+    <!-- Nome del servizio -->
+
     targetNamespace="urn:converter"
+    <!-- Namespace principale: identifica univocamente questo servizio -->
+
     xmlns="http://schemas.xmlsoap.org/wsdl/"
+    <!-- Namespace standard per WSDL -->
+
     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    <!-- Namespace per estensioni SOAP -->
+
     xmlns:tns="urn:converter"
+    <!-- Prefisso tns (this namespace) per riferirsi al namespace principale -->
+
     xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <!-- Namespace per i tipi di dati XML (string, float, ecc.) -->
+
 
     <message name="MetersToInchesRequest">
+        <!-- Definisce il messaggio di richiesta per la conversione metri → pollici -->
         <part name="meters" type="xsd:float"/>
+        <!-- Parametro in input: numero decimale (metri) -->
     </message>
 
     <message name="MetersToInchesResponse">
+        <!-- Messaggio di risposta per metri → pollici -->
         <part name="result" type="xsd:float"/>
+        <!-- Risultato della conversione -->
     </message>
 
     <message name="InchesToMetersRequest">
+        <!-- Messaggio di richiesta per pollici → metri -->
         <part name="inches" type="xsd:float"/>
+        <!-- Parametro in input -->
     </message>
 
     <message name="InchesToMetersResponse">
+        <!-- Messaggio di risposta per pollici → metri -->
         <part name="result" type="xsd:float"/>
+        <!-- Risultato della conversione -->
     </message>
 
+
     <portType name="ConverterPortType">
+        <!-- Definisce le operazioni disponibili (come un'interfaccia) -->
+
         <operation name="metersToInches">
+            <!-- Operazione per convertire metri in pollici -->
             <input message="tns:MetersToInchesRequest"/>
+            <!-- Usa il messaggio di richiesta -->
             <output message="tns:MetersToInchesResponse"/>
+            <!-- Usa il messaggio di risposta -->
         </operation>
 
         <operation name="inchesToMeters">
+            <!-- Operazione per convertire pollici in metri -->
             <input message="tns:InchesToMetersRequest"/>
             <output message="tns:InchesToMetersResponse"/>
         </operation>
     </portType>
 
+
     <binding name="ConverterBinding" type="tns:ConverterPortType">
+        <!-- Collega le operazioni a un protocollo concreto (SOAP) -->
+
         <soap:binding style="rpc"
             transport="http://schemas.xmlsoap.org/soap/http"/>
+        <!-- Usa SOAP su HTTP con stile RPC (Remote Procedure Call) -->
 
         <operation name="metersToInches">
+            <!-- Implementazione SOAP dell’operazione -->
+
             <soap:operation soapAction="metersToInches"/>
+            <!-- Azione SOAP (identificatore della chiamata) -->
+
             <input>
                 <soap:body use="encoded"
                     encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
                     namespace="urn:converter"/>
+                <!-- Corpo della richiesta: formato encoded (vecchio stile SOAP) -->
             </input>
+
             <output>
                 <soap:body use="encoded"
                     encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
                     namespace="urn:converter"/>
+                <!-- Corpo della risposta -->
             </output>
         </operation>
 
         <operation name="inchesToMeters">
+            <!-- Seconda operazione -->
+
             <soap:operation soapAction="inchesToMeters"/>
+
             <input>
                 <soap:body use="encoded"
                     encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
                     namespace="urn:converter"/>
             </input>
+
             <output>
                 <soap:body use="encoded"
                     encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
@@ -69,10 +112,17 @@
         </operation>
     </binding>
 
+
     <service name="ConverterService">
+        <!-- Definizione del servizio reale -->
+
         <port name="ConverterPort" binding="tns:ConverterBinding">
+            <!-- Porta che usa il binding definito sopra -->
+
             <soap:address location="http://TUO_SITO/soap/server.php"/>
+            <!-- URL del server SOAP che implementa il servizio -->
         </port>
     </service>
 
 </definitions>
+<!-- Fine della definizione WSDL -->
